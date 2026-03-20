@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BingoCVM</title>
+    <link rel="shortcut icon" href="../images/fabi.ico">
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/sub_header.css">
+    <link rel="stylesheet" href="../css/sub_docs.css">
+    <link rel="stylesheet" href="../css/sub_moblie_lnb.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/button-effect.css">
+
+    <style>
+        .product {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+        }
+
+        .product__elem {
+            border: solid #eee 10px;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .product__elem b{
+            font-size: 24px;
+        }
+        .product__elem p {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .product {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .product {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../js/sub_docs.js"></script>
+    <script src="../js/mobile-lnb.js"></script>
+    <script src="../js/nav-active.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- <img id="main_bg" src="./images/main_bg.png" alt="배경"> -->
+        <div class="header_wrap">
+            <h1>
+                <img onclick="location.href='../index.html'" src="../images/bingoCVM-logo-bklong2.png"
+                    alt="BingoCVM 로고">
+            </h1>
+            <nav class="for-pc">
+                <ul>
+                    <li><a href="../sub/trms.html">
+                        <span class="ha-transition-pseudo text-underlined text-underlined_v3 is-active">
+                            <span class="text-underlined__label">BingoTRMS</span>
+                        </span>
+                    </a></li>
+                    <li><a href="./buy.html">
+                        <span class="ha-transition-pseudo text-underlined text-underlined_v3">
+                            <span class="text-underlined__label">구매</span>
+                        </span>
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="hamburger_wrap">
+                <div class="three col for-mobile">
+                    <div class="hamburger" id="hamburger-1">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+            </div>
+            <nav class="mobile-lnb for-mobile">
+                <div class="for-mobile-lnb for-mobile">
+                    <ul>
+                        <li><a href="../index.html">
+                            <span class="ha-transition-pseudo text-underlined text-underlined_v3">
+                                <span class="text-underlined__label">홈</span>
+                            </span>
+                        </a></li>
+                        <li><a href="../sub/trms.html">
+                            <span class="ha-transition-pseudo text-underlined text-underlined_v3 is-active">
+                                <span class="text-underlined__label">BingoTRMS</span>
+                            </span>
+                        </a></li>
+                        <li><a href="./buy.html">
+                            <span class="ha-transition-pseudo text-underlined text-underlined_v3">
+                                <span class="text-underlined__label">구매</span>
+                            </span>
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <section id="chap00">
+
+        <h2></br>트래픽모니터링 시스템 개념</h2>
+        <h4></br>1. 수집 분석 서버</h4>
+        <p>ELK Stack 기반으로 방화벽 데이터와 웹키퍼 데이터, 통합로그관리 시스템에 저장된 데이터를 수집 저장 검색 하는 기능을 제공 (Logstash, Elasticsearch)</br></p>
+
+        <h4></br>2. 모니터링 서버</h4>
+        <p>ELK Stack 기반으로 수집서버에 수집된 원본데이터에서 데이터 정제 후 추출 저장하는 기능</br>
+            정제된 데이터를 저장 후 REST API 기반으로 웹 화면에서 분석하는 기능</br>
+            출발지 IP정보, 목적지 IP정보, 접속사이트 정보, 트래픽 사이즈 정보를 분석 하는 기능을 제공(Logstash, Elasticsearch, Nginx, 모니터링 및 분석 웹)</br>
+            분석데이터를 CSV파일로 다운로드하는 기능, 분석된 화면을 캡처하는 기능</br></p>
+    </section>
+
+    <section id="chap01">
+        <img id="bingo-block" src="../trms-imgs/trms_system.png" alt="트래픽 모티터링 스시템 개념 구성도">
+    </section>
+
+    <section id="chap02">
+
+        <h3></br></br>트래픽 모니터링 시스템 규격</h3>
+
+        <h4></br>1. 일반 요건</h4>
+        <p>○ 수집대상시스템 에서 발생하는 일일 100GB 트래픽을 안정적으로 처리할 수 있는 제품</br>
+            ○ ELK Stack 엔진 기반으로 비정형 데이터를 실시간 수집 분석 시각화처리할 수 있는 제품</br>
+            ○ 수집저장 서버 1식, 모니터링 분석 서버 1식 (웹 기반 분석 화면 제공)</br>
+        </p>
+        
+        <h4></br>2. 수집 저장 서버</h4>
+        <p>○ 보안장비, 네트워크장비 등 이기종 시스템을 연동하기 위한, Syslog, beats 등 로그 수집 방식 제공</br>
+            ○ 데이터 전달을 위한 공통라이브러리인 libbeat를 기반으로 Beats를 활용한 데이터 수집 기능 제공</br>
+            ○ Logstash 기반 데이터 입출력 기능 제공</br></br>
+            <b>Data Input -> Data Filter –> Data Output</b></br></br>
+            ○ 대용량 로그를 빠르게 처리할 수 있도록 분석로그는 인덱싱 파일로 저장</br>
+            ○ Fault Tolerance를 위해 SIGTERM 등 시그널을 받아 종료하게 되면 input을 먼저 종료하고 모든 Output 과정이 끝날때까지 잠시 대기하도록 하는 기능</br>
+            ○ 일종의 stream filters로 Codecs(json, msgpack, plain text, multiline)를 제공</br>
+            ○ 정형데이터, 비정형데이터, 위치정보, 메트릭 등 다양한 유형의 데이터를 사용자가 원하는 방식으로 검색하고 결합할 수 있는 Elasticsearch 엔진 제공</br>
+            ○ 대규모 분석 데이터를 확대하여 추이와 패턴을 살펴볼 수 있도록 지원, 수평적 확장을 통해 매초당 수많은 양의 이벤트 처리할 수 있으며, 클러스터에서 인덱스와 쿼리 배포를 자동화하여 보다 원활한 시스템 운영을 지원</br>
+        </p>
+
+        <h4></br>3. 모니터링 분석 서버</h4>
+        <p>○ 트래픽 데이터를 분석 처리 저장하며, 모니터링 웹 화면을 제공</br>
+            ○ 숫자, 텍스트, 위치정보, 정형데이터, 비정형데이터 등을 분석 처리 저장 기능 제공</br>
+            ○ 소스 데이터 전체 또는 단일 데이터 입력 선택 분석 기능</br>
+            ○ 검색 결과창에서 컬럼별 통계 지원, 결과화면 캡처 기능</br>
+            ○ 통계분석 차트, 추이분석 차트 등을 지원</br>
+            ○ 분석 데이터 CSV 파일 형태로 다운로드 기능</br>
+            ○ 분석 데이터를 일단위로 Index로 저장 처리 보관</br>
+            ○ 분석 모니터링 화면은 고객 맞춤형으로 커스텀 지원 제공</br>
+            ○ kibana 기본 웹이 아닌 별도의 웹으로 제공</br>
+            ○ 주요 기능으로 입력 데이터 선택과 검색조건(검색기간, 출발지IP, 목적지IP, 서비스종류, 트래픽양)을 제공하며, 결과를 분석 하는 기능 제공</br>
+        </p>
+
+        <h4></br>4. 권한 설정 등 기타 관리</h4>
+        <p>○ 로그인 사용자 설정 지원</br>
+            ○ 분석 결과 csv 파일 다운로드 지원</br>
+            ○ 분석 화면 캡처 저장 지원</br>
+        </p>
+
+        <h4></br></h4>
+    </section>
+
+    <section id="chap03">
+
+        <h3>제품구성 및 가격</h3>
+        <h4></br>하드웨어 구성(별도 구매)</h4>
+        <div class="harware product">
+            <div class="product__elem">
+                <b>트래픽 수집 분석 서버</b>
+                <p>
+                    CPU - Intel Xeon 10Core * 1ea 이상</br>
+                    RAM - 128GB 이상</br>
+                    HDD - 1TB 이상</br>
+                    NIC - 1GB 1Port 이상</br>
+                </p>
+            </div>
+            <div class="product__elem">
+                <b>모니터링 서버</b>
+                <p>
+                    CPU - Intel Xeon 10Core * 1ea 이상</br>
+                    RAM - 128GB 이상</br>
+                    HDD - 1TB 이상</br>
+                    NIC - 1GB 1Port 이상</br>
+                </p>
+            </div>
+        </div>
+
+        <h4></br>소프트웨어 구성</h4>
+        <div class="software product">
+            <div class="product__elem">
+                <b>트래픽 수집 분석 서버</b>
+                <p>100 Devices</p>
+                <b>20,000,000원</br>(부가세 별도)</b>
+            </div>
+            <div class="product__elem">
+                <b>모니터링 서버 모듈</b>
+                <p>100 Devices</p>
+                <b>20,000,000원</br>(부가세 별도)</b>
+            </div>
+            <div class="product__elem">
+                <b>사용자 분석 단말</b>
+                <p>1000 Devices</p>
+                <b>10,000,000원</br>(부가세 별도)</b>
+            </div>
+        </div>
+    </section>
+
+    <section id="chap05">
+
+        <h4></br>구매문의</h4>
+        <p>Tel. 010-5458-9315 </br></p>
+        <p>Email. newkbi@kbisys.co.kr</br></p>
+        
+        
+
+    </section>
+
+    <footer>
+        <div class="footer_wrap">
+            <div class="footer_icon">
+                <img src="../images/BingoCVM-logo-noline-one-whlong.png" alt="빙고CVM 하단 로고">
+                <img src="../images/kbi_w-logo.png" alt="KBI 하단 로고">
+            </div>
+            <div class="copyright">
+                ㈜케이비아이</br>
+                Tel. 042-826-6440 | Fax. 042-935-6445 | <a href="http://www.kbisys.co.kr"
+                    target="_black">http://www.kbisys.co.kr</a> </br>
+                </br>
+                Copyright© KBI corp. all right reserved. </br>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

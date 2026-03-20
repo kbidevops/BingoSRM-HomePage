@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뉴스 – BingoCVM</title>
+    <link rel="shortcut icon" href="../images/fabi.ico" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/font.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/news.css" />
+    <link rel="stylesheet" href="../css/button-effect.css" />
+    <style>
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        background: #f2f6fc;
+        color: #1a2340;
+        overflow-x: hidden;
+        padding-top: 64px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: rgba(11, 26, 62, 0.97);
+        backdrop-filter: blur(16px);
+        height: 62px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 52px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+      .nav-cube {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+      .nav-cube span {
+        border-radius: 2px;
+      }
+      .nav-cube span:nth-child(1),
+      .nav-cube span:nth-child(4) {
+        background: #38a0f0;
+      }
+      .nav-cube span:nth-child(2),
+      .nav-cube span:nth-child(3) {
+        background: #e0106a;
+      }
+      .nav-name {
+        font-family: "Barlow", sans-serif;
+        font-size: 22px;
+        font-weight: 800;
+        color: white;
+        letter-spacing: 1px;
+      }
+      .nav-name span {
+        color: #00c8e8;
+      }
+      .nav-kbi {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 2px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        letter-spacing: 0.3px;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: #00c8e8;
+      }
+      .nav-cta {
+        color: #fff !important;
+        background: #e0106a;
+        padding: 7px 18px;
+        border-radius: 3px;
+        font-weight: 700 !important;
+      }
+      .nav-cta:hover {
+        background: #c0147a !important;
+      }
+      /* Footer 메인 스타일과 동일 */
+      footer {
+        background: #0d1a39;
+        padding: 56px 80px 36px;
+        border-top: 3px solid #e0106a;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .footer-cube {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+      .footer-cube span {
+        border-radius: 2px;
+      }
+      .footer-cube span:nth-child(1),
+      .footer-cube span:nth-child(4) {
+        background: #38a0f0;
+      }
+      .footer-cube span:nth-child(2),
+      .footer-cube span:nth-child(3) {
+        background: #e0106a;
+      }
+      .footer-name {
+        font-family: "Barlow", sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+      .footer-name span {
+        color: #00c8e8;
+      }
+      .footer-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.35);
+        line-height: 1.8;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-links a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: #00c8e8;
+      }
+      .footer-links strong {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        margin-bottom: 4px;
+        display: block;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+    <link rel="stylesheet" href="../css/news.css" />
+    <link rel="stylesheet" href="../css/button-effect.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/mobile-lnb.js"></script>
+    <script src="../js/nav-active.js"></script>
+    <script src="../js/nav-active.js"></script>
+    <script>
+      $(function () {
+        $(".news-toggle").on("click", function () {
+          var $card = $(this).closest(".news-card__body");
+          var $full = $card.find(".news-card__text-full");
+          $full.slideToggle(250);
+          $(this).text($full.is(":visible") ? "접기 ▴" : "더보기 ▾");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-brand" href="../index.html">
+        <div class="nav-cube">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span class="nav-name">Bingo<span>CVM</span></span>
+        <span class="nav-kbi">by KBi</span>
+      </a>
+      <div class="nav-links">
+        <a href="./product.html">제품 소개</a>
+        <a href="./about.html">회사 소개</a>
+        <a href="./news.html">뉴스</a>
+        <a class="nav-cta" href="https://digitalmall.g2b.go.kr/" target="_blank"
+          >조달청 구매</a
+        >
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════
+     뉴스
+═══════════════════════════════════════════ -->
+    <div class="news-section">
+      <h2><span class="accent">BingoCVM</span> 뉴스</h2>
+      <p class="section-desc">BingoCVM의 최신 소식과 영상을 확인하세요.</p>
+
+      <!-- ═ Featured: Video (full-width) ═ -->
+      <div class="news-card news-card--featured">
+        <div class="news-video-wrap">
+          <video
+            controls
+            playsinline
+            style="width: 100%; height: 100%; border: 0"
+            title="BingoCVM 소개 영상"
+          >
+            <source
+              src="../css/videos/KakaoTalk_20260202_161437440.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="news-card__body">
+          <span class="news-tag news-tag--video">영상</span>
+          <h3>BingoCVM 소개 영상</h3>
+          <p>
+            정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 솔루션
+            BingoCVM을 영상으로 만나보세요.
+          </p>
+          <a
+            class="news-link"
+            href="https://blog.naver.com/bingocvm/224171378499"
+            target="_blank"
+            rel="noopener noreferrer"
+            >블로그에서 보기 →</a
+          >
+        </div>
+      </div>
+
+      <!-- ═ Grid: article cards ═ -->
+      <div class="news-grid">
+        <!-- Article card -->
+        <div class="news-card">
+          <div class="news-card__thumb">
+            <div class="news-thumb-icon">📋</div>
+            <span class="news-tag news-tag--update">업데이트</span>
+          </div>
+          <div class="news-card__body">
+            <time class="news-date">2026. 1. 30.</time>
+            <h3>
+              주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드
+              업데이트
+            </h3>
+            <div class="news-card__text">
+              <p>안녕하세요. 케이비아이입니다.</p>
+              <p>
+                작년 2025년 12월 24일 한국 인터넷 진흥원 (KISA)의
+                주요정보통신기반시설 기술적취약점 분석 및 평가 방법 상세
+                가이드가 업데이트가 되었습니다.
+              </p>
+            </div>
+            <div class="news-card__text-full" style="display: none">
+              <p>
+                저희 빙고씨브이엠은 새롭게 업데이트 된 KISA의 표준에 적합하게
+                진단하기 위해 연구 및 고도화를 진행하고 있습니다.
+              </p>
+              <p>
+                현재 빙고씨브이엠은 주요 관공서 및 공공기관에 납품되어 많은
+                고객사에서 사용하고 있습니다. 상세한 내용은 추후 게시글에서 풀어
+                나가도록 하겠습니다.
+              </p>
+              <p>감사합니다.</p>
+              <p class="news-source">
+                출처 : KISA 한국인터넷진흥원 &gt; 지식플랫폼 &gt;
+                법령·가이드라인 &gt; 가이드라인 &gt; 보안취약점 및 침해사고 대응
+                &gt; 상세보기
+              </p>
+            </div>
+            <button class="news-toggle" type="button">더보기 ▾</button>
+            <a
+              class="news-link"
+              href="https://blog.naver.com/bingocvm"
+              target="_blank"
+              rel="noopener noreferrer"
+              >블로그에서 보기 →</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- /.news-grid -->
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-cube">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="footer-name">Bingo<span>CVM</span></div>
+          </div>
+          <div class="footer-desc">
+            정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 플랫폼<br />
+            KBI e-Security Consulting | GS 1등급 인증
+          </div>
+        </div>
+        <div class="footer-links">
+          <strong>조달청 디지털서비스몰</strong>
+          <a href="https://digitalmall.g2b.go.kr/" target="_blank"
+            >https://digitalmall.g2b.go.kr/</a
+          >
+          <span style="font-size: 12px; color: rgba(255, 255, 255, 0.3)"
+            >검색: 케이비아이, BingoCVM</span
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 KBI e-Security Consulting. All rights reserved.</span>
+        <span>BingoCVM | CCE·CVE 통합 취약점진단 자동화 플랫폼</span>
+      </div>
+    </footer>
+    <script>
+      const current = window.location.pathname.split("/").pop();
+      document.querySelectorAll(".nav-links a").forEach((a) => {
+        if (a.getAttribute("href") === current) {
+          a.style.color = "#00c8e8";
+          a.classList.add("nav-active");
+        }
+      });
+    </script>
+  </body>
+</html>

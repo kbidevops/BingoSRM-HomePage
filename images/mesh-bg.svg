@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f6f4fb"/>
+      <stop offset="51%" stop-color="#f0edf6"/>
+      <stop offset="51%" stop-color="#b8b3bf"/>
+      <stop offset="100%" stop-color="#a8a3b0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- ═══ LEFT SIDE — faint mesh, only lower half ═══ -->
+  <g fill="none" stroke="#c4bad8" stroke-width="0.5" opacity="0.12">
+    <line x1="200" y1="500" x2="420" y2="580"/>
+    <line x1="420" y1="580" x2="340" y2="720"/>
+    <line x1="340" y1="720" x2="200" y2="500"/>
+    <line x1="420" y1="580" x2="600" y2="500"/>
+    <line x1="600" y1="500" x2="550" y2="700"/>
+    <line x1="550" y1="700" x2="420" y2="580"/>
+    <line x1="600" y1="500" x2="750" y2="440"/>
+    <line x1="750" y1="440" x2="720" y2="620"/>
+    <line x1="720" y1="620" x2="600" y2="500"/>
+    <line x1="100" y1="650" x2="200" y2="500"/>
+    <line x1="100" y1="650" x2="340" y2="720"/>
+    <line x1="340" y1="720" x2="550" y2="700"/>
+    <line x1="550" y1="700" x2="720" y2="620"/>
+    <line x1="720" y1="620" x2="780" y2="800"/>
+    <line x1="550" y1="700" x2="500" y2="850"/>
+    <line x1="340" y1="720" x2="250" y2="870"/>
+    <line x1="100" y1="650" x2="50" y2="800"/>
+    <line x1="300" y1="400" x2="200" y2="500"/>
+    <line x1="300" y1="400" x2="420" y2="580"/>
+    <line x1="500" y1="380" x2="600" y2="500"/>
+    <line x1="500" y1="380" x2="750" y2="440"/>
+  </g>
+  <polygon points="200,500 420,580 340,720" fill="#d8d0ee" opacity="0.06"/>
+  <polygon points="420,580 600,500 550,700" fill="#cec4e4" opacity="0.08"/>
+  <polygon points="600,500 750,440 720,620" fill="#c4bada" opacity="0.10"/>
+  <polygon points="340,720 550,700 500,850" fill="#d4cce8" opacity="0.05"/>
+  <polygon points="100,650 200,500 340,720" fill="#e0d8f0" opacity="0.04"/>
+  <polygon points="720,620 780,800 550,700" fill="#beb4d4" opacity="0.09"/>
+  <polygon points="300,400 420,580 200,500" fill="#d0c8e2" opacity="0.05"/>
+
+  <!-- ═══ CENTER-BOTTOM — dense cluster at divider ═══ -->
+  <g fill="none" stroke="#a898c8" stroke-width="0.7" opacity="0.22">
+    <line x1="700" y1="380" x2="820" y2="320"/>
+    <line x1="820" y1="320" x2="860" y2="480"/>
+    <line x1="860" y1="480" x2="700" y2="380"/>
+    <line x1="700" y1="380" x2="650" y2="550"/>
+    <line x1="650" y1="550" x2="860" y2="480"/>
+    <line x1="820" y1="320" x2="950" y2="360"/>
+    <line x1="950" y1="360" x2="860" y2="480"/>
+    <line x1="650" y1="550" x2="780" y2="650"/>
+    <line x1="780" y1="650" x2="860" y2="480"/>
+    <line x1="780" y1="650" x2="920" y2="600"/>
+    <line x1="920" y1="600" x2="860" y2="480"/>
+    <line x1="920" y1="600" x2="950" y2="360"/>
+    <line x1="650" y1="550" x2="580" y2="720"/>
+    <line x1="580" y1="720" x2="780" y2="650"/>
+    <line x1="780" y1="650" x2="920" y2="750"/>
+    <line x1="920" y1="750" x2="920" y2="600"/>
+    <line x1="750" y1="440" x2="700" y2="380"/>
+    <line x1="750" y1="440" x2="820" y2="320"/>
+    <line x1="720" y1="620" x2="650" y2="550"/>
+    <line x1="720" y1="620" x2="780" y2="650"/>
+    <line x1="580" y1="720" x2="500" y2="850"/>
+    <line x1="920" y1="750" x2="1050" y2="800"/>
+  </g>
+  <polygon points="700,380 820,320 860,480" fill="#b0a4d4" opacity="0.16"/>
+  <polygon points="700,380 650,550 860,480" fill="#a89ccc" opacity="0.18"/>
+  <polygon points="820,320 950,360 860,480" fill="#9e92c6" opacity="0.20"/>
+  <polygon points="650,550 780,650 860,480" fill="#b8aed8" opacity="0.15"/>
+  <polygon points="780,650 920,600 860,480" fill="#a498cc" opacity="0.22"/>
+  <polygon points="650,550 580,720 780,650" fill="#c0b6dc" opacity="0.12"/>
+  <polygon points="780,650 920,750 920,600" fill="#9a8ec4" opacity="0.24"/>
+  <polygon points="750,440 700,380 820,320" fill="#beb4d6" opacity="0.13"/>
+  <polygon points="720,620 650,550 780,650" fill="#b4a8d2" opacity="0.14"/>
+
+  <!-- ═══ RIGHT SIDE — opaque saturated purple/blue shards on gray ═══ -->
+  <g fill="none" stroke="#8878b0" stroke-width="0.8" opacity="0.30">
+    <line x1="950" y1="360" x2="1100" y2="280"/>
+    <line x1="1100" y1="280" x2="1150" y2="440"/>
+    <line x1="1150" y1="440" x2="950" y2="360"/>
+    <line x1="1100" y1="280" x2="1300" y2="200"/>
+    <line x1="1300" y1="200" x2="1280" y2="380"/>
+    <line x1="1280" y1="380" x2="1100" y2="280"/>
+    <line x1="1280" y1="380" x2="1150" y2="440"/>
+    <line x1="1300" y1="200" x2="1480" y2="150"/>
+    <line x1="1480" y1="150" x2="1450" y2="320"/>
+    <line x1="1450" y1="320" x2="1300" y2="200"/>
+    <line x1="1450" y1="320" x2="1280" y2="380"/>
+    <line x1="1480" y1="150" x2="1600" y2="100"/>
+    <line x1="1600" y1="100" x2="1600" y2="300"/>
+    <line x1="1600" y1="300" x2="1480" y2="150"/>
+    <line x1="1600" y1="300" x2="1450" y2="320"/>
+    <line x1="1150" y1="440" x2="1080" y2="580"/>
+    <line x1="1080" y1="580" x2="920" y2="600"/>
+    <line x1="1150" y1="440" x2="1280" y2="380"/>
+    <line x1="1280" y1="380" x2="1300" y2="540"/>
+    <line x1="1300" y1="540" x2="1150" y2="440"/>
+    <line x1="1300" y1="540" x2="1450" y2="320"/>
+    <line x1="1300" y1="540" x2="1460" y2="520"/>
+    <line x1="1460" y1="520" x2="1450" y2="320"/>
+    <line x1="1460" y1="520" x2="1600" y2="300"/>
+    <line x1="1460" y1="520" x2="1600" y2="580"/>
+    <line x1="1600" y1="580" x2="1600" y2="300"/>
+    <line x1="1080" y1="580" x2="1180" y2="700"/>
+    <line x1="1180" y1="700" x2="1300" y2="540"/>
+    <line x1="1300" y1="540" x2="1380" y2="680"/>
+    <line x1="1380" y1="680" x2="1460" y2="520"/>
+    <line x1="1460" y1="520" x2="1540" y2="700"/>
+    <line x1="1540" y1="700" x2="1600" y2="580"/>
+    <line x1="920" y1="600" x2="1050" y2="800"/>
+    <line x1="1050" y1="800" x2="1180" y2="700"/>
+    <line x1="1180" y1="700" x2="1380" y2="680"/>
+    <line x1="1380" y1="680" x2="1540" y2="700"/>
+    <line x1="1540" y1="700" x2="1600" y2="800"/>
+    <line x1="1050" y1="800" x2="1180" y2="900"/>
+    <line x1="1180" y1="900" x2="1380" y2="680"/>
+    <line x1="1380" y1="680" x2="1380" y2="900"/>
+    <line x1="1540" y1="700" x2="1600" y2="900"/>
+    <line x1="1100" y1="280" x2="1050" y2="120"/>
+    <line x1="1050" y1="120" x2="1300" y2="200"/>
+    <line x1="1300" y1="200" x2="1350" y2="60"/>
+    <line x1="1350" y1="60" x2="1480" y2="150"/>
+    <line x1="1050" y1="120" x2="950" y2="0"/>
+    <line x1="1300" y1="0" x2="1350" y2="60"/>
+    <line x1="1480" y1="150" x2="1580" y2="0"/>
+  </g>
+  <!-- Opaque saturated purple crystal fills — RIGHT -->
+  <polygon points="950,360 1100,280 1150,440" fill="#8878b4" opacity="0.35"/>
+  <polygon points="1100,280 1300,200 1280,380" fill="#7e70ac" opacity="0.38"/>
+  <polygon points="1100,280 1280,380 1150,440" fill="#9486c0" opacity="0.30"/>
+  <polygon points="1300,200 1480,150 1450,320" fill="#7468a4" opacity="0.40"/>
+  <polygon points="1300,200 1450,320 1280,380" fill="#8a7cb8" opacity="0.36"/>
+  <polygon points="1480,150 1600,100 1600,300" fill="#6c60a0" opacity="0.42"/>
+  <polygon points="1480,150 1600,300 1450,320" fill="#7e72b0" opacity="0.38"/>
+  <polygon points="1150,440 1280,380 1300,540" fill="#9080bc" opacity="0.32"/>
+  <polygon points="1280,380 1460,520 1300,540" fill="#8474b4" opacity="0.36"/>
+  <polygon points="1280,380 1450,320 1460,520" fill="#7a6eac" opacity="0.38"/>
+  <polygon points="1450,320 1600,300 1460,520" fill="#7064a4" opacity="0.40"/>
+  <polygon points="1460,520 1600,300 1600,580" fill="#6860a0" opacity="0.42"/>
+  <polygon points="1150,440 1080,580 1300,540" fill="#9c90c8" opacity="0.28"/>
+  <polygon points="1080,580 1180,700 1300,540" fill="#a094cc" opacity="0.26"/>
+  <polygon points="1300,540 1380,680 1460,520" fill="#8878b4" opacity="0.34"/>
+  <polygon points="1460,520 1540,700 1600,580" fill="#7468a8" opacity="0.38"/>
+  <polygon points="1180,700 1380,680 1300,540" fill="#9488c0" opacity="0.30"/>
+  <polygon points="1380,680 1540,700 1460,520" fill="#8070b0" opacity="0.36"/>
+  <polygon points="920,600 1050,800 1080,580" fill="#a89cd0" opacity="0.22"/>
+  <polygon points="1050,800 1180,700 1080,580" fill="#b0a4d4" opacity="0.20"/>
+  <polygon points="1540,700 1600,800 1600,580" fill="#6c60a0" opacity="0.40"/>
+  <polygon points="1380,680 1540,700 1380,900" fill="#7e72b0" opacity="0.32"/>
+  <polygon points="1540,700 1600,900 1600,800" fill="#6860a0" opacity="0.38"/>
+  <polygon points="1050,120 1100,280 950,360" fill="#9c8ec4" opacity="0.24"/>
+  <polygon points="1050,120 1300,200 1100,280" fill="#8a7ebc" opacity="0.30"/>
+  <polygon points="1300,200 1350,60 1480,150" fill="#7e72b0" opacity="0.34"/>
+  <polygon points="1050,120 950,0 1100,0" fill="#a898c8" opacity="0.18"/>
+  <polygon points="1350,60 1580,0 1480,150" fill="#7468a8" opacity="0.36"/>
+  <polygon points="1480,150 1580,0 1600,100" fill="#6c60a0" opacity="0.40"/>
+  <polygon points="1300,0 1350,60 1100,0" fill="#9088bc" opacity="0.22"/>
+
+  <!-- ═══ Node dots ═══ -->
+  <g fill="#8878b4" opacity="0.16">
+    <circle cx="200" cy="500" r="2"/>
+    <circle cx="420" cy="580" r="2"/>
+    <circle cx="600" cy="500" r="2.5"/>
+    <circle cx="750" cy="440" r="2"/>
+    <circle cx="700" cy="380" r="3"/>
+    <circle cx="820" cy="320" r="3"/>
+    <circle cx="860" cy="480" r="3"/>
+    <circle cx="650" cy="550" r="2.5"/>
+    <circle cx="780" cy="650" r="2.5"/>
+    <circle cx="920" cy="600" r="3"/>
+    <circle cx="950" cy="360" r="3"/>
+    <circle cx="1100" cy="280" r="3"/>
+    <circle cx="1150" cy="440" r="2.5"/>
+    <circle cx="1280" cy="380" r="3"/>
+    <circle cx="1300" cy="200" r="2.5"/>
+    <circle cx="1450" cy="320" r="3"/>
+    <circle cx="1480" cy="150" r="2.5"/>
+    <circle cx="1300" cy="540" r="2.5"/>
+    <circle cx="1460" cy="520" r="3"/>
+    <circle cx="1080" cy="580" r="2.5"/>
+    <circle cx="1180" cy="700" r="2.5"/>
+    <circle cx="1380" cy="680" r="3"/>
+    <circle cx="1540" cy="700" r="2.5"/>
+    <circle cx="1050" cy="120" r="2"/>
+    <circle cx="1350" cy="60" r="2"/>
+    <circle cx="340" cy="720" r="2"/>
+    <circle cx="550" cy="700" r="2"/>
+    <circle cx="720" cy="620" r="2.5"/>
+    <circle cx="920" cy="750" r="2.5"/>
+  </g>
+</svg>
