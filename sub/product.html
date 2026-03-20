@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../css/header.css" />
     <style>
       *,
       *::before,
@@ -42,92 +43,6 @@
         background: var(--offwhite);
         color: #1a2340;
         overflow-x: hidden;
-      }
-
-      /* ── NAV ── */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        background: rgba(11, 26, 62, 0.97);
-        backdrop-filter: blur(16px);
-        height: 62px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 52px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .nav-brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        text-decoration: none;
-      }
-      .nav-cube {
-        width: 32px;
-        height: 32px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2px;
-      }
-      .nav-cube span {
-        border-radius: 2px;
-      }
-      .nav-cube span:nth-child(1) {
-        background: var(--sky);
-      }
-      .nav-cube span:nth-child(2) {
-        background: var(--pink);
-      }
-      .nav-cube span:nth-child(3) {
-        background: var(--pink);
-      }
-      .nav-cube span:nth-child(4) {
-        background: var(--sky);
-      }
-      .nav-name {
-        font-family: "Barlow", sans-serif;
-        font-size: 22px;
-        font-weight: 800;
-        color: var(--white);
-        letter-spacing: 1px;
-      }
-      .nav-name span {
-        color: var(--cyan);
-      }
-      .nav-kbi {
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.35);
-        letter-spacing: 2px;
-        margin-left: 4px;
-      }
-      .nav-links {
-        display: flex;
-        gap: 28px;
-      }
-      .nav-links a {
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
-        letter-spacing: 0.3px;
-        transition: color 0.2s;
-      }
-      .nav-links a:hover {
-        color: var(--cyan);
-      }
-      .nav-cta {
-        background: var(--pink);
-        color: var(--white) !important;
-        padding: 7px 18px;
-        font-weight: 700 !important;
-        transition: background 0.2s !important;
-      }
-      .nav-cta:hover {
-        background: var(--magenta) !important;
       }
 
       html {
@@ -1599,6 +1514,167 @@
           grid-template-columns: 1fr;
         }
       }
+      /* ── UNIFIED HEADER STYLE (main page style) ── */
+      .hero {
+        min-height: 100vh;
+        padding-top: 62px;
+        background: linear-gradient(
+          120deg,
+          #020f2a 0%,
+          #0a215a 28%,
+          #0d2e74 50%,
+          #0f356f 72%,
+          #0b2f6e 94%
+        );
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 18%,
+            rgba(37, 162, 255, 0.15),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 82% 52%,
+            rgba(226, 21, 100, 0.1),
+            transparent 48%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-bg-grid,
+      .hero-bg-glow,
+      .hero-grid-lines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .hero-bg-grid {
+        background-image:
+          linear-gradient(rgba(11, 75, 145, 0.14) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(11, 75, 145, 0.14) 1px, transparent 1px);
+        background-size: 62px 62px;
+      }
+      .hero-bg-glow {
+        background:
+          radial-gradient(
+            circle at 15% 35%,
+            rgba(12, 95, 178, 0.4) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 40%,
+            rgba(28, 62, 155, 0.35) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 65% 90%,
+            rgba(207, 25, 95, 0.22) 0%,
+            transparent 60%
+          );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        width: min(1020px, 100%);
+        max-width: 980px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        justify-items: start;
+        padding: 0 24px;
+      }
+      .hero-main {
+        text-align: left;
+        max-width: 860px;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #22dafb;
+        margin-bottom: 16px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: #e0106a;
+      }
+      .hero-title,
+      .hero-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(56px, 9vw, 100px);
+        color: #ffffff;
+        letter-spacing: -1px;
+        margin-bottom: 14px;
+      }
+      .hero-title span,
+      .hero-logo-text span {
+        color: #00c8e8;
+      }
+      .hero-subtitle,
+      .hero-title-sub,
+      .hero-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: clamp(16px, 1.1vw, 20px);
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.1em;
+        margin-bottom: 24px;
+      }
+      .hero-desc {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.9;
+        max-width: 640px;
+        margin-bottom: 20px;
+      }
+      .hero-desc strong,
+      .hero-tagline strong {
+        color: #00c8e8;
+        font-weight: 600;
+      }
+      .hero-desc2,
+      .hero-tagline {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.8;
+        max-width: 540px;
+        margin-bottom: 44px;
+      }
+      .hero-actions,
+      .hero-btnrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .hero-visual {
+        display: none;
+      }
+      .btn-primary {
+        background: #e0106a;
+        color: #fff;
+        font-weight: 700;
+      }
+      .btn-outline {
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: rgba(255, 255, 255, 0.7);
+      }
     </style>
   </head>
   <body>
@@ -1608,6 +1684,11 @@
         <div class="nav-cube">
           <span></span><span></span><span></span><span></span>
         </div>
+        <img
+          src="../images/fabi.ico"
+          alt="BingoCVM icon"
+          class="nav-logo-icon"
+        />
         <span class="nav-name">Bingo<span>CVM</span></span>
         <span class="nav-kbi">by KBi</span>
       </a>

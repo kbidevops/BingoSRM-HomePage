@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>뉴스 – BingoCVM</title>
     <link rel="shortcut icon" href="../images/fabi.ico" />
+    <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/font.css" />
     <link rel="stylesheet" href="../css/footer.css" />
@@ -18,85 +19,6 @@
         color: #1a2340;
         overflow-x: hidden;
         padding-top: 64px;
-      }
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        background: rgba(11, 26, 62, 0.97);
-        backdrop-filter: blur(16px);
-        height: 62px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 52px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .nav-brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        text-decoration: none;
-      }
-      .nav-cube {
-        width: 32px;
-        height: 32px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2px;
-      }
-      .nav-cube span {
-        border-radius: 2px;
-      }
-      .nav-cube span:nth-child(1),
-      .nav-cube span:nth-child(4) {
-        background: #38a0f0;
-      }
-      .nav-cube span:nth-child(2),
-      .nav-cube span:nth-child(3) {
-        background: #e0106a;
-      }
-      .nav-name {
-        font-family: "Barlow", sans-serif;
-        font-size: 22px;
-        font-weight: 800;
-        color: white;
-        letter-spacing: 1px;
-      }
-      .nav-name span {
-        color: #00c8e8;
-      }
-      .nav-kbi {
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.35);
-        letter-spacing: 2px;
-      }
-      .nav-links {
-        display: flex;
-        gap: 28px;
-      }
-      .nav-links a {
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
-        letter-spacing: 0.3px;
-        transition: color 0.2s;
-      }
-      .nav-links a:hover {
-        color: #00c8e8;
-      }
-      .nav-cta {
-        color: #fff !important;
-        background: #e0106a;
-        padding: 7px 18px;
-        border-radius: 3px;
-        font-weight: 700 !important;
-      }
-      .nav-cta:hover {
-        background: #c0147a !important;
       }
       /* Footer 메인 스타일과 동일 */
       footer {
@@ -206,6 +128,11 @@
         <div class="nav-cube">
           <span></span><span></span><span></span><span></span>
         </div>
+        <img
+          src="../images/fabi.ico"
+          alt="BingoCVM icon"
+          class="nav-logo-icon"
+        />
         <span class="nav-name">Bingo<span>CVM</span></span>
         <span class="nav-kbi">by KBi</span>
       </a>

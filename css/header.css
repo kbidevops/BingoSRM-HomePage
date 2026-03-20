@@ -1,0 +1,92 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(11, 26, 62, 0.97);
+  backdrop-filter: blur(16px);
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.about nav {
+  border-bottom: none;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.nav-cube {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.nav-logo-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-name {
+  font-family: "Barlow", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.nav-name span {
+  color: #00c8e8;
+}
+
+.nav-kbi {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 2px;
+  margin-left: 4px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #00c8e8;
+}
+
+.nav-cta {
+  background: #e0106a;
+  color: #ffffff !important;
+  padding: 7px 18px;
+  font-weight: 700 !important;
+  border-radius: 3px;
+  transition: background 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: #c0147a !important;
+}
