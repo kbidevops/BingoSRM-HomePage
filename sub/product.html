@@ -852,6 +852,36 @@
         object-fit: contain;
       }
 
+      .clients-stats {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        background: var(--navy);
+        margin-top: 40px;
+      }
+      .client-stat {
+        padding: 32px 36px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .client-stat:last-child {
+        border-right: none;
+      }
+      .client-stat .num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 52px;
+        color: var(--white);
+        line-height: 1;
+      }
+      .client-stat .num span {
+        color: var(--red);
+      }
+      .client-stat .lbl {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 1.5px;
+        margin-top: 6px;
+      }
+
       .panel-badge {
         display: inline-block;
         padding: 5px 14px;
@@ -1356,10 +1386,17 @@
         display: block;
         margin-top: 2px;
         padding: 2px 6px;
-        font-size: 11px;
-        color: #8aa1b8;
-        background: rgba(167, 183, 209, 0.12);
-        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--darktext);
+        background: #ffffff;
+        border: 1px solid #d7dbe5;
+        border-radius: 8px;
+        white-space: normal;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
       }
 
       /* ── FOOTER ── */
@@ -2496,7 +2533,8 @@
             </p>
           </div>
 
-          <div class="clients-cat-label reveal">국가주요기관</div>
+          <!-- 1. 정부기관 -->
+          <div class="clients-cat-label reveal">정부기관</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
               <img src="../images/청와대.png" alt="청와대" />
@@ -2510,18 +2548,8 @@
             <div class="client-logo">
               <img src="../images/기상청.svg" alt="기상청" />
             </div>
-            <div class="client-logo">
-              <img
-                src="../images/소상공인시장진흥공단.jpeg"
-                alt="소상공인시장진흥공단"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/가축위생방역지원본부.png"
-                alt="가축위생방역지원본부"
-              />
-            </div>
+
+            <!-- 경찰청 (지방청 포함 - 신뢰 강조) -->
             <div class="client-logo">
               <img src="../images/경찰청.png" alt="충청북도 경찰청" />
             </div>
@@ -2539,20 +2567,9 @@
             </div>
           </div>
 
-          <div class="clients-cat-label reveal">연구 및 교육</div>
+          <!-- 2. 연구기관 및 교육기관 -->
+          <div class="clients-cat-label reveal">연구기관 · 교육기관</div>
           <div class="clients-logos reveal">
-            <div class="client-logo">
-              <img
-                src="../images/충청북도 교육연구정보원.png"
-                alt="충청북도 교육청"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/충청북도 교육연구정보원.png"
-                alt="충청북도 교육연구정보원"
-              />
-            </div>
             <div class="client-logo">
               <img
                 src="../images/중이온가속기연구소.png"
@@ -2563,19 +2580,7 @@
               <img src="../images/항공우주연구원.svg" alt="항공우주연구원" />
             </div>
             <div class="client-logo">
-              <img src="../images/항공우주연구원.svg" alt="항공우주연구원" />
-            </div>
-            <div class="client-logo">
               <img src="../images/refer_logo_ETRI.png" alt="ETRI" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/한국소비자원.svg" alt="한국소비자원" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/신용보증재단중앙회.svg"
-                alt="신용보증재단중앙회"
-              />
             </div>
             <div class="client-logo">
               <img
@@ -2607,6 +2612,8 @@
                 alt="한국조세재정연구원"
               />
             </div>
+
+            <!-- 교육기관 -->
             <div class="client-logo">
               <img src="../images/충남대학교.svg" alt="충남대학교" />
             </div>
@@ -2619,15 +2626,54 @@
             <div class="client-logo">
               <img src="../images/전주비전대학교.svg" alt="전주비전대학교" />
             </div>
+
+            <!-- 교육청 복원 -->
+            <div class="client-logo">
+              <img
+                src="../images/충청북도 교육연구정보원.png"
+                alt="충청북도 교육연구정보원"
+              />
+            </div>
+            <div class="client-logo">
+              <img
+                src="../images/충청북도 교육연구정보원.png"
+                alt="충청북도 교육청"
+              />
+            </div>
           </div>
 
-          <div class="clients-cat-label reveal">공기업 / 지자체</div>
+          <!-- 3. 공공기관 및 지자체 -->
+          <div class="clients-cat-label reveal">공공기관 · 지자체</div>
           <div class="clients-logos reveal">
+            <!-- 공기업 (누락 복원) -->
             <div class="client-logo">
               <img src="../images/한전원자력연료.svg" alt="한전원자력연료" />
             </div>
             <div class="client-logo">
               <img src="../images/한전KDN.svg" alt="한전KDN" />
+            </div>
+
+            <!-- 공공기관 -->
+            <div class="client-logo">
+              <img
+                src="../images/소상공인시장진흥공단.jpeg"
+                alt="소상공인시장진흥공단"
+              />
+            </div>
+            <div class="client-logo">
+              <img
+                src="../images/가축위생방역지원본부.png"
+                alt="가축위생방역지원본부"
+              />
+            </div>
+            <div class="client-logo">
+              <img src="../images/한국소비자원.svg" alt="한국소비자원" />
+            </div>
+            <div class="client-logo">
+              <img
+                src="../images/신용보증재단중앙회.svg"
+                alt="신용보증재단중앙회"
+              />
             </div>
             <div class="client-logo">
               <img
@@ -2644,6 +2690,19 @@
                 alt="한국전기공사협회"
               />
             </div>
+            <div class="client-logo">
+              <img
+                src="../images/한국지역정보개발원.png"
+                alt="한국지역정보개발원"
+              />
+            </div>
+
+            <!-- 코레일테크 위치 수정 -->
+            <div class="client-logo">
+              <img src="../images/코레일테크.svg" alt="코레일테크" />
+            </div>
+
+            <!-- 지자체 -->
             <div class="client-logo">
               <img src="../images/청주시.png" alt="청주시" />
             </div>
@@ -2668,19 +2727,13 @@
             <div class="client-logo">
               <img src="../images/포항시.svg" alt="포항시" />
             </div>
-
             <div class="client-logo">
               <img src="../images/제주특별자치도.svg" alt="제주특별자치도" />
             </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국지역정보개발원.png"
-                alt="한국지역정보개발원"
-              />
-            </div>
           </div>
 
-          <div class="clients-cat-label reveal">국방 / 민간 / IT</div>
+          <!-- 4. 국방 -->
+          <div class="clients-cat-label reveal">국방</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
               <img src="../images/국방과학연구소.png" alt="국방과학연구소" />
@@ -2694,15 +2747,16 @@
                 alt="사이버작전사령부"
               />
             </div>
-            <div class="client-logo">
-              <img src="../images/코레일테크.svg" alt="코레일테크" />
-            </div>
+          </div>
 
+          <!-- 5. 민간 및 IT 기업 -->
+          <div class="clients-cat-label reveal">민간 · IT 기업</div>
+          <div class="clients-logos reveal">
             <div class="client-logo">
               <img src="../images/KT Cloud.png" alt="KT Cloud" />
             </div>
             <div class="client-logo">
-              <img src="../images/gabia cloud.jpeg " alt="Gabia Cloud" />
+              <img src="../images/gabia cloud.jpeg" alt="Gabia Cloud" />
             </div>
             <div class="client-logo">
               <img
@@ -2724,6 +2778,29 @@
                 src="../images/한국정보통신진흥협회.jpg"
                 alt="한국정보통신진흥협회"
               />
+            </div>
+          </div>
+
+          <div class="clients-stats reveal">
+            <div class="client-stat">
+              <div class="num">9</div>
+              <div class="lbl">정부기관</div>
+            </div>
+            <div class="client-stat">
+              <div class="num">15</div>
+              <div class="lbl">연구기관·교육기관</div>
+            </div>
+            <div class="client-stat">
+              <div class="num">19</div>
+              <div class="lbl">공공기관·지자체</div>
+            </div>
+            <div class="client-stat">
+              <div class="num">3</div>
+              <div class="lbl">국방</div>
+            </div>
+            <div class="client-stat">
+              <div class="num">7</div>
+              <div class="lbl">민간·IT 기업</div>
             </div>
           </div>
         </section>
