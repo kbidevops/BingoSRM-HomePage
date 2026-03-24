@@ -29,6 +29,8 @@
         --pink: #e0106a;
         --magenta: #c0147a;
         --white: #ffffff;
+        --surface: #ffffff;
+        --border: #e0e8f2;
         --offwhite: #f2f6fc;
         --light: #deeaf8;
         --gray: #556070;
@@ -153,270 +155,7 @@
         max-height: 40px;
         object-fit: contain;
       }
-
-      /* ── HERO ── */
-      .hero {
-        min-height: 100vh;
-        background: var(--navy);
-        display: flex;
-        align-items: center;
-        padding: 100px 80px 80px;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero-bg-grid {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background-image:
-          linear-gradient(rgba(33, 118, 212, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(33, 118, 212, 0.06) 1px, transparent 1px);
-        background-size: 56px 56px;
-      }
-      .hero-bg-glow {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-          radial-gradient(
-            ellipse 600px 400px at 70% 40%,
-            rgba(33, 118, 212, 0.2) 0%,
-            transparent 70%
-          ),
-          radial-gradient(
-            ellipse 300px 300px at 20% 70%,
-            rgba(224, 16, 106, 0.1) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 500px 300px at 90% 90%,
-            rgba(0, 200, 232, 0.08) 0%,
-            transparent 60%
-          );
-      }
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        grid-template-columns: 1fr 420px;
-        gap: 80px;
-        align-items: center;
-        width: 100%;
-      }
-      .hero-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--cyan);
-        margin-bottom: 24px;
-      }
-      .hero-eyebrow::before {
-        content: "";
-        width: 28px;
-        height: 2px;
-        background: var(--pink);
-      }
-      .hero-title {
-        font-family: "Barlow", sans-serif;
-        font-size: clamp(52px, 8vw, 92px);
-        font-weight: 800;
-        line-height: 0.95;
-        color: var(--white);
-        letter-spacing: -1px;
-        margin-bottom: 8px;
-      }
-      .hero-title span {
-        color: var(--cyan);
-      }
-      .hero-title-sub {
-        font-family: "Barlow", sans-serif;
-        font-size: 18px;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.4);
-        letter-spacing: 1px;
-        margin-bottom: 32px;
-      }
-      .hero-desc {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.72);
-        line-height: 1.9;
-        max-width: 560px;
-        margin-bottom: 20px;
-      }
-      .hero-desc strong {
-        color: var(--cyan);
-        font-weight: 600;
-      }
-      .hero-desc2 {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.45);
-        line-height: 1.8;
-        max-width: 540px;
-        margin-bottom: 44px;
-      }
-      .hero-actions {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-      .btn-primary {
-        background: var(--pink);
-        color: var(--white);
-        padding: 13px 32px;
-        font-size: 14px;
-        font-weight: 700;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        transition:
-          background 0.2s,
-          transform 0.15s;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .btn-primary:hover {
-        background: var(--magenta);
-        transform: translateY(-2px);
-      }
-      .btn-outline {
-        border: 1.5px solid rgba(255, 255, 255, 0.25);
-        color: rgba(255, 255, 255, 0.7);
-        padding: 12px 28px;
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        transition:
-          border-color 0.2s,
-          color 0.2s;
-      }
-      .btn-outline:hover {
-        border-color: var(--cyan);
-        color: var(--cyan);
-      }
-
-      /* Hero product visual */
-      .hero-visual {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 28px;
-      }
-      .product-box-wrap {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .product-box-glow {
-        position: absolute;
-        inset: -40px;
-        background: radial-gradient(
-          ellipse at center,
-          rgba(33, 118, 212, 0.3) 0%,
-          transparent 70%
-        );
-        animation: pulse-glow 3s ease-in-out infinite;
-      }
-      @keyframes pulse-glow {
-        0%,
-        100% {
-          opacity: 0.6;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.08);
-        }
-      }
-      .product-cube {
-        width: 200px;
-        height: 200px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        transform: rotate(-6deg);
-        filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
-      }
-      .product-cube .face {
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Barlow", sans-serif;
-        font-weight: 800;
-        font-size: 11px;
-        letter-spacing: 1px;
-      }
-      .face-tl {
-        background: linear-gradient(135deg, #1a6fd4, #38a0f0);
-        color: rgba(255, 255, 255, 0.9);
-      }
-      .face-tr {
-        background: linear-gradient(135deg, #c0147a, #e0106a);
-        color: rgba(255, 255, 255, 0.9);
-      }
-      .face-bl {
-        background: linear-gradient(135deg, #c0147a, #e0106a);
-        color: rgba(255, 255, 255, 0.9);
-      }
-      .face-br {
-        background: linear-gradient(135deg, #1a6fd4, #38a0f0);
-        color: rgba(255, 255, 255, 0.9);
-      }
-      .product-label {
-        font-family: "Barlow", sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.5);
-        letter-spacing: 3px;
-        text-transform: uppercase;
-      }
-      .hero-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-      }
-      .hero-tag {
-        font-size: 11px;
-        font-weight: 500;
-        padding: 5px 12px;
-        border: 1px solid rgba(33, 118, 212, 0.4);
-        color: var(--sky);
-        background: rgba(33, 118, 212, 0.1);
-      }
-      .g2b-badge {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 12px 18px;
-        text-align: center;
-        width: 100%;
-      }
-      .g2b-badge .g2b-label {
-        font-size: 10px;
-        color: rgba(255, 255, 255, 0.35);
-        letter-spacing: 1.5px;
-        margin-bottom: 4px;
-      }
-      .g2b-badge a {
-        font-size: 12px;
-        color: var(--cyan);
-        text-decoration: underline;
-      }
-      .g2b-badge .g2b-search {
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.4);
-        margin-top: 3px;
-      }
+      /* HERO styles removed so page uses shared css/header.css hero rules */
 
       /* ── SECTIONS ── */
       section {
@@ -490,8 +229,6 @@
         color: var(--light);
         line-height: 1;
         min-width: 44px;
-      }
-      .effect-body {
       }
       .effect-title {
         font-size: 15px;
@@ -1551,221 +1288,84 @@
           grid-template-columns: 1fr;
         }
       }
-      /* ── UNIFIED HEADER STYLE (main page style) ── */
-      .hero {
-        min-height: 100vh;
-        padding-top: 62px;
-        background: linear-gradient(
-          120deg,
-          #020f2a 0%,
-          #0a215a 28%,
-          #0d2e74 50%,
-          #0f356f 72%,
-          #0b2f6e 94%
-        );
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at 20% 18%,
-            rgba(37, 162, 255, 0.15),
-            transparent 45%
-          ),
-          radial-gradient(
-            circle at 82% 52%,
-            rgba(226, 21, 100, 0.1),
-            transparent 48%
-          );
-        pointer-events: none;
-        z-index: 0;
-      }
-      .hero-bg-grid,
-      .hero-bg-glow,
-      .hero-grid-lines {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-      .hero-bg-grid {
-        background-image:
-          linear-gradient(rgba(11, 75, 145, 0.14) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(11, 75, 145, 0.14) 1px, transparent 1px);
-        background-size: 62px 62px;
-      }
-      .hero-bg-glow {
-        background:
-          radial-gradient(
-            circle at 15% 35%,
-            rgba(12, 95, 178, 0.4) 0%,
-            transparent 45%
-          ),
-          radial-gradient(
-            circle at 85% 40%,
-            rgba(28, 62, 155, 0.35) 0%,
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 65% 90%,
-            rgba(207, 25, 95, 0.22) 0%,
-            transparent 60%
-          );
-      }
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        width: min(1020px, 100%);
-        max-width: 980px;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px;
-        justify-items: start;
-        padding: 0 24px;
-      }
-      .hero-main {
-        text-align: left;
-        max-width: 860px;
-      }
-      .hero-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: #22dafb;
-        margin-bottom: 16px;
-      }
-      .hero-eyebrow::before {
-        content: "";
-        width: 28px;
-        height: 2px;
-        background: #e0106a;
-      }
-      .hero-title,
-      .hero-logo-text {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(56px, 9vw, 100px);
-        color: #ffffff;
-        letter-spacing: -1px;
-        margin-bottom: 14px;
-      }
-      .hero-title span,
-      .hero-logo-text span {
-        color: #00c8e8;
-      }
-      .hero-subtitle,
-      .hero-title-sub,
-      .hero-sub {
-        font-family: "Barlow", sans-serif;
-        font-size: clamp(16px, 1.1vw, 20px);
-        color: rgba(255, 255, 255, 0.45);
-        letter-spacing: 0.1em;
-        margin-bottom: 24px;
-      }
-      .hero-desc {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.72);
-        line-height: 1.9;
-        max-width: 640px;
-        margin-bottom: 20px;
-      }
-      .hero-desc strong,
-      .hero-tagline strong {
-        color: #00c8e8;
-        font-weight: 600;
-      }
-      .hero-desc2,
-      .hero-tagline {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.45);
-        line-height: 1.8;
-        max-width: 540px;
-        margin-bottom: 44px;
-      }
-      .hero-actions,
-      .hero-btnrow {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin-bottom: 18px;
-      }
-      .hero-visual {
-        display: none;
-      }
-      .btn-primary {
-        background: #e0106a;
-        color: #fff;
-        font-weight: 700;
-      }
-      .btn-outline {
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: rgba(255, 255, 255, 0.7);
+      /* Hero styles are provided by css/header.css */
+
+      /* Ensure the g2b purchase button is visible on this page
+         (some pages set contrasting variables; keep this rule here to
+         guarantee visibility). */
+      nav .nav-buy {
+        background: var(--red, #cc1520) !important;
+        color: var(--inv, #ffffff) !important;
+        border: 1px solid rgba(0,0,0,0.04) !important;
+        box-shadow: 0 6px 18px rgba(13,37,80,0.08) !important;
+        z-index: 999 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
     </style>
   </head>
   <body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
     <!-- NAV -->
-    <nav>
-      <a class="nav-brand" href="../index.html">
-        <div class="nav-cube">
-          <span></span><span></span><span></span><span></span>
+    <nav class="nav">
+      <div class="nav-brand">
+        <div class="nav-logo">KB<em>i</em></div>
+        <div class="nav-vr"></div>
+        <div class="nav-product">
+          <div class="nav-cube">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <span class="nav-pname">Bingo<span>CVM</span></span>
         </div>
-        <img
-          src="../images/fabi.ico"
-          alt="BingoCVM icon"
-          class="nav-logo-icon"
-        />
-        <span class="nav-name">Bingo<span>CVM</span></span>
-        <span class="nav-kbi">by KBi</span>
-      </a>
-      <div class="nav-links">
-        <a href="product.html">제품 소개</a>
+      </div>
+      <nav class="nav-menu">
+        <a href="../index.html">홈</a>
+        <a href="product.html" class="active">제품 소개</a>
         <a href="about.html">회사 소개</a>
         <a href="news.html">뉴스</a>
-        <a class="nav-cta" href="https://digitalmall.g2b.go.kr/" target="_blank"
-          >조달청 구매</a
+        <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
+          >조달청 구매 →</a
         >
-      </div>
+      </nav>
     </nav>
 
     <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-bg-grid"></div>
       <div class="hero-bg-glow"></div>
+
       <div class="hero-content">
+        <!-- LEFT CONTENT -->
         <div>
           <div class="hero-eyebrow">취약점진단 자동화 플랫폼</div>
           <div class="hero-title">Bingo<span>CVM</span></div>
           <div class="hero-title-sub">빙고씨브이엠</div>
+
           <p class="hero-desc">
-            <strong
-              >정보통신기반시설 및 클라우드 시스템 취약점진단 자동화</strong
-            >를 제공합니다.<br />
+            <strong>
+              정보통신기반시설 및 클라우드 시스템 취약점진단 자동화
+            </strong>
+            를 제공합니다.<br />
             시스템 취약점 진단 / 평가 / 분류 / 조치 / 이력 / 보고서까지 편리한
             서비스를 제공합니다.
           </p>
+
           <p class="hero-desc2">
             온프레미스에서 클라우드 시스템까지 모두 하나의 플랫폼 BingoCVM에서
             취약점진단이 가능합니다.<br />
             Unix/Linux 서버, Windows 서버, PC, 웹, DBMS, Network, 가상화,
             클라우드 플랫폼의 취약점 항목을 자동 스케줄 진단할 수 있습니다.
           </p>
+
           <div class="hero-actions">
             <a class="btn-primary" href="#process">진단 프로세스 보기 →</a>
             <a class="btn-outline" href="#features">주요 기능·특장점</a>
           </div>
         </div>
+
+        <!-- RIGHT VISUAL -->
         <div class="hero-visual">
           <div class="product-box-wrap">
             <div class="product-box-glow"></div>
@@ -1776,7 +1376,9 @@
               <div class="face face-br">CVM</div>
             </div>
           </div>
+
           <div class="product-label">BingoCVM</div>
+
           <div class="hero-tags">
             <span class="hero-tag">GS 1등급 인증</span>
             <span class="hero-tag">CSAP 클라우드</span>
@@ -1784,15 +1386,17 @@
             <span class="hero-tag">CCE + CVE</span>
             <span class="hero-tag">ATC 자동화 엔진</span>
           </div>
+
           <div class="g2b-badge">
             <div class="g2b-label">조달청 디지털서비스몰 등록</div>
-            <a href="https://digitalmall.g2b.go.kr/" target="_blank"
-              >https://digitalmall.g2b.go.kr/</a
-            >
+            <a href="https://digitalmall.g2b.go.kr/" target="_blank">
+              https://digitalmall.g2b.go.kr/
+            </a>
             <div class="g2b-search">검색: 케이비아이, BingoCVM</div>
           </div>
         </div>
       </div>
+      <!-- hero-content -->
     </section>
 
     <div
@@ -2884,5 +2488,6 @@
         }
       });
     </script>
+    <script src="../js/cursor.js"></script>
   </body>
 </html>

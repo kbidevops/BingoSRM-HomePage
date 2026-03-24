@@ -26,6 +26,8 @@
         --midblue: #2878d4;
         --sky: #4fa3e8;
         --red: #d01820;
+        --surface: #ffffff;
+        --border: #e0e8f2;
         --white: #ffffff;
         --offwhite: #f4f7fb;
         --light: #e8eff8;
@@ -42,185 +44,8 @@
         background: var(--offwhite);
         color: var(--darktext);
         overflow-x: hidden;
-        padding-top: 62px;
       }
-
-      /* ── HERO ── */
-      .hero {
-        min-height: 100vh;
-        background: var(--navy);
-        display: grid;
-        grid-template-columns: 1fr 420px;
-        align-items: center;
-        padding: 120px 80px 80px;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            ellipse 700px 500px at 80% 50%,
-            rgba(27, 95, 170, 0.18) 0%,
-            transparent 70%
-          ),
-          radial-gradient(
-            ellipse 400px 300px at 10% 80%,
-            rgba(208, 24, 32, 0.08) 0%,
-            transparent 60%
-          );
-      }
-      .hero-grid-lines {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-          linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.025) 1px,
-            transparent 1px
-          );
-        background-size: 60px 60px;
-      }
-      .hero-content {
-        position: relative;
-        z-index: 1;
-      }
-      .hero-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--sky);
-        font-size: 12px;
-        font-weight: 500;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 28px;
-      }
-      .hero-eyebrow::before {
-        content: "";
-        display: block;
-        width: 32px;
-        height: 1.5px;
-        background: var(--red);
-      }
-      .hero-logo-text {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(80px, 12vw, 140px);
-        color: var(--white);
-        line-height: 0.9;
-        letter-spacing: 4px;
-        margin-bottom: 4px;
-      }
-      .hero-logo-text span {
-        color: var(--red);
-      }
-      .hero-sub {
-        font-size: 18px;
-        color: rgba(255, 255, 255, 0.5);
-        font-family: "Barlow", sans-serif;
-        font-weight: 400;
-        letter-spacing: 2px;
-        margin-bottom: 36px;
-      }
-      .hero-tagline {
-        font-size: 17px;
-        color: rgba(255, 255, 255, 0.82);
-        line-height: 1.9;
-        max-width: 560px;
-        margin-bottom: 52px;
-      }
-      .hero-tagline strong {
-        color: var(--sky);
-        font-weight: 500;
-      }
-      .hero-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--red);
-        color: var(--white);
-        padding: 14px 32px;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-decoration: none;
-        transition:
-          background 0.2s,
-          transform 0.2s;
-      }
-      .hero-cta:hover {
-        background: #a8121a;
-        transform: translateY(-1px);
-      }
-      .hero-cta::after {
-        content: "→";
-        font-size: 16px;
-      }
-
-      .hero-stats {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
-        padding-left: 56px;
-      }
-      .stat-item {
-        padding: 32px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .stat-item:last-child {
-        border-bottom: none;
-      }
-      .stat-num {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 64px;
-        line-height: 1;
-        color: var(--white);
-        letter-spacing: 2px;
-      }
-      .stat-num span {
-        color: var(--red);
-      }
-      .stat-label {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.45);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-top: 6px;
-      }
-      .hero-year-badge {
-        margin-top: 32px;
-        padding: 20px 24px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .hero-year-badge .badge-label {
-        font-size: 11px;
-        color: var(--sky);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 6px;
-      }
-      .hero-year-badge .badge-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-      }
-      .badge-pill {
-        font-size: 11px;
-        font-weight: 500;
-        padding: 4px 10px;
-        background: rgba(27, 95, 170, 0.3);
-        border: 1px solid rgba(79, 163, 232, 0.3);
-        color: var(--sky);
-      }
+      /* HERO styles removed so page uses shared css/header.css hero rules */
 
       /* ── SECTIONS ── */
       section {
@@ -849,168 +674,7 @@
         }
       }
 
-      /* ── UNIFIED HEADER STYLE (main page style) ── */
-      .hero {
-        min-height: 100vh;
-        padding-top: 62px;
-        background: linear-gradient(
-          120deg,
-          #020f2a 0%,
-          #0a215a 28%,
-          #0d2e74 50%,
-          #0f356f 72%,
-          #0b2f6e 94%
-        );
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at 20% 18%,
-            rgba(37, 162, 255, 0.15),
-            transparent 45%
-          ),
-          radial-gradient(
-            circle at 82% 52%,
-            rgba(226, 21, 100, 0.1),
-            transparent 48%
-          );
-        pointer-events: none;
-        z-index: 0;
-      }
-      .hero-bg-grid,
-      .hero-bg-glow,
-      .hero-grid-lines {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-      .hero-bg-grid {
-        background-image:
-          linear-gradient(rgba(11, 75, 145, 0.14) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(11, 75, 145, 0.14) 1px, transparent 1px);
-        background-size: 62px 62px;
-      }
-      .hero-bg-glow {
-        background:
-          radial-gradient(
-            circle at 15% 35%,
-            rgba(12, 95, 178, 0.4) 0%,
-            transparent 45%
-          ),
-          radial-gradient(
-            circle at 85% 40%,
-            rgba(28, 62, 155, 0.35) 0%,
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 65% 90%,
-            rgba(207, 25, 95, 0.22) 0%,
-            transparent 60%
-          );
-      }
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        width: min(1020px, 100%);
-        max-width: 980px;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px;
-        justify-items: start;
-        padding: 0 24px;
-      }
-      .hero-main {
-        text-align: left;
-        max-width: 860px;
-      }
-      .hero-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: #22dafb;
-        margin-bottom: 16px;
-      }
-      .hero-eyebrow::before {
-        content: "";
-        width: 28px;
-        height: 2px;
-        background: #e0106a;
-      }
-      .hero-title,
-      .hero-logo-text {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(56px, 9vw, 100px);
-        color: #ffffff;
-        letter-spacing: -1px;
-        margin-bottom: 14px;
-      }
-      .hero-title span,
-      .hero-logo-text span {
-        color: #00c8e8;
-      }
-      .hero-subtitle,
-      .hero-title-sub,
-      .hero-sub {
-        font-family: "Barlow", sans-serif;
-        font-size: clamp(16px, 1.1vw, 20px);
-        color: rgba(255, 255, 255, 0.45);
-        letter-spacing: 0.1em;
-        margin-bottom: 24px;
-      }
-      .hero-desc {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.72);
-        line-height: 1.9;
-        max-width: 640px;
-        margin-bottom: 20px;
-      }
-      .hero-desc strong,
-      .hero-tagline strong {
-        color: #00c8e8;
-        font-weight: 600;
-      }
-      .hero-desc2,
-      .hero-tagline {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.45);
-        line-height: 1.8;
-        max-width: 540px;
-        margin-bottom: 44px;
-      }
-      .hero-actions,
-      .hero-btnrow {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin-bottom: 18px;
-      }
-      .hero-stats,
-      .hero-visual {
-        display: none;
-      }
-      .btn-primary {
-        background: #e0106a;
-        color: #fff;
-        font-weight: 700;
-      }
-      .btn-outline {
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: rgba(255, 255, 255, 0.7);
-      }
+      /* Unified header/hero styles are centralized in ../css/header.css */
 
       /* ── FOOTER ── */
       footer {
@@ -1112,28 +776,29 @@
     </style>
   </head>
   <body class="about">
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
     <!-- NAV -->
-    <nav>
-      <a class="nav-brand" href="../index.html">
-        <div class="nav-cube">
-          <span></span><span></span><span></span><span></span>
+    <nav class="nav">
+      <div class="nav-brand">
+        <div class="nav-logo">KB<em>i</em></div>
+        <div class="nav-vr"></div>
+        <div class="nav-product">
+          <div class="nav-cube">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <span class="nav-pname">Bingo<span>CVM</span></span>
         </div>
-        <img
-          src="../images/fabi.ico"
-          alt="BingoCVM icon"
-          class="nav-logo-icon"
-        />
-        <span class="nav-name">Bingo<span>CVM</span></span>
-        <span class="nav-kbi">by KBi</span>
-      </a>
-      <div class="nav-links">
-        <a href="product.html">제품 소개</a>
-        <a href="about.html">회사 소개</a>
-        <a href="news.html">뉴스</a>
-        <a class="nav-cta" href="https://digitalmall.g2b.go.kr/" target="_blank"
-          >조달청 구매</a
-        >
       </div>
+      <nav class="nav-menu">
+        <a href="../index.html">홈</a>
+        <a href="product.html">제품 소개</a>
+        <a href="about.html" class="active">회사 소개</a>
+        <a href="news.html">뉴스</a>
+        <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
+          >조달청 구매 →</a
+        >
+      </nav>
     </nav>
 
     <!-- HERO -->
@@ -1149,6 +814,7 @@
           ㈜케이비아이는 2003년 설립 이래 20년 이상의 기술력으로<br />
           대한민국 정보보안을 책임지고 있습니다.
         </p>
+
         <a class="hero-cta" href="#services">사업 내용 보기</a>
       </div>
       <div class="hero-stats">
@@ -1798,5 +1464,6 @@
           }
         });
     </script>
+    <script src="../js/cursor.js"></script>
   </body>
 </html>

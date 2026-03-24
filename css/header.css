@@ -1,13 +1,13 @@
-nav {
+.nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 900;
   height: 58px;
-  background: rgba(245, 248, 252, 0.9);
-  backdrop-filter: blur(18px) saturate(160%);
-  border-bottom: 1px solid var(--border);
+  background: var(--surface, #ffffff);
+  backdrop-filter: blur(6px) saturate(120%);
+  border-bottom: 1px solid var(--border, #e0e8f2);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,9 +15,25 @@ nav {
   box-shadow: 0 2px 14px rgba(11, 29, 68, 0.07);
 }
 
-.about nav {
-  border-bottom: none;
+nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--red, #cc1520),
+    var(--blue, #1554b0) 40%,
+    var(--sky, #3ba2f2) 70%,
+    var(--pink, #d40f63)
+  );
 }
+
+/* Removed per-page nav override so all pages share the same nav border
+   and accent bar. If a specific page needs a different style, set
+   `--surface` / `--border` variables on that page's `:root`. */
 
 .nav-brand {
   display: flex;
@@ -42,6 +58,30 @@ nav {
   width: 1px;
   height: 16px;
   background: var(--border2);
+}
+
+/* Custom cursor shared styles (dot + ring) applied across pages */
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blue, #1554b0);
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s;
+}
+.cursor-ring {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(21, 84, 176, 0.35);
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.18s ease;
 }
 
 .nav-product {
@@ -92,7 +132,7 @@ nav {
 .nav-menu a {
   font-size: 12.5px;
   font-weight: 500;
-  color: var(--t3);
+  color: var(--navy);
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 4px;
@@ -101,15 +141,30 @@ nav {
     background 0.2s;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
+.nav-menu a:hover {
   color: var(--blue);
   background: var(--blue-tint);
 }
 
+/* Make the active nav item visually match the main page header:
+   use a compact accent pill with white text so it reads on both
+   light and dark header backgrounds. */
+.nav-menu a.active {
+  color: var(--textinv, #ffffff) !important;
+  background: linear-gradient(
+    90deg,
+    var(--red, #cc1520),
+    var(--blue, #1554b0)
+  ) !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 6px 18px rgba(13, 37, 80, 0.08) !important;
+  font-weight: 800 !important;
+}
+
 .nav-buy {
   background: var(--red) !important;
-  color: var(--inv) !important;
+  color: var(--inv, #fff) !important;
   border-radius: 3px !important;
   margin-left: 8px;
   font-weight: 700 !important;
@@ -118,9 +173,282 @@ nav {
   transition:
     background 0.2s,
     transform 0.15s !important;
+  position: relative;
+  z-index: 920; /* keep button above nav::after accent */
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  box-shadow: 0 4px 10px rgba(13, 37, 80, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
 }
 
 .nav-buy:hover {
   background: #a3101a !important;
   transform: translateY(-1px);
+}
+
+/* ── Shared hero style (welcome page style) ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(
+    120deg,
+    #020f2a 0%,
+    #0a215a 28%,
+    #0d2e74 50%,
+    #0f356f 72%,
+    #0b2f6e 94%
+  );
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  padding: 100px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 700px 500px at 85% 40%,
+      rgba(59, 162, 242, 0.06) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 400px 400px at 0% 80%,
+      rgba(21, 84, 176, 0.04) 0%,
+      transparent 60%
+    );
+}
+
+.hero-bg,
+.hero-bg-grid,
+.hero-bg-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-bg-grid {
+  background-image:
+    linear-gradient(rgba(11, 75, 145, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 75, 145, 0.14) 1px, transparent 1px);
+  background-size: 62px 62px;
+}
+
+.hero-bg-glow {
+  background:
+    radial-gradient(
+      circle at 15% 35%,
+      rgba(12, 95, 178, 0.4) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 40%,
+      rgba(28, 62, 155, 0.35) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 65% 90%,
+      rgba(207, 25, 95, 0.22) 0%,
+      transparent 60%
+    );
+}
+
+/* ── Hero typography & content layout (shared) ── */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(1020px, 100%);
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  justify-items: start;
+  padding: 0 24px;
+}
+.hero-main {
+  text-align: left;
+  max-width: 860px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #22dafb;
+  margin-bottom: 16px;
+}
+.hero-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: #e0106a;
+}
+.hero-title,
+.hero-logo-text {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(56px, 9vw, 100px);
+  color: #ffffff;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero-title span,
+.hero-logo-text span {
+  color: #00c8e8;
+}
+
+/* Ensure the large KBi / BingoCVM hero branding is consistent across
+   index, about and product pages. Some pages use `.hero-kbi` while
+   others use `.hero-logo-text` — normalize both to the same rules. */
+.hero-kbi,
+.hero-logo-text {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(72px, 10vw, 116px);
+  color: var(--navy, #0c1e45);
+  letter-spacing: 5px;
+  line-height: 0.88;
+  margin-bottom: 8px;
+}
+.hero-kbi em,
+.hero-logo-text em,
+.hero-kbi span,
+.hero-logo-text span {
+  color: var(--red, #cc1520);
+  font-style: normal;
+}
+.hero-kbi-sub {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--text3, #6b7f96);
+  text-transform: uppercase;
+  margin-top: 6px;
+  margin-bottom: 22px;
+}
+.hero-subtitle,
+.hero-title-sub,
+.hero-sub {
+  font-family: "Barlow", sans-serif;
+  font-size: clamp(16px, 1.1vw, 20px);
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+.hero-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.9;
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+.hero-desc strong,
+.hero-tagline strong {
+  color: #00c8e8;
+  font-weight: 600;
+}
+.hero-desc2,
+.hero-tagline {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.8;
+  max-width: 540px;
+  margin-bottom: 44px;
+}
+.hero-actions,
+.hero-btnrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.hero-visual {
+  display: none;
+}
+.btn-primary {
+  background: #e0106a;
+  color: #fff;
+  font-weight: 700;
+}
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Shared page header style (news / product / about) ── */
+.page-header {
+  margin-top: 58px;
+  background: var(--surface, #ffffff);
+  border-bottom: 1px solid var(--border, #e0e8f2);
+  padding: 56px 80px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    var(--border, #e0e8f2) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+
+.ph-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.ph-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue, #1554b0);
+  margin-bottom: 10px;
+}
+
+.ph-kicker::before {
+  content: "";
+  width: 12px;
+  height: 1px;
+  background: var(--pink);
+}
+
+.ph-title {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 900;
+  color: var(--navy, #0c1e45);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.ph-title em {
+  color: var(--pink);
+  font-style: normal;
+}
+
+.ph-desc {
+  font-size: 14px;
+  color: var(--t3, #6b7f96);
+  line-height: 1.8;
+  max-width: 520px;
 }
