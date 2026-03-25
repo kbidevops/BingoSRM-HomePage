@@ -6,12 +6,13 @@
     <title>BingoCVM | 시스템 취약점진단 자동화 플랫폼</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/hero.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
     <style>
       *,
       *::before,
@@ -21,116 +22,352 @@
         padding: 0;
       }
 
+      /* ── OPTION D: GRAPHITE WHITE PALETTE (product page only) ── */
       :root {
-        --navy: #0b1a3e;
-        --navy2: #12265a;
-        --blue: #1657b5;
-        --midblue: #2176d4;
-        --sky: #38a0f0;
-        --cyan: #00c8e8;
+        --bg: #f4f2ee;
+        --bg2: #eceae5;
+        --bg3: #e2dfd8;
+        --ink: #1a1d26;
+        --ink2: #3a3d4a;
+        --muted: #8a8880;
+        --rule: rgba(26, 29, 38, 0.1);
+        --rule2: rgba(26, 29, 38, 0.06);
+        --crimson: #c8001e;
+        --crimson2: #a0001a;
+        --cyan: #3ba2f2;
         --pink: #e0106a;
-        --magenta: #c0147a;
-        --white: #ffffff;
         --surface: #ffffff;
-        --border: #e0e8f2;
-        --offwhite: #f2f6fc;
-        --light: #deeaf8;
-        --gray: #556070;
-        --dark: #0d1424;
+
+        /* Legacy aliases used throughout — mapped to Option D */
+        --navy: var(--ink);
+        --navy2: var(--ink2);
+        --blue: var(--crimson);
+        --midblue: var(--crimson2);
+        --sky: var(--muted);
+        --red: var(--crimson);
+        --offwhite: var(--bg);
+        --light: var(--bg2);
+        --border: var(--rule);
+        --white: var(--surface);
+        --gray: var(--muted);
+        --darktext: var(--ink);
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
       body {
-        font-family: "Noto Sans KR", sans-serif;
-        background: var(--offwhite);
-        color: #1a2340;
+        font-family:
+          "Pretendard",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--ink);
         overflow-x: hidden;
       }
 
+      /* ── CUSTOM CURSOR (copied from about page) ── */
+      .cursor-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--crimson);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-ring {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(200, 0, 30, 0.35);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.15s ease,
+          height 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      /* ── SCROLL TO TOP (copied from about page) ── */
+      .scroll-top {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 300;
+        background: var(--ink);
+        color: var(--white);
+        border: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.25s,
+          transform 0.25s,
+          background 0.2s;
+        pointer-events: none;
+      }
+      .scroll-top.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .scroll-top:hover {
+        background: var(--crimson);
+      }
+      .scroll-top svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--white);
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .scroll-top span {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 8px;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 110px;
+      }
+
+      /* ── NAV (copied from about.html to match header) ── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 56px;
+        background: rgba(244, 242, 238, 0.92);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 26px;
+        letter-spacing: 3px;
+        color: var(--ink);
+        line-height: 1;
+      }
+
+      .nav-logo em {
+        font-style: normal;
+        color: var(--crimson);
+      }
+
+      .nav-vr {
+        width: 1px;
+        height: 18px;
+        background: var(--rule);
+      }
+
+      .nav-product {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .nav-cube {
+        width: 16px;
+        height: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+
+      .nav-cube span {
+        background: var(--crimson);
+        border-radius: 1px;
+        opacity: 0.7;
+      }
+
+      .nav-pname {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 1.5px;
+      }
+
+      .nav-pname span {
+        color: var(--crimson);
+        font-weight: 500;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+
+      .nav-menu a {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        text-decoration: none;
+        letter-spacing: 0.2px;
+        transition: color 0.2s;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--ink);
+      }
+
+      .nav-buy {
+        padding: 7px 18px;
+        background: var(--ink) !important;
+        color: var(--white) !important;
+        border-radius: 3px;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        transition: background 0.2s !important;
+      }
+      .nav-buy:hover {
+        background: var(--crimson) !important;
       }
 
       section,
       .page-content section {
-        scroll-margin-top: 110px;
+        scroll-margin-top: 90px;
       }
 
+      /* ── TOC (match about page visibility and styling) ── */
+      .page-layout {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 32px;
+        align-items: start;
+        margin: 32px 80px;
+      }
       .page-toc {
         position: sticky;
-        top: 100px;
+        top: 84px;
         width: 220px;
-        padding: 16px;
-        background: #ffffff;
-        border: 1px solid #e5ecf4;
-        border-radius: 12px;
-        box-shadow: 0 14px 35px rgba(13, 37, 80, 0.08);
-        margin-bottom: 32px;
-      }
-      .page-toc .toc-title {
-        font-size: 14px;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 12px;
-      }
-      .page-toc .toc-link {
-        display: block;
-        margin-bottom: 8px;
-        padding: 8px 10px;
-        font-size: 14px;
-        color: #374b68;
+        padding: 18px;
+        background: var(--surface);
+        border: 1px solid var(--rule);
         border-radius: 8px;
-        text-decoration: none;
-        transition:
-          background 0.2s,
-          color 0.2s;
+        box-shadow: 0 8px 24px rgba(26, 29, 38, 0.06);
       }
-      .page-toc .toc-link:hover,
-      .page-toc .toc-link.active {
-        background: #f0f7ff;
-        color: var(--sky);
+      .toc-title {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--muted);
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .toc-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+      }
+      .toc-link::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--muted);
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .toc-link:hover,
+      .toc-link.active {
+        background: rgba(200, 0, 30, 0.06);
+        color: var(--crimson);
+      }
+      .toc-link.active::before,
+      .toc-link:hover::before {
+        background: var(--crimson);
+      }
+      .toc-divider {
+        height: 1px;
+        background: var(--rule);
+        margin: 12px 0;
+      }
+      .toc-cta {
+        display: block;
+        text-align: center;
+        padding: 9px 14px;
+        background: var(--ink);
+        color: var(--white);
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 3px;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+        transition: background 0.2s;
+      }
+      .toc-cta:hover {
+        background: var(--crimson);
       }
 
+      @media (max-width: 1100px) {
+        .page-toc {
+          display: none;
+        }
+        .page-layout {
+          grid-template-columns: 1fr;
+          margin: 0;
+        }
+      }
+
+      /* Simplified, toned-down clients block to match about page styling */
       .clients-header {
         margin-bottom: 24px;
       }
       .clients-header h2 {
         font-size: 30px;
-        font-weight: 900;
-        color: var(--navy);
+        font-weight: 800;
+        color: var(--ink);
         margin-bottom: 8px;
       }
       .clients-header p {
         font-size: 14px;
-        color: var(--gray);
+        color: var(--muted);
         margin: 0;
-      }
-
-      .clients-cat-label {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 12px;
-        font-weight: 800;
-        color: var(--gray);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 14px;
-      }
-      .clients-cat-label::before {
-        content: "";
-        width: 18px;
-        height: 2px;
-        background: var(--pink);
       }
 
       .clients-logos {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 16px;
         margin-bottom: 28px;
         align-items: center;
       }
@@ -138,32 +375,219 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #ffffff;
-        border: 1px solid #e9eff9;
-        border-radius: 12px;
-        min-height: 80px;
-        padding: 10px;
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
+        background: transparent;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        min-height: 72px;
+        padding: 12px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
       }
       .client-logo:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(26, 29, 38, 0.06);
       }
       .client-logo img {
         max-width: 100%;
         max-height: 40px;
         object-fit: contain;
       }
-      /* HERO styles removed so page uses shared css/header.css hero rules */
+      /* ── HERO (copied from about.html — Option D styles) ── */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 80px 80px 60px;
+        padding-top: 120px;
+        position: relative;
+        overflow: hidden;
+        background: var(--bg);
+      }
 
-      /* hero appearance is centralized in ../css/hero.css and css/header.css */
+      .hero-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--rule2) 1px, transparent 1px),
+          linear-gradient(90deg, var(--rule2) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .hero-bg-glow {
+        position: absolute;
+        right: 5%;
+        top: 15%;
+        width: 480px;
+        height: 480px;
+        background: radial-gradient(
+          circle,
+          rgba(200, 0, 30, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .hero::after {
+        content: "KBI";
+        position: absolute;
+        right: -30px;
+        bottom: -40px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 380px;
+        line-height: 1;
+        color: rgba(26, 29, 38, 0.03);
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: -8px;
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--crimson);
+        flex-shrink: 0;
+      }
+
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 104px;
+        line-height: 0.88;
+        letter-spacing: 4px;
+        color: var(--ink);
+        margin-bottom: 12px;
+      }
+
+      .hero-title span {
+        color: var(--crimson);
+      }
+
+      /* Ensure 'CVM' and related labels use the same hero red */
+      .nav-pname span,
+      .f-pname span {
+        color: var(--crimson);
+      }
+
+      .hero-title-sub {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(200, 0, 30, 0.2);
+        background: rgba(200, 0, 30, 0.04);
+        padding: 5px 12px;
+        border-radius: 2px;
+        margin-bottom: 32px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--crimson2);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .hero-title-sub::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: var(--crimson);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      .hero-desc {
+        font-size: 16px;
+        line-height: 1.85;
+        color: var(--ink);
+        margin-bottom: 12px;
+        font-weight: 400;
+      }
+
+      .hero-desc strong {
+        color: var(--crimson);
+        font-weight: 700;
+      }
+
+      .hero-desc2 {
+        font-size: 14px;
+        line-height: 1.9;
+        color: var(--muted);
+        margin-bottom: 40px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 28px;
+        background: var(--crimson);
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        border-radius: 3px;
+        transition: all 0.22s;
+      }
+
+      .btn-primary:hover {
+        background: var(--crimson2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 0, 30, 0.25);
+      }
+
+      /* End hero styles */
 
       /* ── SECTIONS ── */
       section {
-        padding: 96px 80px;
-        scroll-margin-top: 90px;
+        padding: 100px 80px;
       }
       .section-label {
         display: inline-flex;
@@ -173,14 +597,14 @@
         font-weight: 700;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--blue);
+        color: var(--crimson);
         margin-bottom: 14px;
       }
       .section-label::before {
         content: "";
         width: 20px;
         height: 2px;
-        background: var(--pink);
+        background: var(--crimson);
       }
       .section-title {
         font-size: 34px;
@@ -511,18 +935,23 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2px;
+        border-radius: 8px;
+        overflow: hidden;
       }
       .cce-panel,
       .cve-panel {
-        padding: 40px;
+        padding: 44px 48px;
         position: relative;
         overflow: hidden;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
       }
       .cce-panel {
-        background: var(--navy2);
+        background: linear-gradient(180deg, rgba(26,29,38,0.98) 0%, rgba(36,39,46,0.98) 100%);
       }
       .cve-panel {
-        background: var(--navy);
+        background: linear-gradient(180deg, rgba(20,23,28,0.98) 0%, rgba(28,30,35,0.98) 100%);
       }
       .cce-panel::before {
         content: "CCE";
@@ -624,11 +1053,13 @@
 
       .panel-badge {
         display: inline-block;
-        padding: 5px 14px;
+        padding: 6px 12px;
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 800;
         letter-spacing: 1px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+        border-radius: 4px;
+        text-transform: uppercase;
       }
       .badge-blue {
         background: var(--blue);
@@ -640,25 +1071,24 @@
       }
       .panel-title {
         font-family: "Barlow", sans-serif;
-        font-size: 20px;
-        font-weight: 800;
+        font-size: 24px;
+        font-weight: 900;
         color: var(--white);
-        margin-bottom: 16px;
-        line-height: 1.3;
+        margin-bottom: 18px;
+        line-height: 1.25;
       }
       .panel-body {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
         line-height: 1.8;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
       .panel-sub {
         font-size: 13px;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--cyan);
         margin-bottom: 10px;
-        margin-top: 24px;
-        border-left: 3px solid var(--cyan);
+        margin-top: 22px;
         padding-left: 10px;
       }
       .panel-list {
@@ -689,10 +1119,11 @@
         margin-top: 8px;
       }
       .cve-example {
-        background: rgba(0, 200, 232, 0.06);
-        border: 1px solid rgba(0, 200, 232, 0.15);
-        padding: 16px;
-        margin-top: 20px;
+        background: rgba(0, 200, 232, 0.04);
+        border: 1px solid rgba(0, 200, 232, 0.12);
+        padding: 18px;
+        margin-top: 22px;
+        border-radius: 6px;
       }
       .cve-example .ex-title {
         font-size: 12px;
@@ -991,22 +1422,37 @@
         font-weight: 600;
       }
 
+      @media (max-width: 1100px) {
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .product-tagline img {
+          width: 240px;
+        }
+        .feature-col {
+          padding: 0 28px;
+        }
+      }
+
       /* ── FEATURES ── */
       #features {
         background: var(--white);
       }
       .features-grid {
         display: grid;
-        grid-template-columns: 300px 1fr 1fr;
+        grid-template-columns: 340px 1fr 1fr;
         gap: 40px;
-        align-items: start;
+        align-items: stretch; /* allow left column to match height of right columns */
         margin-top: 48px;
       }
       .features-product-col {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        justify-content: center; /* center content vertically to avoid bottom gap */
+        gap: 12px;
+        height: 100%;
       }
       .product-cube-sm {
         width: 160px;
@@ -1019,11 +1465,35 @@
         border-radius: 10px;
       }
       .product-tagline {
-        font-size: 13px;
-        color: var(--blue);
-        font-weight: 700;
-        line-height: 1.7;
         text-align: center;
+      }
+      .product-tagline img {
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(26,29,38,0.08);
+        display: block;
+        margin: 0 auto;
+        object-fit: contain;
+      }
+      .product-caption {
+        margin-top: 12px;
+        color: var(--pink);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.5;
+      }
+      .product-tagline img {
+        max-width: 340px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 12px;
+      }
+      .product-tagline .tagline-text {
+        display: block;
       }
       .feature-col {
         display: flex;
@@ -1031,15 +1501,15 @@
         gap: 0;
       }
       .feature-col-title {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 900;
         color: var(--navy);
-        padding-bottom: 14px;
-        margin-bottom: 0;
-        border-bottom: 3px solid var(--blue);
+        padding-bottom: 12px;
+        margin-bottom: 18px;
         display: flex;
         align-items: center;
         gap: 10px;
+        border-bottom: 3px solid rgba(0,0,0,0.04);
       }
       .feature-col:nth-child(3) .feature-col-title {
         border-bottom-color: var(--pink);
@@ -1052,23 +1522,23 @@
         flex-direction: column;
       }
       .feature-col-item {
-        padding: 20px 0;
+        padding: 14px 0;
         border-bottom: 1px solid var(--light);
-        font-size: 13.5px;
-        color: var(--gray);
-        line-height: 1.75;
-        padding-left: 16px;
+        font-size: 14px;
+        color: var(--navy);
+        line-height: 1.8;
+        padding-left: 18px;
         position: relative;
       }
       .feature-col-item::before {
         content: "";
         position: absolute;
         left: 0;
-        top: 26px;
-        width: 6px;
-        height: 6px;
+        top: 18px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
-        background: var(--sky);
+        background: var(--pink);
       }
       .feature-col:nth-child(3) .feature-col-item::before {
         background: var(--pink);
@@ -1141,120 +1611,104 @@
 
       /* ── FOOTER ── */
       footer {
-        background: var(--dark);
+        background: var(--ink);
         padding: 56px 80px 36px;
-        border-top: 3px solid var(--pink);
+        border-top: 3px solid var(--crimson);
       }
-      .footer-top {
+      .footer-cols {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        margin-bottom: 40px;
-        padding-bottom: 40px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        grid-template-columns: auto 1fr 2fr;
+        gap: 56px;
+        margin-bottom: 36px;
       }
-      .footer-brand {
+      .f-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 40px;
+        color: var(--white);
+        letter-spacing: 3px;
+        line-height: 1;
+      }
+      .f-logo em {
+        font-style: normal;
+        color: var(--crimson);
+      }
+      .f-sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
+      .f-prow {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
+        gap: 7px;
+        margin-top: 16px;
       }
-      .footer-cube {
-        width: 28px;
-        height: 28px;
+      .f-pcube {
+        width: 14px;
+        height: 14px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2px;
       }
-      .footer-cube span {
-        border-radius: 2px;
+      .f-pcube span {
+        background: var(--crimson);
+        border-radius: 1px;
+        opacity: 0.6;
       }
-      .footer-cube span:nth-child(1) {
-        background: var(--sky);
-      }
-      .footer-cube span:nth-child(2) {
-        background: var(--pink);
-      }
-      .footer-cube span:nth-child(3) {
-        background: var(--pink);
-      }
-      .footer-cube span:nth-child(4) {
-        background: var(--sky);
-      }
-      .footer-name {
-        font-family: "Barlow", sans-serif;
-        font-size: 24px;
-        font-weight: 800;
-        color: var(--white);
-        letter-spacing: 1px;
-      }
-      .footer-name span {
-        color: var(--cyan);
-      }
-      .footer-desc {
-        font-size: 13px;
+      .f-pname {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
         color: rgba(255, 255, 255, 0.35);
-        line-height: 1.8;
+        letter-spacing: 1.5px;
       }
-      .footer-links {
+      .f-pname span {
+        color: var(--crimson);
+      }
+      .f-col-lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .f-links {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 9px;
       }
-      .footer-links a {
+      .f-links a {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.45);
         text-decoration: none;
         transition: color 0.2s;
       }
-      .footer-links a:hover {
-        color: var(--cyan);
+      .f-links a:hover {
+        color: var(--white);
       }
-      .footer-links strong {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 12px;
-        letter-spacing: 1.5px;
-        margin-bottom: 4px;
-        display: block;
-      }
-      .footer-bottom {
+      .f-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 22px;
         display: flex;
         justify-content: space-between;
         font-size: 11px;
         color: rgba(255, 255, 255, 0.2);
+        font-family: "IBM Plex Mono", monospace;
+        letter-spacing: 0.3px;
       }
 
       /* ── SCROLL REVEAL ── */
       .reveal {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(28px);
         transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
+          opacity 0.65s ease,
+          transform 0.65s ease;
       }
       .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-      .reveal-left {
-        opacity: 0;
-        transform: translateX(-24px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-      }
-      .reveal-left.visible {
-        opacity: 1;
-        transform: none;
-      }
-      .reveal-right {
-        opacity: 0;
-        transform: translateX(24px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-      }
-      .reveal-right.visible {
         opacity: 1;
         transform: none;
       }
@@ -1291,28 +1745,51 @@
           grid-template-columns: 1fr;
         }
       }
+
+      @media (max-width: 1100px) {
+        .page-toc {
+          display: none;
+        }
+      }
       /* Hero styles are provided by css/header.css */
 
       /* Ensure the g2b purchase button is visible on this page
          (some pages set contrasting variables; keep this rule here to
          guarantee visibility). */
-      nav .nav-buy {
-        background: var(--red, #cc1520) !important;
-        color: var(--inv, #ffffff) !important;
-        border: 1px solid rgba(0, 0, 0, 0.04) !important;
-        box-shadow: 0 6px 18px rgba(13, 37, 80, 0.08) !important;
-        z-index: 999 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 56px;
+        background: rgba(244, 242, 238, 0.92);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--rule);
+        transition: box-shadow 0.3s;
       }
     </style>
   </head>
-  <body>
+  <body class="about">
+    <!-- SCROLL TO TOP -->
+    <button
+      class="scroll-top"
+      id="scrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      aria-label="맨 위로"
+    >
+      <svg viewBox="0 0 14 14"><polyline points="2,9 7,4 12,9" /></svg>
+      <span>TOP</span>
+    </button>
+    <!-- Custom cursor elements -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
     <!-- NAV -->
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <div class="nav-brand">
         <div class="nav-logo">KB<em>i</em></div>
         <div class="nav-vr"></div>
@@ -1325,9 +1802,9 @@
       </div>
       <nav class="nav-menu">
         <a href="../index.html">홈</a>
-        <a href="product.html" class="active">제품 소개</a>
-        <a href="about.html">회사 소개</a>
-        <a href="news.html">뉴스</a>
+        <a href="./product.html" class="active">제품 소개</a>
+        <a href="./about.html">회사 소개</a>
+        <a href="./news.html">뉴스</a>
         <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
           >조달청 구매 →</a
         >
@@ -1335,12 +1812,11 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero light" id="hero">
+    <section class="hero" id="hero">
       <div class="hero-bg-grid"></div>
       <div class="hero-bg-glow"></div>
-
       <div class="hero-content">
-        <!-- LEFT CONTENT -->
+                <!-- LEFT CONTENT -->
         <div>
           <div class="hero-eyebrow">취약점진단 자동화 플랫폼</div>
           <div class="hero-title">Bingo<span>CVM</span></div>
@@ -1364,36 +1840,22 @@
 
           <div class="hero-actions">
             <a class="btn-primary" href="#process">진단 프로세스 보기 →</a>
-            <a class="btn-outline" href="#features">주요 기능·특장점</a>
+            <a class="btn-primary" href="#features">주요 기능·특장점</a>
           </div>
-        </div>
-
-        <!-- RIGHT VISUAL removed per request -->
       </div>
-      <!-- hero-content -->
     </section>
 
     <div
       class="page-layout"
       style="
         display: grid;
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: 1fr 240px;
         gap: 30px;
         align-items: start;
         margin: 30px 80px;
       "
     >
-      <aside class="page-toc">
-        <div class="toc-title">이 문서의 내용</div>
-        <a class="toc-link" href="#intro">도입효과</a>
-        <a class="toc-link" href="#process">진단 프로세스</a>
-        <a class="toc-link" href="#cce-cve">CCE/CVE</a>
-        <a class="toc-link" href="#architecture">시스템 구성</a>
-        <a class="toc-link" href="#platforms">지원 플랫폼</a>
-        <a class="toc-link" href="#features">기능·특장점</a>
-        <a class="toc-link" href="#clients">주요 고객사</a>
-      </aside>
-      <div class="page-content">
+      <div class="page-content" style="grid-column: 1">
         <!-- INTRO / EFFECTS -->
         <section id="intro">
           <div class="reveal">
@@ -2055,9 +2517,8 @@
                 <div class="face face-br"></div>
               </div>
               <div class="product-tagline">
-                BingoCVM은 독보적인 ATC 자동화 엔진과<br />유연한 관리
-                기능으로<br /><strong>최상의 보안 관리 효율성</strong
-                >을<br />제공합니다.
+                <img src="../images/BingoCVM-Key%20Features%20and%20Advantages.png" alt="BingoCVM Key Features and Advantages" loading="lazy" />
+                <div class="product-caption">BingoCVM은 독보적인 ATC 자동화 엔진과 유연한 관리 기능으로 최상의 보안 관리 효율성을 제공합니다.</div>
               </div>
             </div>
 
@@ -2103,14 +2564,19 @@
 
         <!-- CLIENTS -->
         <section id="clients">
-          <div class="clients-header reveal">
-            <h2>주요 고객사</h2>
-            <p>
-              다양한 공공기관 및 민간/IT 기업의 신뢰를 바탕으로, BingoCVM은 보안
-              취약점 진단 자동화 시장을 선도합니다.
+          
+
+
+          <div class="reveal">
+            <div class="section-label">주요 고객사</div>
+            <h2 class="section-title">신뢰받는 54개 고객사</h2>
+            <p class="section-desc">
+              BingoCVM은 은 국가 주요
+                정보통신기반시설부터 공공, 국방, 연구기관까지 다양한 분야에서
+                신뢰받고 있습니다.<br />
+              20년 이상 축적된 기술력으로 고객의 정보보안을 책임집니다.
             </p>
           </div>
-
           <!-- 1. 정부기관 -->
           <div class="clients-cat-label reveal">정부기관</div>
           <div class="clients-logos reveal">
@@ -2383,6 +2849,16 @@
           </div>
         </section>
       </div>
+      <aside class="page-toc">
+        <div class="toc-title">이 문서의 내용</div>
+        <a class="toc-link" href="#intro">도입효과</a>
+        <a class="toc-link" href="#process">진단 프로세스</a>
+        <a class="toc-link" href="#cce-cve">CCE/CVE</a>
+        <a class="toc-link" href="#architecture">시스템 구성</a>
+        <a class="toc-link" href="#platforms">지원 플랫폼</a>
+        <a class="toc-link" href="#features">기능·특장점</a>
+        <a class="toc-link" href="#clients">주요 고객사</a>
+      </aside>
       <!-- .page-content -->
     </div>
     <!-- .page-layout -->
@@ -2410,42 +2886,40 @@
           </div>
         </div>
         <div>
-          <div class="f-col-lbl">조달청 디지털서비스몰</div>
-          <div
+          <div class="f-col-lbl">회사 소개</div>
+          <p
             style="
-              font-size: 12px;
-              color: rgba(255, 255, 255, 0.3);
+              font-size: 12.5px;
+              color: rgba(255, 255, 255, 0.35);
               line-height: 1.85;
             "
           >
-            정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 플랫폼<br />
-            KBI e-Security Consulting | GS 1등급 인증<br /><br />
+            <strong style="color: rgba(255, 255, 255, 0.55)"
+              >AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong
+            >로 기업 보안의 신뢰와 믿음을 만들겠습니다.<br /><br />
+            ㈜케이비아이는 2003년 설립 이후 국내 수많은 고객에게 신뢰받는
+            서비스를 제공하고 있습니다.<br /><br />
             <a
               href="https://digitalmall.g2b.go.kr/"
               target="_blank"
               style="
-                color: var(--sky);
+                color: rgba(200, 0, 30, 0.7);
                 text-decoration: none;
-                font-family: &quot;DM Mono&quot;, monospace;
-                font-size: 9px;
-              "
-              >https://digitalmall.g2b.go.kr/ →</a
-            >
-            <div
-              style="
-                font-family: &quot;DM Mono&quot;, monospace;
-                font-size: 8.5px;
-                color: rgba(255, 255, 255, 0.16);
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 10px;
               "
             >
-              검색: 케이비아이, BingoCVM
-            </div>
-          </div>
+              https://digitalmall.g2b.go.kr/ →
+            </a>
+          </p>
         </div>
       </div>
       <div class="f-bottom">
-        <span>© 2025 KBI e-Security Consulting. All rights reserved.</span>
-        <span>BingoCVM | CCE·CVE 통합 취약점진단 자동화 플랫폼</span>
+        <span
+          >© 2025 KBI e-Security Consulting. All rights reserved. | 설립
+          2003년</span
+        >
+        <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
       </div>
     </footer>
 
@@ -2490,7 +2964,7 @@
               }
             });
           },
-          { root: null, rootMargin: "-120px 0px -50% 0px", threshold: 0.1 },
+          { root: null, rootMargin: "-40% 0px -50% 0px", threshold: 0.1 },
         );
 
         sections.forEach((s) => observer.observe(s));
@@ -2506,5 +2980,30 @@
       });
     </script>
     <script src="../js/cursor.js"></script>
+    <script>
+      /* Scroll to top + nav scroll toggle for product page */
+      (function () {
+        const scrollBtn = document.getElementById("scrollTop");
+        const nav = document.getElementById("mainNav");
+        if (scrollBtn) {
+          window.addEventListener(
+            "scroll",
+                () => {
+                  scrollBtn.classList.toggle("show", scrollY > 400);
+                },
+            { passive: true },
+          );
+        }
+        if (nav) {
+          window.addEventListener(
+            "scroll",
+            () => {
+              nav.classList.toggle("scrolled", scrollY > 30);
+            },
+            { passive: true },
+          );
+        }
+      })();
+    </script>
   </body>
 </html>

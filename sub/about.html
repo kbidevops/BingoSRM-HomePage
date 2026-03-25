@@ -6,12 +6,13 @@
     <title>KBI e-Security Consulting | 회사 소개</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/hero.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
     <style>
       *,
       *::before,
@@ -21,82 +22,674 @@
         padding: 0;
       }
 
+      /* ── PALETTE ── */
       :root {
-        --navy: #0f1e45;
-        --navy2: #1a2e5e;
-        --blue: #1b5faa;
-        --midblue: #2878d4;
-        --sky: #4fa3e8;
-        --red: #d01820;
+        --bg: #f4f2ee;
+        --bg2: #eceae5;
+        --bg3: #e2dfd8;
+        --ink: #1a1d26;
+        --ink2: #3a3d4a;
+        --muted: #8a8880;
+        --rule: rgba(26, 29, 38, 0.1);
+        --rule2: rgba(26, 29, 38, 0.06);
+        --crimson: #c8001e;
+        --crimson2: #a0001a;
         --surface: #ffffff;
-        --border: #e0e8f2;
+        --navy: #1a1d26;
+        --navy2: #3a3d4a;
+        --blue: #1554b0;
+        --brand-cyan: #3ba2f2;
         --white: #ffffff;
-        --offwhite: #f4f7fb;
-        --light: #e8eff8;
-        --gray: #5a6a82;
-        --darktext: #1a2338;
+        --border: rgba(26, 29, 38, 0.1);
       }
 
       html {
         scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(26, 29, 38, 0.12) var(--bg);
       }
 
       body {
-        font-family: "Noto Sans KR", sans-serif;
-        background: var(--offwhite);
-        color: var(--darktext);
+        font-family:
+          "Pretendard",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--ink);
         overflow-x: hidden;
       }
-      /* HERO styles removed so page uses shared css/header.css hero rules */
 
-      /* Hero appearance is centralized in ../css/hero.css */
+      /* Paper grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.35;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+      }
+
+      /* ── CUSTOM CURSOR ── */
+      .cursor-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--crimson);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-ring {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(200, 0, 30, 0.35);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.15s ease,
+          height 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(26, 29, 38, 0.12);
+        border-radius: 8px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(26, 29, 38, 0.2);
+      }
+
+      /* ── NAV ── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 56px;
+        background: rgba(244, 242, 238, 0.92);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--rule);
+        transition: box-shadow 0.3s;
+      }
+      .nav.scrolled {
+        box-shadow: 0 4px 20px rgba(26, 29, 38, 0.08);
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 26px;
+        letter-spacing: 3px;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .nav-logo em {
+        font-style: normal;
+        color: var(--crimson);
+      }
+      .nav-vr {
+        width: 1px;
+        height: 18px;
+        background: var(--rule);
+      }
+      .nav-product {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .nav-cube {
+        width: 16px;
+        height: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+      .nav-cube span {
+        background: var(--crimson);
+        border-radius: 1px;
+        opacity: 0.7;
+      }
+      .nav-pname {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 1.5px;
+      }
+      .nav-pname span {
+        color: var(--crimson);
+        font-weight: 500;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .nav-menu a {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        text-decoration: none;
+        letter-spacing: 0.2px;
+        transition: color 0.2s;
+      }
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--ink);
+      }
+      .nav-buy {
+        padding: 7px 18px;
+        background: var(--ink) !important;
+        color: var(--white) !important;
+        border-radius: 3px;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        transition: background 0.2s !important;
+      }
+      .nav-buy:hover {
+        background: var(--crimson) !important;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 120px 80px 80px;
+        position: relative;
+        overflow: hidden;
+        background: var(--bg);
+        background-image:
+          linear-gradient(var(--rule2) 1px, transparent 1px),
+          linear-gradient(90deg, var(--rule2) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+
+      /* Big decorative letter */
+      .hero::after {
+        content: "KBI";
+        position: absolute;
+        right: -30px;
+        bottom: -40px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 380px;
+        line-height: 1;
+        color: rgba(26, 29, 38, 0.03);
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: -8px;
+        z-index: 0;
+      }
+
+      .hero-bg-glow {
+        position: absolute;
+        right: 5%;
+        top: 15%;
+        width: 480px;
+        height: 480px;
+        background: radial-gradient(
+          circle,
+          rgba(200, 0, 30, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-dots {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          var(--rule2) 1.2px,
+          transparent 1.2px
+        );
+        background-size: 28px 28px;
+        opacity: 0.7;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 40%,
+          transparent 100%
+        );
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--crimson);
+        flex-shrink: 0;
+      }
+
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(72px, 9vw, 120px);
+        line-height: 0.88;
+        letter-spacing: 4px;
+        color: var(--ink);
+        margin-bottom: 12px;
+      }
+      .hero-title span {
+        color: var(--crimson);
+      }
+
+      .hero-title-sub {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(200, 0, 30, 0.2);
+        background: rgba(200, 0, 30, 0.04);
+        padding: 5px 12px;
+        border-radius: 2px;
+        margin-bottom: 32px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--crimson2);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .hero-title-sub::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: var(--crimson);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      .hero-desc {
+        font-size: 16px;
+        line-height: 1.85;
+        color: var(--ink);
+        margin-bottom: 12px;
+      }
+      .hero-desc strong {
+        color: var(--crimson);
+        font-weight: 700;
+      }
+      .hero-desc2 {
+        font-size: 14px;
+        line-height: 1.9;
+        color: var(--muted);
+        margin-bottom: 40px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 28px;
+        background: var(--crimson);
+        color: var(--white);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        border-radius: 3px;
+        transition: all 0.22s;
+      }
+      .btn-primary:hover {
+        background: var(--crimson2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 0, 30, 0.25);
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border: 1px solid var(--rule);
+        background: transparent;
+        color: var(--ink2);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 3px;
+        transition: all 0.22s;
+      }
+      .btn-secondary:hover {
+        border-color: var(--crimson);
+        color: var(--crimson);
+      }
+
+      /* Hero right stat panel */
+      .hero-right {
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+        padding-left: 40px;
+      }
+
+      .stat-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .stat-cell {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 20px 16px;
+        text-align: center;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-cell::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+      }
+      .sc-r::before {
+        background: var(--crimson);
+      }
+      .sc-b::before {
+        background: var(--ink);
+      }
+      .sc-c::before {
+        background: var(--muted);
+      }
+      .sc-p::before {
+        background: var(--ink2);
+      }
+      .stat-cell:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(26, 29, 38, 0.08);
+      }
+      .stat-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 40px;
+        color: var(--navy);
+        line-height: 1;
+      }
+      .stat-num em {
+        color: var(--crimson);
+        font-style: normal;
+      }
+      .stat-lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: var(--muted);
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+      }
+
+      .cert-panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+      }
+      .cert-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: var(--muted);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .cert-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .cert-pill {
+        display: inline-block;
+        padding: 4px 9px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ink2);
+        background: var(--bg2);
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .cert-pill:hover {
+        border-color: var(--crimson);
+        color: var(--crimson);
+      }
+
+      .g2b-panel {
+        background: var(--ink);
+        border-radius: 4px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .g2b-text {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.6;
+      }
+      .g2b-link {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--crimson);
+        text-decoration: none;
+        white-space: nowrap;
+        padding: 6px 12px;
+        border: 1px solid rgba(200, 0, 30, 0.3);
+        border-radius: 3px;
+        transition: background 0.2s;
+      }
+      .g2b-link:hover {
+        background: rgba(200, 0, 30, 0.1);
+      }
+
+      /* ── ABOUT STRIP ── */
+      .about-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+        color: var(--white);
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .about-cell {
+        padding: 28px 32px;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        transition: background 0.2s;
+      }
+      .about-cell:first-child {
+        border-left: none;
+      }
+      .about-cell:hover {
+        background: rgba(200, 0, 30, 0.06);
+      }
+      .about-cell::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--crimson);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .about-cell:hover::after {
+        transform: scaleX(1);
+      }
+      .about-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 48px;
+        color: var(--white);
+        letter-spacing: 1px;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .about-num em {
+        color: var(--crimson);
+        font-style: normal;
+        margin-left: 4px;
+      }
+      .about-lbl {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .about-desc {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.65;
+      }
 
       /* ── SECTIONS ── */
       section {
-        padding: 100px 80px;
+        padding: 96px 80px;
+        position: relative;
+        z-index: 1;
       }
-      .section-header {
-        margin-bottom: 60px;
-      }
+
       .section-num {
         font-family: "Bebas Neue", sans-serif;
         font-size: 80px;
-        color: rgba(15, 30, 69, 0.06);
+        color: rgba(26, 29, 38, 0.04);
         line-height: 1;
         margin-bottom: -20px;
         user-select: none;
       }
+      .section-eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--crimson);
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .section-eyebrow::before {
+        content: "";
+        width: 18px;
+        height: 2px;
+        background: var(--crimson);
+      }
       .section-title {
-        font-size: 34px;
-        font-weight: 900;
-        color: var(--navy);
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--ink);
         position: relative;
         display: inline-block;
+        margin-bottom: 16px;
       }
       .section-title::after {
         content: "";
         display: block;
-        width: 40px;
+        width: 36px;
         height: 3px;
-        background: var(--red);
-        margin-top: 12px;
+        background: var(--crimson);
+        margin-top: 10px;
       }
       .section-desc {
-        margin-top: 20px;
         font-size: 15px;
-        color: var(--gray);
-        line-height: 1.8;
-        max-width: 640px;
+        color: var(--muted);
+        line-height: 1.85;
+        max-width: 660px;
       }
       .section-desc strong {
-        color: var(--blue);
+        color: var(--ink);
         font-weight: 700;
+      }
+      .section-header {
+        margin-bottom: 52px;
       }
 
       /* ── TIMELINE ── */
       #history {
-        background: var(--white);
+        background: var(--surface);
+        border-top: 1px solid var(--rule);
       }
+
       .timeline-wrapper {
         position: relative;
         padding-top: 20px;
@@ -104,18 +697,18 @@
       .timeline-bar {
         position: absolute;
         top: 52px;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: var(--light);
+        left: 14px;
+        right: 14px;
+        height: 2px;
+        background: var(--bg3);
       }
       .timeline-bar-fill {
         height: 100%;
         background: linear-gradient(
           90deg,
-          var(--navy),
-          var(--midblue),
-          var(--sky)
+          var(--ink),
+          var(--crimson),
+          var(--muted)
         );
         width: 100%;
       }
@@ -126,56 +719,71 @@
         position: relative;
       }
       .timeline-item {
-        padding: 0 16px;
+        padding: 0 14px;
       }
       .timeline-dot-row {
         display: flex;
         justify-content: center;
         position: relative;
-        padding: 40px 0 24px;
+        padding: 40px 0 20px;
       }
       .timeline-dot {
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background: var(--white);
-        border: 3px solid var(--blue);
+        background: var(--surface);
+        border: 2.5px solid var(--ink2);
         position: relative;
         z-index: 1;
         transition:
-          transform 0.2s,
-          border-color 0.2s;
+          transform 0.25s,
+          border-color 0.25s,
+          background 0.25s;
+        cursor: default;
       }
       .timeline-item:hover .timeline-dot {
-        transform: scale(1.4);
-        border-color: var(--red);
+        transform: scale(1.5);
+        border-color: var(--crimson);
+        background: rgba(200, 0, 30, 0.08);
       }
       .timeline-period {
-        font-family: "Barlow", sans-serif;
-        font-weight: 700;
-        font-size: 15px;
-        color: var(--navy);
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+        font-size: 12px;
+        color: var(--ink);
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         letter-spacing: 1px;
       }
       .timeline-card {
-        background: var(--offwhite);
+        background: var(--bg);
         padding: 20px;
-        border-top: 3px solid var(--blue);
+        border-top: 3px solid var(--ink2);
         transition:
-          transform 0.2s,
-          box-shadow 0.2s;
+          transform 0.22s,
+          box-shadow 0.22s;
+        border-radius: 0 0 4px 4px;
       }
       .timeline-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(15, 30, 69, 0.1);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(26, 29, 38, 0.1);
       }
       .timeline-card-title {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
-        color: var(--navy);
+        color: var(--ink);
         margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .timeline-card-title::before {
+        content: "";
+        width: 4px;
+        height: 14px;
+        background: currentColor;
+        border-radius: 2px;
+        opacity: 0.3;
       }
       .timeline-card ul {
         list-style: none;
@@ -184,10 +792,10 @@
         gap: 7px;
       }
       .timeline-card ul li {
-        font-size: 11.5px;
-        color: var(--gray);
-        line-height: 1.6;
-        padding-left: 12px;
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.65;
+        padding-left: 13px;
         position: relative;
       }
       .timeline-card ul li::before {
@@ -195,45 +803,52 @@
         position: absolute;
         left: 0;
         top: 7px;
-        width: 4px;
-        height: 4px;
+        width: 5px;
+        height: 5px;
         border-radius: 50%;
-        background: var(--red);
+        background: var(--crimson);
       }
 
-      /* bottom timeline items */
       .timeline-bottom {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 20px;
         margin-top: 48px;
       }
       .timeline-bottom-card {
-        background: var(--navy);
+        background: var(--ink);
         padding: 28px;
         position: relative;
         overflow: hidden;
+        border-radius: 4px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
       }
       .timeline-bottom-card::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
-        width: 4px;
+        width: 3px;
         height: 100%;
-        background: var(--red);
+        background: var(--crimson);
+      }
+      .timeline-bottom-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 36px rgba(26, 29, 38, 0.2);
       }
       .timeline-bottom-card .era {
-        font-family: "Barlow", sans-serif;
-        font-weight: 700;
-        font-size: 12px;
-        color: var(--sky);
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.4);
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       .timeline-bottom-card .era-title {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         color: var(--white);
         margin-bottom: 16px;
@@ -246,8 +861,8 @@
       }
       .timeline-bottom-card ul li {
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.65);
-        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.65;
         padding-left: 14px;
         position: relative;
       }
@@ -255,20 +870,22 @@
         content: "";
         position: absolute;
         left: 0;
-        top: 7px;
+        top: 9px;
         width: 5px;
         height: 1px;
-        background: var(--sky);
+        background: var(--crimson);
       }
 
-      /* ── R&D PARTNERS ── */
+      /* ── PARTNERS ── */
       #partners {
-        background: var(--offwhite);
+        background: var(--bg);
+        border-top: 1px solid var(--rule);
       }
+
       .partners-hub {
         display: grid;
         grid-template-columns: 1fr 280px 1fr;
-        gap: 24px;
+        gap: 28px;
         align-items: center;
       }
       .partners-left,
@@ -277,14 +894,17 @@
         flex-direction: column;
         gap: 20px;
       }
+
       .partner-card {
-        background: var(--white);
+        background: var(--surface);
         padding: 24px;
-        border: 1px solid var(--light);
+        border: 1px solid var(--rule);
         transition:
-          transform 0.2s,
-          box-shadow 0.2s;
+          transform 0.22s,
+          box-shadow 0.22s;
         position: relative;
+        border-radius: 4px;
+        overflow: hidden;
       }
       .partner-card::before {
         content: "";
@@ -292,47 +912,49 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 3px;
-        background: var(--blue);
+        height: 2px;
+        background: var(--crimson);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.3s;
       }
       .partner-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(15, 30, 69, 0.08);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(26, 29, 38, 0.08);
       }
       .partner-card:hover::before {
         transform: scaleX(1);
       }
       .partner-name {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 700;
-        color: var(--navy);
+        color: var(--ink);
         margin-bottom: 8px;
       }
       .partner-badge {
         display: inline-block;
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 700;
-        padding: 3px 10px;
+        padding: 3px 9px;
         letter-spacing: 1px;
         margin-bottom: 12px;
+        border-radius: 2px;
+        font-family: "IBM Plex Mono", monospace;
       }
       .badge-blue {
-        background: var(--blue);
+        background: var(--ink);
         color: var(--white);
       }
       .badge-gray {
-        background: #8899bb;
+        background: var(--muted);
         color: var(--white);
       }
       .badge-sky {
-        background: var(--sky);
+        background: var(--ink2);
         color: var(--white);
       }
       .badge-navy {
-        background: var(--navy);
+        background: var(--crimson);
         color: var(--white);
       }
       .partner-card ul {
@@ -343,20 +965,21 @@
       }
       .partner-card ul li {
         font-size: 12px;
-        color: var(--gray);
+        color: var(--muted);
         line-height: 1.7;
-        padding-left: 12px;
+        padding-left: 13px;
         position: relative;
       }
       .partner-card ul li::before {
         content: "·";
         position: absolute;
         left: 0;
-        color: var(--red);
+        color: var(--crimson);
         font-weight: 700;
       }
+
       .hub-center {
-        background: var(--navy);
+        background: var(--ink);
         width: 280px;
         height: 280px;
         border-radius: 50%;
@@ -364,51 +987,78 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border: 3px solid var(--midblue);
-        box-shadow: 0 0 60px rgba(27, 95, 170, 0.3);
+        border: 2px solid rgba(200, 0, 30, 0.3);
+        box-shadow:
+          0 0 48px rgba(200, 0, 30, 0.1),
+          0 20px 48px rgba(26, 29, 38, 0.15);
         justify-self: center;
+        animation: hubFloat 4s ease-in-out infinite alternate;
+      }
+      @keyframes hubFloat {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-10px);
+        }
       }
       .hub-logo {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 44px;
+        font-size: 46px;
         color: var(--white);
-        letter-spacing: 3px;
+        letter-spacing: 4px;
         line-height: 1;
       }
       .hub-logo span {
-        color: var(--red);
+        color: var(--crimson);
       }
       .hub-sub {
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.5);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.4);
         letter-spacing: 1.5px;
         text-transform: uppercase;
         margin-top: 8px;
         text-align: center;
+        line-height: 1.6;
       }
 
       /* ── SERVICES ── */
       #services {
-        background: var(--navy);
+        background: var(--ink);
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
       }
       #services .section-num {
-        color: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.03);
       }
       #services .section-title {
         color: var(--white);
       }
-      #services .section-desc {
-        color: rgba(255, 255, 255, 0.5);
+      #services .section-title::after {
+        background: var(--crimson);
       }
+      #services .section-desc {
+        color: rgba(255, 255, 255, 0.45);
+      }
+      #services .section-desc strong {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      #services .section-eyebrow {
+        color: rgba(200, 0, 30, 0.8);
+      }
+      #services .section-eyebrow::before {
+        background: rgba(200, 0, 30, 0.6);
+      }
+
       .services-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2px;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.04);
       }
       .service-card {
-        background: var(--navy2);
-        padding: 40px 32px;
+        background: #1e2230;
+        padding: 40px 30px;
         transition: background 0.2s;
         position: relative;
         overflow: hidden;
@@ -419,14 +1069,14 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--red), var(--sky));
+        height: 2px;
+        background: linear-gradient(90deg, var(--crimson), transparent);
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.3s;
+        transition: transform 0.35s;
       }
       .service-card:hover {
-        background: rgba(40, 120, 212, 0.12);
+        background: rgba(200, 0, 30, 0.06);
       }
       .service-card:hover::after {
         transform: scaleX(1);
@@ -434,32 +1084,33 @@
       .service-icon {
         width: 48px;
         height: 48px;
-        background: rgba(27, 95, 170, 0.25);
-        border: 1px solid rgba(79, 163, 232, 0.3);
+        background: rgba(200, 0, 30, 0.12);
+        border: 1px solid rgba(200, 0, 30, 0.22);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 20px;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
+        border-radius: 3px;
       }
       .service-title {
-        font-size: 22px;
-        font-weight: 900;
+        font-size: 20px;
+        font-weight: 800;
         color: var(--white);
-        margin-bottom: 24px;
+        margin-bottom: 22px;
         line-height: 1.2;
       }
       .service-card ul {
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 11px;
       }
       .service-card ul li {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.7;
-        padding-left: 16px;
+        color: rgba(255, 255, 255, 0.52);
+        line-height: 1.75;
+        padding-left: 15px;
         position: relative;
       }
       .service-card ul li::before {
@@ -467,65 +1118,73 @@
         position: absolute;
         left: 0;
         top: 9px;
-        width: 6px;
+        width: 5px;
         height: 1px;
-        background: var(--sky);
+        background: var(--crimson);
       }
       .service-card ul li strong {
-        color: var(--sky);
+        color: rgba(255, 255, 255, 0.82);
         font-weight: 600;
       }
 
       /* ── CLIENTS ── */
       #clients {
-        background: var(--white);
+        background: var(--surface);
+        border-top: 1px solid var(--rule);
       }
+
       .clients-intro {
         display: grid;
         grid-template-columns: 1fr auto;
-        gap: 40px;
+        gap: 36px;
         align-items: start;
         margin-bottom: 48px;
       }
       .bingocvm-badge {
-        background: var(--navy);
-        padding: 24px 32px;
+        background: var(--ink);
+        padding: 24px 30px;
         text-align: center;
-        min-width: 200px;
+        min-width: 190px;
+        border-radius: 4px;
+        border-top: 3px solid var(--crimson);
       }
       .bingocvm-badge .product-name {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 36px;
+        font-size: 34px;
         color: var(--white);
         letter-spacing: 2px;
       }
       .bingocvm-badge .product-sub {
-        font-size: 11px;
-        color: var(--sky);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.4);
         letter-spacing: 1px;
+        margin-top: 4px;
       }
+
       .clients-cat-label {
         display: flex;
         align-items: center;
-        gap: 12px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2px;
+        gap: 10px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2.5px;
         text-transform: uppercase;
-        color: var(--gray);
-        margin-bottom: 16px;
+        color: var(--muted);
+        margin-bottom: 14px;
       }
       .clients-cat-label::before {
         content: "";
-        width: 20px;
+        width: 18px;
         height: 2px;
-        background: var(--red);
+        background: var(--crimson);
       }
 
       .clients-logos {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+        gap: 8px;
         margin-bottom: 36px;
         align-items: center;
       }
@@ -534,205 +1193,329 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 6px;
-        padding: 12px;
-        background: #fbfcff;
-        border: 1px solid #e7ecf7;
-        border-radius: 10px;
-        min-height: 100px;
-        position: relative;
+        gap: 8px;
+        padding: 14px 10px;
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        min-height: 92px;
         transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease;
+          transform 0.18s,
+          box-shadow 0.18s,
+          border-color 0.18s;
         cursor: default;
         text-align: center;
+        position: relative;
       }
       .client-logo:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(26, 29, 38, 0.08);
+        border-color: rgba(200, 0, 30, 0.25);
       }
-      .client-logo::after {
-        content: attr(data-caption);
-        display: block;
-        margin-top: 2px;
-        padding: 2px 6px;
-        font-size: 12px;
+      .client-logo .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--bg3);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: background 0.18s;
+      }
+      .client-logo:hover .logo-icon {
+        background: rgba(200, 0, 30, 0.06);
+      }
+      .client-logo .logo-name {
+        font-size: 11px;
         font-weight: 600;
-        color: var(--darktext);
-        background: #ffffff;
-        border: 1px solid #d7dbe5;
-        border-radius: 8px;
+        color: var(--ink2);
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        padding: 2px 8px;
         white-space: normal;
         max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1.2;
-      }
-      .client-logo img {
-        max-height: 42px;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        filter: none;
-      }
-      @media (max-width: 1100px) {
-        .clients-logos {
-          grid-template-columns: repeat(3, minmax(100px, 1fr));
-          gap: 8px;
-        }
+        line-height: 1.3;
+        text-align: center;
       }
 
-      .clients-grid {
-        display: grid;
-        grid-template-columns: repeat(9, 1fr);
-        gap: 8px;
-        margin-bottom: 40px;
-      }
-      .client-chip {
-        background: var(--offwhite);
-        border: 1px solid var(--light);
-        padding: 10px 6px;
-        font-size: 11px;
-        color: var(--darktext);
-        text-align: center;
-        line-height: 1.4;
-        transition:
-          background 0.15s,
-          border-color 0.15s,
-          color 0.15s;
-      }
-      .client-chip:hover {
-        background: var(--navy);
-        color: var(--white);
-        border-color: var(--navy);
-      }
       .clients-stats {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 0;
-        background: var(--navy);
-        margin-top: 40px;
+        background: var(--ink);
+        margin-top: 36px;
+        border-radius: 4px;
+        overflow: hidden;
       }
       .client-stat {
-        padding: 32px 36px;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 32px 28px;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        transition: background 0.2s;
       }
       .client-stat:last-child {
         border-right: none;
       }
+      .client-stat:hover {
+        background: rgba(200, 0, 30, 0.05);
+      }
       .client-stat .num {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 52px;
+        font-size: 56px;
         color: var(--white);
         line-height: 1;
       }
       .client-stat .num span {
-        color: var(--red);
+        color: var(--crimson);
       }
       .client-stat .lbl {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.4);
-        letter-spacing: 1.5px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 1px;
         margin-top: 6px;
       }
 
+      /* ── TOC ── */
+      .page-layout {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 32px;
+        align-items: start;
+        margin: 32px 80px;
+      }
       .page-toc {
         position: sticky;
-        top: 100px;
+        top: 84px;
         width: 220px;
-        padding: 16px;
-        background: #ffffff;
-        border: 1px solid #e5ecf4;
-        border-radius: 12px;
-        box-shadow: 0 14px 35px rgba(13, 37, 80, 0.08);
-        margin-bottom: 32px;
-      }
-      .page-toc .toc-title {
-        font-size: 14px;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 12px;
-      }
-      .page-toc .toc-link {
-        display: block;
-        margin-bottom: 8px;
-        padding: 8px 10px;
-        font-size: 14px;
-        color: #374b68;
+        padding: 18px;
+        background: var(--surface);
+        border: 1px solid var(--rule);
         border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(26, 29, 38, 0.06);
+      }
+      .toc-title {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--muted);
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .toc-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        border-radius: 4px;
         text-decoration: none;
         transition:
           background 0.2s,
           color 0.2s;
       }
-      .page-toc .toc-link:hover,
-      .page-toc .toc-link.active {
-        background: #f0f7ff;
-        color: var(--sky);
+      .toc-link::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--muted);
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .toc-link:hover,
+      .toc-link.active {
+        background: rgba(200, 0, 30, 0.06);
+        color: var(--crimson);
+      }
+      .toc-link.active::before,
+      .toc-link:hover::before {
+        background: var(--crimson);
+      }
+
+      .toc-divider {
+        height: 1px;
+        background: var(--rule);
+        margin: 12px 0;
+      }
+      .toc-cta {
+        display: block;
+        text-align: center;
+        padding: 9px 14px;
+        background: var(--ink);
+        color: var(--white);
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 3px;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+        transition: background 0.2s;
+      }
+      .toc-cta:hover {
+        background: var(--crimson);
       }
 
       @media (max-width: 1100px) {
         .page-toc {
           display: none;
         }
+        .page-layout {
+          grid-template-columns: 1fr;
+          margin: 0;
+        }
       }
 
-      /* Unified header/hero styles are centralized in ../css/header.css */
+      /* ── SCROLL TO TOP ── */
+      .scroll-top {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 300;
+        background: var(--ink);
+        color: var(--white);
+        border: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.25s,
+          transform 0.25s,
+          background 0.2s;
+        pointer-events: none;
+      }
+      .scroll-top.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .scroll-top:hover {
+        background: var(--crimson);
+      }
+      .scroll-top svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--white);
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .scroll-top span {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 8px;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.6);
+      }
 
       /* ── FOOTER ── */
       footer {
-        width: 100%;
-        background: var(--navy);
-        padding: 60px 80px 40px;
-        border-top: 3px solid var(--red);
-        box-sizing: border-box;
+        background: var(--ink);
+        padding: 56px 80px 36px;
+        border-top: 3px solid var(--crimson);
       }
-      .footer-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 40px;
+      .footer-cols {
+        display: grid;
+        grid-template-columns: auto 1fr 2fr;
+        gap: 56px;
+        margin-bottom: 36px;
       }
-      .footer-logo {
+      .f-logo {
         font-family: "Bebas Neue", sans-serif;
         font-size: 40px;
         color: var(--white);
         letter-spacing: 3px;
+        line-height: 1;
       }
-      .footer-logo span {
-        color: var(--red);
+      .f-logo em {
+        font-style: normal;
+        color: var(--crimson);
       }
-      .footer-logo-sub {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.35);
+      .f-sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.3);
         letter-spacing: 2px;
-        margin-top: 4px;
+        text-transform: uppercase;
+        margin-top: 6px;
       }
-      .footer-tagline {
-        max-width: 400px;
-        font-size: 14px;
+      .f-prow {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 16px;
+      }
+      .f-pcube {
+        width: 14px;
+        height: 14px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+      .f-pcube span {
+        background: var(--crimson);
+        border-radius: 1px;
+        opacity: 0.6;
+      }
+      .f-pname {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 1.5px;
+      }
+      .f-pname span {
+        color: var(--crimson);
+      }
+      .f-col-lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .f-links {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .f-links a {
+        font-size: 13px;
         color: rgba(255, 255, 255, 0.45);
-        line-height: 1.9;
-        text-align: right;
+        text-decoration: none;
+        transition: color 0.2s;
       }
-      .footer-tagline strong {
-        color: var(--sky);
-        font-weight: 500;
+      .f-links a:hover {
+        color: var(--white);
       }
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding-top: 24px;
+      .f-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 22px;
         display: flex;
         justify-content: space-between;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.25);
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.2);
+        font-family: "IBM Plex Mono", monospace;
+        letter-spacing: 0.3px;
       }
 
-      /* ── SCROLL REVEAL ── */
+      /* ── REVEAL ── */
       .reveal {
         opacity: 0;
-        transform: translateY(28px);
+        transform: translateY(24px);
         transition:
           opacity 0.65s ease,
           transform 0.65s ease;
@@ -741,19 +1524,41 @@
         opacity: 1;
         transform: none;
       }
+      .reveal-l {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal-l.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-r {
+        opacity: 0;
+        transform: translateX(24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal-r.visible {
+        opacity: 1;
+        transform: none;
+      }
 
+      /* ── RESPONSIVE ── */
       @media (max-width: 1100px) {
         .hero {
           grid-template-columns: 1fr;
           padding: 100px 40px 60px;
         }
-        .hero-stats {
-          border-left: none;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 40px 0 0;
-          flex-direction: row;
-          flex-wrap: wrap;
-          gap: 32px;
+        .hero::after {
+          display: none;
+        }
+        .hero-right {
+          padding-left: 0;
+          margin-top: 36px;
         }
         .timeline-grid {
           grid-template-columns: repeat(3, 1fr);
@@ -764,26 +1569,49 @@
         .services-grid {
           grid-template-columns: 1fr;
         }
-        .clients-grid {
-          grid-template-columns: repeat(5, 1fr);
-        }
         section {
           padding: 70px 40px;
         }
-        nav {
-          padding: 0 24px;
+        .about-strip {
+          grid-template-columns: 1fr 1fr;
         }
         footer {
           padding: 48px 40px 32px;
+        }
+        .footer-cols {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .clients-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .clients-intro {
+          grid-template-columns: 1fr;
+        }
+        .nav {
+          padding: 0 24px;
         }
       }
     </style>
   </head>
   <body class="about">
+    <!-- Custom cursor -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Scroll to top -->
+    <button
+      class="scroll-top"
+      id="scrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      aria-label="맨 위로"
+    >
+      <svg viewBox="0 0 16 16"><polyline points="3,10 8,5 13,10" /></svg>
+      <span>TOP</span>
+    </button>
+
     <!-- NAV -->
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <div class="nav-brand">
         <div class="nav-logo">KB<em>i</em></div>
         <div class="nav-vr"></div>
@@ -796,9 +1624,9 @@
       </div>
       <nav class="nav-menu">
         <a href="../index.html">홈</a>
-        <a href="product.html">제품 소개</a>
-        <a href="about.html" class="active">회사 소개</a>
-        <a href="news.html">뉴스</a>
+        <a href="./product.html">제품 소개</a>
+        <a href="./about.html" class="active">회사 소개</a>
+        <a href="./news.html">뉴스</a>
         <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
           >조달청 구매 →</a
         >
@@ -806,56 +1634,121 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero light" id="hero">
-      <div class="hero-bg-grid"></div>
+    <section class="hero" id="hero">
+      <div class="hero-dots"></div>
       <div class="hero-bg-glow"></div>
+
       <div class="hero-content">
-        <div>
-          <div class="hero-eyebrow">e-Security Consulting</div>
-          <div class="hero-title">KB<span>i</span></div>
-          <div class="hero-title-sub">e-Security Consulting</div>
+        <div class="hero-eyebrow">e-Security Consulting</div>
+        <div class="hero-title">KB<span>i</span></div>
+        <div class="hero-title-sub">Korea Business Intelligence</div>
+        <p class="hero-desc">
+          <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>을
+          제공합니다.<br />
+          기업 보안의 <strong>신뢰와 믿음</strong>을 만들겠습니다.
+        </p>
+        <p class="hero-desc2">
+          ㈜케이비아이는 2003년 설립 이래 20년 이상의 기술력으로<br />
+          대한민국 정보보안을 책임지고 있습니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#history">연혁 살펴보기 →</a>
+          <a class="btn-secondary" href="#services">사업 내용</a>
+        </div>
+      </div>
 
-          <p class="hero-desc">
-            <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>
-            를 제공합니다.<br />
-            기업 보안의 <strong>신뢰와 믿음</strong>을 만들겠습니다.
-          </p>
-
-          <p class="hero-desc2">
-            ㈜케이비아이는 2003년 설립 이래 20년 이상의 기술력으로<br />
-            대한민국 정보보안을 책임지고 있습니다.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn-primary" href="#services">사업 내용 보기</a>
+      <div class="hero-right">
+        <div class="stat-panel">
+          <div class="stat-cell sc-r">
+            <div class="stat-num">20<em>+</em></div>
+            <div class="stat-lbl">Years</div>
+          </div>
+          <div class="stat-cell sc-b">
+            <div class="stat-num">54</div>
+            <div class="stat-lbl">Clients</div>
+          </div>
+          <div class="stat-cell sc-c">
+            <div class="stat-num">
+              GS<em style="color: var(--crimson); font-style: normal">1</em>
+            </div>
+            <div class="stat-lbl">등급 인증</div>
+          </div>
+          <div class="stat-cell sc-p">
+            <div class="stat-num">
+              5<em
+                style="color: var(--muted); font-style: normal; font-size: 18px"
+                >개</em
+              >
+            </div>
+            <div class="stat-lbl">솔루션</div>
           </div>
         </div>
-      <!-- hero-stats removed to match product hero content alignment -->
+        <div class="cert-panel">
+          <div class="cert-label">주요 인증 · 기술</div>
+          <div class="cert-pills">
+            <span class="cert-pill">CSAP 클라우드</span>
+            <span class="cert-pill">K-RMF</span>
+            <span class="cert-pill">K-STIG</span>
+            <span class="cert-pill">K-SCAP</span>
+            <span class="cert-pill">GS 1등급</span>
+            <span class="cert-pill">ATC 엔진</span>
+          </div>
+        </div>
+        <div class="g2b-panel">
+          <div class="g2b-text">
+            조달청 디지털서비스몰 등록<br />검색: 케이비아이, BingoCVM
+          </div>
+          <a
+            class="g2b-link"
+            href="https://digitalmall.g2b.go.kr/"
+            target="_blank"
+            >바로가기 →</a
+          >
+        </div>
+      </div>
     </section>
 
-    <!-- HISTORY -->
-    <div
-      class="page-layout"
-      style="
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        gap: 30px;
-        align-items: start;
-        margin: 30px 80px;
-      "
-    >
-      <aside class="page-toc">
-        <div class="toc-title">이 문서의 내용</div>
-        <a class="toc-link" href="#history">연혁</a>
-        <a class="toc-link" href="#partners">협력기관</a>
-        <a class="toc-link" href="#services">사업내용</a>
-        <a class="toc-link" href="#clients">고객사</a>
-      </aside>
+    <!-- ABOUT STRIP -->
+    <div class="about-strip">
+      <div class="about-cell">
+        <div class="about-num">20<em>+</em></div>
+        <div class="about-lbl">Years</div>
+        <div class="about-desc">
+          2003년 설립 이래 20년 이상 대한민국 정보보안을 책임져온 전문 기업
+        </div>
+      </div>
+      <div class="about-cell">
+        <div class="about-num">54</div>
+        <div class="about-lbl">Clients</div>
+        <div class="about-desc">
+          국가주요기관, 공공, 국방, 연구·교육, IT 분야에 걸친 54개 주요 고객사
+        </div>
+      </div>
+      <div class="about-cell">
+        <div class="about-num">GS<em>1</em></div>
+        <div class="about-lbl">등급 인증</div>
+        <div class="about-desc">
+          BingoCVM GS 1등급 인증 취득 — 국내 최고 수준의 품질 보증
+        </div>
+      </div>
+      <div class="about-cell">
+        <div class="about-num">5</div>
+        <div class="about-lbl">솔루션</div>
+        <div class="about-desc">
+          BingoCVM · BingoSRM · BingoTasker · BingoNaru + CSAP 클라우드 보안
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE LAYOUT -->
+    <div class="page-layout">
       <div class="page-content">
+        <!-- HISTORY -->
         <section id="history">
           <div class="section-header reveal">
             <div class="section-num">01</div>
-            <h2 class="section-title">주요 연혁 및 실적</h2>
+            <div class="section-eyebrow">주요 연혁</div>
+            <h2 class="section-title">연혁 및 주요 실적</h2>
             <p class="section-desc">
               ㈜케이비아이는
               <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>로
@@ -883,7 +1776,6 @@
                   </ul>
                 </div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-dot-row">
                   <div class="timeline-dot"></div>
@@ -891,7 +1783,7 @@
                 <div class="timeline-period">2015–2019</div>
                 <div
                   class="timeline-card"
-                  style="border-top-color: var(--midblue)"
+                  style="border-top-color: var(--crimson)"
                 >
                   <div class="timeline-card-title">제품화 · 인증 획득</div>
                   <ul>
@@ -902,13 +1794,15 @@
                   </ul>
                 </div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-dot-row">
                   <div class="timeline-dot"></div>
                 </div>
                 <div class="timeline-period">2020–2022</div>
-                <div class="timeline-card" style="border-top-color: var(--sky)">
+                <div
+                  class="timeline-card"
+                  style="border-top-color: var(--muted)"
+                >
                   <div class="timeline-card-title">레퍼런스 확대</div>
                   <ul>
                     <li>한국수자원공사 인텔리전스 진단 시스템 개발</li>
@@ -918,32 +1812,30 @@
                   </ul>
                 </div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-dot-row">
                   <div class="timeline-dot"></div>
                 </div>
                 <div class="timeline-period">2023–2024</div>
-                <div class="timeline-card" style="border-top-color: var(--red)">
+                <div
+                  class="timeline-card"
+                  style="border-top-color: var(--ink2)"
+                >
                   <div class="timeline-card-title">범정부 · 클라우드 확산</div>
                   <ul>
                     <li>대통령실·보건복지부·기상청 구축</li>
                     <li>한전원자력연료·ETRI 소진공 구축</li>
-                    <li>KAIT CSAP 클라우드 인증 심사도구 개발 고도화</li>
-                    <li>인랩 클라우드 보안 컨설팅 참여</li>
+                    <li>KAIT CSAP 클라우드 인증 심사도구 고도화</li>
+                    <li>안랩 클라우드 보안 컨설팅 참여</li>
                   </ul>
                 </div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-dot-row">
                   <div class="timeline-dot"></div>
                 </div>
                 <div class="timeline-period">2025–2026</div>
-                <div
-                  class="timeline-card"
-                  style="border-top-color: var(--navy)"
-                >
+                <div class="timeline-card" style="border-top-color: var(--ink)">
                   <div class="timeline-card-title">최신 성과 · 고도화</div>
                   <ul>
                     <li>KISTI 바이오망·수자원공사(OA/FA) 구축</li>
@@ -955,13 +1847,45 @@
               </div>
             </div>
           </div>
+
+          <!-- Bottom era cards -->
+          <div class="timeline-bottom reveal">
+            <div class="timeline-bottom-card">
+              <div class="era">Era 01</div>
+              <div class="era-title">창업 및 기술 기반 구축기</div>
+              <ul>
+                <li>사이버테러대응시스템 개발 참여 (NSR)</li>
+                <li>한전 제어망 취약점 분석 기술 확보</li>
+                <li>스마트그리드 보안 연구 기반 마련</li>
+              </ul>
+            </div>
+            <div class="timeline-bottom-card">
+              <div class="era">Era 02</div>
+              <div class="era-title">제품 출시 및 레퍼런스 확대기</div>
+              <ul>
+                <li>BingoCVM GS 1등급 인증 획득</li>
+                <li>국방과학연구소·국세청 납품</li>
+                <li>조달청 쇼핑몰 등록 완료</li>
+              </ul>
+            </div>
+            <div class="timeline-bottom-card">
+              <div class="era">Era 03</div>
+              <div class="era-title">클라우드·국방 표준화 선도기</div>
+              <ul>
+                <li>CSAP 클라우드 보안 인증 심사 참여</li>
+                <li>K-RMF / K-STIG / K-SCAP 표준화</li>
+                <li>대통령실·전국 경찰청 납품</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <!-- R&D PARTNERS -->
         <section id="partners">
           <div class="section-header reveal">
             <div class="section-num">02</div>
-            <h2 class="section-title">주요 R&D 분야 협력 기관</h2>
+            <div class="section-eyebrow">협력 기관</div>
+            <h2 class="section-title">주요 R&amp;D 분야 협력 기관</h2>
             <p class="section-desc">
               ㈜케이비아이는
               <strong>국내 주요 기관들과 활발히 연구 개발</strong> 관련 사업을
@@ -1033,29 +1957,26 @@
         <section id="services">
           <div class="section-header reveal">
             <div class="section-num">03</div>
+            <div class="section-eyebrow">주요 사업</div>
             <h2 class="section-title">주요 사업 내용</h2>
             <p class="section-desc">
               보안 컨설팅부터 솔루션 개발 공급까지, 보안의 전 과정을
               제공하겠습니다.<br />
-              케이비아이는 고객의 정보자산을 보호하기 위한 체계적인 서비스와
-              기술력을 보유하고 있습니다.
+              케이비아이는 고객의 정보자산을 보호하기 위한
+              <strong>체계적인 서비스와 기술력</strong>을 보유하고 있습니다.
             </p>
           </div>
-
           <div class="services-grid reveal">
             <div class="service-card">
               <div class="service-icon">🔍</div>
               <div class="service-title">보안 컨설팅</div>
               <ul>
-                <li>
-                  시스템 취약점진단 용역<br />(온프레미스 + 클라우드 CSAP)
-                </li>
+                <li>시스템 취약점진단 용역 (온프레미스 + 클라우드 CSAP)</li>
                 <li>CCE / CVE / CWE 취약점 진단 용역</li>
                 <li>공공기관 실태평가 대응 취약점 진단 용역</li>
                 <li>최신 취약점 진단 연구 (예: BPFDoor 등)</li>
               </ul>
             </div>
-
             <div class="service-card">
               <div class="service-icon">⌨️</div>
               <div class="service-title">소프트웨어 개발</div>
@@ -1064,13 +1985,11 @@
                 <li>컴플라이언스 준수 시험 평가 자동화 도구</li>
                 <li>K-RMF, K-STIG, K-SCAP, CMMC 구현 시험평가 도구</li>
                 <li>
-                  시스템 취약점 진단 도구 개발<br />(온프레미스, 클라우드, CVE
-                  취약점)
+                  시스템 취약점 진단 도구 개발 (온프레미스, 클라우드, CVE)
                 </li>
                 <li>AI, 양자, 블록체인 신기술 개발</li>
               </ul>
             </div>
-
             <div class="service-card">
               <div class="service-icon">📦</div>
               <div class="service-title">솔루션</div>
@@ -1098,7 +2017,8 @@
         <section id="clients">
           <div class="section-header reveal">
             <div class="section-num">04</div>
-            <h2 class="section-title">주요 고객사</h2>
+            <div class="section-eyebrow">주요 고객사</div>
+            <h2 class="section-title">신뢰받는 54개 고객사</h2>
           </div>
 
           <div class="clients-intro reveal">
@@ -1106,19 +2026,19 @@
               <p
                 style="
                   font-size: 15px;
-                  color: var(--gray);
+                  color: var(--muted);
                   line-height: 1.9;
-                  max-width: 600px;
+                  max-width: 580px;
                 "
               >
-                <strong style="color: var(--navy)">BingoCVM</strong>은 국가 주요
+                <strong style="color: var(--ink)">BingoCVM</strong>은 국가 주요
                 정보통신기반시설부터 공공, 국방, 연구기관까지 다양한 분야에서
                 신뢰받고 있습니다.<br />
                 20년 이상 축적된 기술력으로 고객의 정보보안을 책임집니다.
               </p>
-              <p style="margin-top: 16px; font-size: 13px; color: var(--gray)">
-                다양한 고객 Needs에 대응하기 위한 충실한 R&D 수행 ▶▶▶
-                국가주요기관, 연구 및 교육, 공기업/지자체, 국방/민간/IT
+              <p style="margin-top: 12px; font-size: 12px; color: var(--muted)">
+                다양한 고객 Needs에 대응하기 위한 충실한 R&amp;D 수행 ▶▶▶
+                국가주요기관 · 연구 및 교육 · 공기업/지자체 · 국방/민간/IT
               </p>
             </div>
             <div class="bingocvm-badge">
@@ -1130,236 +2050,200 @@
           <div class="clients-cat-label reveal">국가주요기관</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <img src="../images/청와대.png" alt="청와대" />
+              <div class="logo-icon">🏛️</div>
+              <div class="logo-name">청와대</div>
             </div>
             <div class="client-logo">
-              <img src="../images/국세청.png" alt="국세청" />
+              <div class="logo-icon">🏢</div>
+              <div class="logo-name">국세청</div>
             </div>
             <div class="client-logo">
-              <img src="../images/보건복지부.svg" alt="보건복지부" />
+              <div class="logo-icon">🏥</div>
+              <div class="logo-name">보건복지부</div>
             </div>
             <div class="client-logo">
-              <img src="../images/기상청.svg" alt="기상청" />
+              <div class="logo-icon">🌤️</div>
+              <div class="logo-name">기상청</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/소상공인시장진흥공단.jpeg"
-                alt="소상공인시장진흥공단"
-              />
+              <div class="logo-icon">🏪</div>
+              <div class="logo-name">소상공인<br />시장진흥공단</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/가축위생방역지원본부.png"
-                alt="가축위생방역지원본부"
-              />
+              <div class="logo-icon">🐄</div>
+              <div class="logo-name">가축위생<br />방역지원본부</div>
             </div>
             <div class="client-logo">
-              <img src="../images/경찰청.png" alt="충청남도 경찰청" />
+              <div class="logo-icon">👮</div>
+              <div class="logo-name">충청남도<br />경찰청</div>
             </div>
             <div class="client-logo">
-              <img src="../images/경찰청.png" alt="충청북도 경찰청" />
+              <div class="logo-icon">👮</div>
+              <div class="logo-name">충청북도<br />경찰청</div>
             </div>
             <div class="client-logo">
-              <img src="../images/경찰청.png" alt="전라남도 경찰청" />
+              <div class="logo-icon">👮</div>
+              <div class="logo-name">전라남도<br />경찰청</div>
             </div>
             <div class="client-logo">
-              <img src="../images/경찰청.png" alt="광주광역시 경찰청" />
+              <div class="logo-icon">👮</div>
+              <div class="logo-name">광주광역시<br />경찰청</div>
             </div>
           </div>
 
           <div class="clients-cat-label reveal">연구 및 교육</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <img
-                src="../images/중이온가속기연구소.png"
-                alt="중이온가속기연구소"
-              />
+              <div class="logo-icon">⚛️</div>
+              <div class="logo-name">중이온가속기<br />연구소</div>
             </div>
             <div class="client-logo">
-              <img src="../images/항공우주연구원.svg" alt="항공우주연구원" />
+              <div class="logo-icon">🚀</div>
+              <div class="logo-name">항공우주<br />연구원</div>
             </div>
             <div class="client-logo">
-              <img src="../images/refer_logo_ETRI.png" alt="ETRI" />
+              <div class="logo-icon">📡</div>
+              <div class="logo-name">ETRI</div>
             </div>
             <div class="client-logo">
-              <img src="../images/한국소비자원.svg" alt="한국소비자원" />
+              <div class="logo-icon">🛒</div>
+              <div class="logo-name">한국<br />소비자원</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/신용보증재단중앙회.svg"
-                alt="신용보증재단중앙회"
-              />
+              <div class="logo-icon">🏦</div>
+              <div class="logo-name">신용보증<br />재단중앙회</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/한국한의학연구원.png"
-                alt="한국한의학연구원"
-              />
+              <div class="logo-icon">🌿</div>
+              <div class="logo-name">한국한의학<br />연구원</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/국립해양생물자원관.jpg"
-                alt="국립해양생물자원관"
-              />
+              <div class="logo-icon">🐠</div>
+              <div class="logo-name">국립해양<br />생물자원관</div>
             </div>
             <div class="client-logo">
-              <img src="../images/한국과학기술원.jpeg" alt="한국과학기술원" />
+              <div class="logo-icon">🔬</div>
+              <div class="logo-name">KAIST</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/기초과학연구원.png"
-                alt="기초과학연구원(IBS)"
-              />
-            </div>
-
-            <div class="client-logo">
-              <img
-                src="../images/한국지질자원연구원.jpeg"
-                alt="한국지질자원연구원"
-              />
+              <div class="logo-icon">🔭</div>
+              <div class="logo-name">기초과학<br />연구원(IBS)</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/한국조세재정연구원.svg"
-                alt="한국조세재정연구원"
-              />
+              <div class="logo-icon">🪨</div>
+              <div class="logo-name">한국지질<br />자원연구원</div>
             </div>
             <div class="client-logo">
-              <img src="../images/충남대학교.svg" alt="충남대학교" />
+              <div class="logo-icon">📊</div>
+              <div class="logo-name">한국조세<br />재정연구원</div>
             </div>
             <div class="client-logo">
-              <img src="../images/원광대학교.svg" alt="원광대학교" />
+              <div class="logo-icon">🎓</div>
+              <div class="logo-name">충남대학교</div>
             </div>
             <div class="client-logo">
-              <img src="../images/전주비전대학교.svg" alt="전주비전대학교" />
+              <div class="logo-icon">🎓</div>
+              <div class="logo-name">원광대학교</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/충청북도 교육연구정보원.png"
-                alt="충청북도 교육청"
-              />
+              <div class="logo-icon">🎓</div>
+              <div class="logo-name">전주비전<br />대학교</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/충청북도 교육연구정보원.png"
-                alt="충청북도 교육연구정보원"
-              />
+              <div class="logo-icon">📚</div>
+              <div class="logo-name">충청북도<br />교육청</div>
             </div>
           </div>
 
           <div class="clients-cat-label reveal">공기업 / 지자체</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <img src="../images/한전원자력연료.svg" alt="한전원자력연료" />
+              <div class="logo-icon">⚡</div>
+              <div class="logo-name">한전원자력<br />연료</div>
             </div>
             <div class="client-logo">
-              <img src="../images/한전KDN.svg" alt="한전KDN" />
+              <div class="logo-icon">⚡</div>
+              <div class="logo-name">한전KDN</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/한국산림복지진흥원.jpg"
-                alt="한국산림복지진흥원"
-              />
+              <div class="logo-icon">🌲</div>
+              <div class="logo-name">한국산림복지<br />진흥원</div>
             </div>
             <div class="client-logo">
-              <img src="../images/한국수자원공사.svg" alt="한국수자원공사" />
+              <div class="logo-icon">💧</div>
+              <div class="logo-name">한국수자원<br />공사</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/한국전기공사협회.png"
-                alt="한국전기공사협회"
-              />
+              <div class="logo-icon">🔌</div>
+              <div class="logo-name">한국전기<br />공사협회</div>
             </div>
             <div class="client-logo">
-              <img src="../images/청주시.png" alt="청주시" />
+              <div class="logo-icon">🏙️</div>
+              <div class="logo-name">청주시</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/충주시설관리공단.jpg"
-                alt="충주시설관리공단"
-              />
+              <div class="logo-icon">🏙️</div>
+              <div class="logo-name">충주시설<br />관리공단</div>
             </div>
             <div class="client-logo">
-              <img src="../images/논산시.jpeg" alt="논산시" />
+              <div class="logo-icon">🏙️</div>
+              <div class="logo-name">논산시</div>
             </div>
             <div class="client-logo">
-              <img src="../images/대전광역시.svg" alt="대전광역시" />
+              <div class="logo-icon">🏙️</div>
+              <div class="logo-name">대전광역시</div>
             </div>
             <div class="client-logo">
-              <img src="../images/영동군.svg" alt="영동군" />
+              <div class="logo-icon">🌊</div>
+              <div class="logo-name">제주특별<br />자치도</div>
             </div>
             <div class="client-logo">
-              <img src="../images/공주시.jpg" alt="공주시" />
+              <div class="logo-icon">💻</div>
+              <div class="logo-name">한국지역<br />정보개발원</div>
             </div>
             <div class="client-logo">
-              <img src="../images/포항시.svg" alt="포항시" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/제주특별자치도.svg" alt="제주특별자치도" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국지역정보개발원.png"
-                alt="한국지역정보개발원"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국정보통신진흥협회.jpg"
-                alt="한국정보통신진흥협회"
-              />
+              <div class="logo-icon">📶</div>
+              <div class="logo-name">한국정보통신<br />진흥협회</div>
             </div>
           </div>
 
           <div class="clients-cat-label reveal">국방 / 민간 / IT</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <img src="../images/국방과학연구소.png" alt="국방과학연구소" />
+              <div class="logo-icon">🛡️</div>
+              <div class="logo-name">국방과학<br />연구소</div>
             </div>
             <div class="client-logo">
-              <img src="../images/국방기술품질원.jpeg" alt="국방기술품질원" />
+              <div class="logo-icon">🛡️</div>
+              <div class="logo-name">국방기술<br />품질원</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/사이버작전사령부.png"
-                alt="사이버작전사령부"
-              />
+              <div class="logo-icon">🛡️</div>
+              <div class="logo-name">사이버<br />작전사령부</div>
             </div>
             <div class="client-logo">
-              <img src="../images/코레일테크.svg" alt="코레일테크" />
+              <div class="logo-icon">🚂</div>
+              <div class="logo-name">코레일테크</div>
             </div>
             <div class="client-logo">
-              <img src="../images/KT Cloud.png" alt="KT Cloud" />
+              <div class="logo-icon">☁️</div>
+              <div class="logo-name">KT Cloud</div>
             </div>
             <div class="client-logo">
-              <img src="../images/gabia cloud.jpeg" alt="Gabia Cloud" />
+              <div class="logo-icon">☁️</div>
+              <div class="logo-name">Gabia Cloud</div>
             </div>
             <div class="client-logo">
-              <img
-                src="../images/ahnlab CloudMate.png"
-                alt="AhnLab CloudMate"
-              />
+              <div class="logo-icon">🔐</div>
+              <div class="logo-name">AhnLab<br />CloudMate</div>
             </div>
             <div class="client-logo">
-              <img src="../images/sk hynix.png" alt="SK Hynix" />
+              <div class="logo-icon">💾</div>
+              <div class="logo-name">SK Hynix</div>
             </div>
             <div class="client-logo">
-              <img src="../images/다산기공.jpg" alt="다산기공" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/catenoid.jpg" alt="Catenoid" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국정보통신진흥협회.jpg"
-                alt="한국정보통신진흥협회"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국과학기술정보연구원.svg"
-                alt="한국과학기술정보연구원"
-              />
+              <div class="logo-icon">🖥️</div>
+              <div class="logo-name">KISTI</div>
             </div>
           </div>
 
@@ -1384,6 +2268,18 @@
         </section>
       </div>
       <!-- .page-content -->
+
+      <aside class="page-toc">
+        <div class="toc-title">이 문서의 내용</div>
+        <a class="toc-link" href="#history">01 연혁</a>
+        <a class="toc-link" href="#partners">02 협력기관</a>
+        <a class="toc-link" href="#services">03 사업내용</a>
+        <a class="toc-link" href="#clients">04 고객사</a>
+        <div class="toc-divider"></div>
+        <a class="toc-cta" href="https://digitalmall.g2b.go.kr/" target="_blank"
+          >조달청 구매 →</a
+        >
+      </aside>
     </div>
     <!-- .page-layout -->
 
@@ -1411,82 +2307,140 @@
         </div>
         <div>
           <div class="f-col-lbl">회사 소개</div>
-          <div
+          <p
             style="
-              font-size: 12px;
-              color: rgba(255, 255, 255, 0.3);
+              font-size: 12.5px;
+              color: rgba(255, 255, 255, 0.35);
               line-height: 1.85;
             "
           >
-            <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>로 기업
-            보안의 신뢰와 믿음을 만들겠습니다.<br /><br />
+            <strong style="color: rgba(255, 255, 255, 0.55)"
+              >AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong
+            >로 기업 보안의 신뢰와 믿음을 만들겠습니다.<br /><br />
             ㈜케이비아이는 2003년 설립 이후 국내 수많은 고객에게 신뢰받는
-            서비스를 제공하고 있습니다.
-          </div>
+            서비스를 제공하고 있습니다.<br /><br />
+            <a
+              href="https://digitalmall.g2b.go.kr/"
+              target="_blank"
+              style="
+                color: rgba(200, 0, 30, 0.7);
+                text-decoration: none;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 10px;
+              "
+            >
+              https://digitalmall.g2b.go.kr/ →
+            </a>
+          </p>
         </div>
       </div>
       <div class="f-bottom">
-        <span>© 2025 KBI e-Security Consulting. All rights reserved.</span>
+        <span
+          >© 2025 KBI e-Security Consulting. All rights reserved. | 설립
+          2003년</span
+        >
         <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
       </div>
     </footer>
 
     <script>
-      // Scroll reveal
-      const reveals = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
+      // ── CUSTOM CURSOR ──
+      const dot = document.getElementById("cursorDot");
+      const ring = document.getElementById("cursorRing");
+      if (dot && ring) {
+        let mx = 0,
+          my = 0,
+          rx = 0,
+          ry = 0;
+        document.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+        });
+        (function tick() {
+          rx += (mx - rx) * 0.12;
+          ry += (my - ry) * 0.12;
+          dot.style.left = mx + "px";
+          dot.style.top = my + "px";
+          ring.style.left = rx + "px";
+          ring.style.top = ry + "px";
+          requestAnimationFrame(tick);
+        })();
+        document
+          .querySelectorAll(
+            "a,button,.partner-card,.client-logo,.stat-cell,.timeline-card,.service-card,.about-cell,.toc-link",
+          )
+          .forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+              ring.style.width = "44px";
+              ring.style.height = "44px";
+              ring.style.borderColor = "rgba(200,0,30,0.5)";
+            });
+            el.addEventListener("mouseleave", () => {
+              ring.style.width = "28px";
+              ring.style.height = "28px";
+              ring.style.borderColor = "rgba(200,0,30,0.35)";
+            });
+          });
+      }
+
+      // ── NAV SCROLL ──
+      const nav = document.getElementById("mainNav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", scrollY > 30);
+        },
+        { passive: true },
+      );
+
+      // ── SCROLL TO TOP ──
+      const scrollBtn = document.getElementById("scrollTop");
+      window.addEventListener(
+        "scroll",
+        () => {
+          scrollBtn.classList.toggle("show", scrollY > 400);
+        },
+        { passive: true },
+      );
+
+      // ── REVEAL ON SCROLL ──
+      const revealObs = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
               setTimeout(() => entry.target.classList.add("visible"), i * 60);
-              observer.unobserve(entry.target);
+              revealObs.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.08 },
+        { threshold: 0.07 },
       );
-      reveals.forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll(".reveal,.reveal-l,.reveal-r")
+        .forEach((el) => revealObs.observe(el));
 
-      // Nav + TOC active handling using IntersectionObserver for accuracy
+      // ── TOC ACTIVE ──
       (function () {
         const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll(".nav-links a");
-        const tocLinks = document.querySelectorAll(".page-toc .toc-link");
-
-        const observer = new IntersectionObserver(
+        const tocLinks = document.querySelectorAll(".toc-link");
+        const obs = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const id = entry.target.id;
-                navLinks.forEach((a) => {
-                  a.style.color =
-                    a.getAttribute("href") === "#" + id ? "var(--sky)" : "";
-                });
-                tocLinks.forEach((a) => {
+                tocLinks.forEach((a) =>
                   a.classList.toggle(
                     "active",
                     a.getAttribute("href") === "#" + id,
-                  );
-                });
+                  ),
+                );
               }
             });
           },
-          { root: null, rootMargin: "-40% 0px -50% 0px", threshold: 0.1 },
+          { rootMargin: "-30% 0px -60% 0px", threshold: 0.1 },
         );
-
-        sections.forEach((s) => observer.observe(s));
+        sections.forEach((s) => obs.observe(s));
       })();
-
-      // Add caption from alt text to client logo blocks for better UX
-      document
-        .querySelectorAll(".clients-logos .client-logo")
-        .forEach((logo) => {
-          const img = logo.querySelector("img");
-          if (img && img.alt) {
-            logo.setAttribute("data-caption", img.alt);
-          }
-        });
     </script>
-    <script src="../js/cursor.js"></script>
   </body>
 </html>
