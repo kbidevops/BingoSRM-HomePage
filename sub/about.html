@@ -10,6 +10,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/hero.css" />
     <style>
       *,
       *::before,
@@ -46,6 +48,8 @@
         overflow-x: hidden;
       }
       /* HERO styles removed so page uses shared css/header.css hero rules */
+
+      /* Hero appearance is centralized in ../css/hero.css */
 
       /* ── SECTIONS ── */
       section {
@@ -802,45 +806,31 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="hero-grid-lines"></div>
+    <section class="hero light" id="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-bg-glow"></div>
       <div class="hero-content">
-        <div class="hero-eyebrow">e-Security Consulting</div>
-        <div class="hero-logo-text">KB<span>i</span></div>
-        <div class="hero-sub">e-Security Consulting</div>
-        <p class="hero-tagline">
-          <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>로<br />
-          기업 보안의 <strong>신뢰와 믿음</strong>을 만들겠습니다.<br />
-          ㈜케이비아이는 2003년 설립 이래 20년 이상의 기술력으로<br />
-          대한민국 정보보안을 책임지고 있습니다.
-        </p>
+        <div>
+          <div class="hero-eyebrow">e-Security Consulting</div>
+          <div class="hero-title">KB<span>i</span></div>
+          <div class="hero-title-sub">e-Security Consulting</div>
 
-        <a class="hero-cta" href="#services">사업 내용 보기</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">20<span>+</span></div>
-          <div class="stat-label">Years of Excellence</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">54</div>
-          <div class="stat-label">Major Clients</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">GS<span>1</span></div>
-          <div class="stat-label">등급 인증</div>
-        </div>
-        <div class="hero-year-badge">
-          <div class="badge-label">주요 인증 · 기술</div>
-          <div class="badge-badges">
-            <span class="badge-pill">CSAP 클라우드</span>
-            <span class="badge-pill">K-RMF</span>
-            <span class="badge-pill">K-STIG</span>
-            <span class="badge-pill">K-SCAP</span>
-            <span class="badge-pill">GS 1등급</span>
+          <p class="hero-desc">
+            <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>
+            를 제공합니다.<br />
+            기업 보안의 <strong>신뢰와 믿음</strong>을 만들겠습니다.
+          </p>
+
+          <p class="hero-desc2">
+            ㈜케이비아이는 2003년 설립 이래 20년 이상의 기술력으로<br />
+            대한민국 정보보안을 책임지고 있습니다.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn-primary" href="#services">사업 내용 보기</a>
           </div>
         </div>
-      </div>
+      <!-- hero-stats removed to match product hero content alignment -->
     </section>
 
     <!-- HISTORY -->
@@ -1399,19 +1389,43 @@
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-top">
+      <div class="footer-cols">
         <div>
-          <div class="footer-logo">KB<span>i</span></div>
-          <div class="footer-logo-sub">e-Security Consulting</div>
+          <div class="f-logo">KB<em>i</em></div>
+          <div class="f-sub">e-Security Consulting</div>
+          <div class="f-prow">
+            <div class="f-pcube">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="f-pname">Bingo<span>CVM</span></div>
+          </div>
         </div>
-        <div class="footer-tagline">
-          <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>로<br />
-          기업 보안의 신뢰와 믿음을 만들겠습니다.<br /><br />
-          ㈜케이비아이는 2003년 설립 이후 국내 수많은 고객에게 신뢰받는 서비스를
-          제공하고 있습니다.
+        <div>
+          <div class="f-col-lbl">사이트맵</div>
+          <div class="f-links">
+            <a href="../index.html">홈</a>
+            <a href="./product.html">제품 소개</a>
+            <a href="./about.html">회사 소개</a>
+            <a href="./news.html">뉴스</a>
+          </div>
+        </div>
+        <div>
+          <div class="f-col-lbl">회사 소개</div>
+          <div
+            style="
+              font-size: 12px;
+              color: rgba(255, 255, 255, 0.3);
+              line-height: 1.85;
+            "
+          >
+            <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>로 기업
+            보안의 신뢰와 믿음을 만들겠습니다.<br /><br />
+            ㈜케이비아이는 2003년 설립 이후 국내 수많은 고객에게 신뢰받는
+            서비스를 제공하고 있습니다.
+          </div>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="f-bottom">
         <span>© 2025 KBI e-Security Consulting. All rights reserved.</span>
         <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
       </div>
@@ -1433,26 +1447,35 @@
       );
       reveals.forEach((el) => observer.observe(el));
 
-      // Nav active link
-      const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll(".nav-links a");
-      const tocLinks = document.querySelectorAll(".page-toc .toc-link");
-      window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach((s) => {
-          if (window.scrollY >= s.offsetTop - 120) current = s.id;
-        });
-        navLinks.forEach((a) => {
-          a.style.color =
-            a.getAttribute("href") === "#" + current ? "var(--sky)" : "";
-        });
-        tocLinks.forEach((a) => {
-          a.classList.toggle(
-            "active",
-            a.getAttribute("href") === "#" + current,
-          );
-        });
-      });
+      // Nav + TOC active handling using IntersectionObserver for accuracy
+      (function () {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-links a");
+        const tocLinks = document.querySelectorAll(".page-toc .toc-link");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navLinks.forEach((a) => {
+                  a.style.color =
+                    a.getAttribute("href") === "#" + id ? "var(--sky)" : "";
+                });
+                tocLinks.forEach((a) => {
+                  a.classList.toggle(
+                    "active",
+                    a.getAttribute("href") === "#" + id,
+                  );
+                });
+              }
+            });
+          },
+          { root: null, rootMargin: "-40% 0px -50% 0px", threshold: 0.1 },
+        );
+
+        sections.forEach((s) => observer.observe(s));
+      })();
 
       // Add caption from alt text to client logo blocks for better UX
       document

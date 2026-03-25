@@ -10,6 +10,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/hero.css" />
     <style>
       *,
       *::before,
@@ -59,7 +61,7 @@
 
       .page-toc {
         position: sticky;
-        top: 90px;
+        top: 100px;
         width: 220px;
         padding: 16px;
         background: #ffffff;
@@ -67,7 +69,6 @@
         border-radius: 12px;
         box-shadow: 0 14px 35px rgba(13, 37, 80, 0.08);
         margin-bottom: 32px;
-        z-index: 20;
       }
       .page-toc .toc-title {
         font-size: 14px;
@@ -90,7 +91,7 @@
       .page-toc .toc-link:hover,
       .page-toc .toc-link.active {
         background: #f0f7ff;
-        color: var(--cyan);
+        color: var(--sky);
       }
 
       .clients-header {
@@ -156,6 +157,8 @@
         object-fit: contain;
       }
       /* HERO styles removed so page uses shared css/header.css hero rules */
+
+      /* hero appearance is centralized in ../css/hero.css and css/header.css */
 
       /* ── SECTIONS ── */
       section {
@@ -1296,8 +1299,8 @@
       nav .nav-buy {
         background: var(--red, #cc1520) !important;
         color: var(--inv, #ffffff) !important;
-        border: 1px solid rgba(0,0,0,0.04) !important;
-        box-shadow: 0 6px 18px rgba(13,37,80,0.08) !important;
+        border: 1px solid rgba(0, 0, 0, 0.04) !important;
+        box-shadow: 0 6px 18px rgba(13, 37, 80, 0.08) !important;
         z-index: 999 !important;
         display: inline-flex !important;
         align-items: center !important;
@@ -1332,7 +1335,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero" id="hero">
+    <section class="hero light" id="hero">
       <div class="hero-bg-grid"></div>
       <div class="hero-bg-glow"></div>
 
@@ -1365,36 +1368,7 @@
           </div>
         </div>
 
-        <!-- RIGHT VISUAL -->
-        <div class="hero-visual">
-          <div class="product-box-wrap">
-            <div class="product-box-glow"></div>
-            <div class="product-cube">
-              <div class="face face-tl">KBi</div>
-              <div class="face face-tr"></div>
-              <div class="face face-bl"></div>
-              <div class="face face-br">CVM</div>
-            </div>
-          </div>
-
-          <div class="product-label">BingoCVM</div>
-
-          <div class="hero-tags">
-            <span class="hero-tag">GS 1등급 인증</span>
-            <span class="hero-tag">CSAP 클라우드</span>
-            <span class="hero-tag">On-Premise</span>
-            <span class="hero-tag">CCE + CVE</span>
-            <span class="hero-tag">ATC 자동화 엔진</span>
-          </div>
-
-          <div class="g2b-badge">
-            <div class="g2b-label">조달청 디지털서비스몰 등록</div>
-            <a href="https://digitalmall.g2b.go.kr/" target="_blank">
-              https://digitalmall.g2b.go.kr/
-            </a>
-            <div class="g2b-search">검색: 케이비아이, BingoCVM</div>
-          </div>
-        </div>
+        <!-- RIGHT VISUAL removed per request -->
       </div>
       <!-- hero-content -->
     </section>
@@ -2415,30 +2389,61 @@
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-top">
+      <div class="footer-cols">
         <div>
-          <div class="footer-brand">
-            <div class="footer-cube">
+          <div class="f-logo">KB<em>i</em></div>
+          <div class="f-sub">e-Security Consulting</div>
+          <div class="f-prow">
+            <div class="f-pcube">
               <span></span><span></span><span></span><span></span>
             </div>
-            <div class="footer-name">Bingo<span>CVM</span></div>
-          </div>
-          <div class="footer-desc">
-            정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 플랫폼<br />
-            KBI e-Security Consulting | GS 1등급 인증
+            <div class="f-pname">Bingo<span>CVM</span></div>
           </div>
         </div>
-        <div class="footer-links">
-          <strong>조달청 디지털서비스몰</strong>
-          <a href="https://digitalmall.g2b.go.kr/" target="_blank"
-            >https://digitalmall.g2b.go.kr/</a
+        <div>
+          <div class="f-col-lbl">사이트맵</div>
+          <div class="f-links">
+            <a href="../index.html">홈</a>
+            <a href="./product.html">제품 소개</a>
+            <a href="./about.html">회사 소개</a>
+            <a href="./news.html">뉴스</a>
+          </div>
+        </div>
+        <div>
+          <div class="f-col-lbl">조달청 디지털서비스몰</div>
+          <div
+            style="
+              font-size: 12px;
+              color: rgba(255, 255, 255, 0.3);
+              line-height: 1.85;
+            "
           >
-          <span style="font-size: 12px; color: rgba(255, 255, 255, 0.3)"
-            >검색: 케이비아이, BingoCVM</span
-          >
+            정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 플랫폼<br />
+            KBI e-Security Consulting | GS 1등급 인증<br /><br />
+            <a
+              href="https://digitalmall.g2b.go.kr/"
+              target="_blank"
+              style="
+                color: var(--sky);
+                text-decoration: none;
+                font-family: &quot;DM Mono&quot;, monospace;
+                font-size: 9px;
+              "
+              >https://digitalmall.g2b.go.kr/ →</a
+            >
+            <div
+              style="
+                font-family: &quot;DM Mono&quot;, monospace;
+                font-size: 8.5px;
+                color: rgba(255, 255, 255, 0.16);
+              "
+            >
+              검색: 케이비아이, BingoCVM
+            </div>
+          </div>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="f-bottom">
         <span>© 2025 KBI e-Security Consulting. All rights reserved.</span>
         <span>BingoCVM | CCE·CVE 통합 취약점진단 자동화 플랫폼</span>
       </div>
@@ -2461,23 +2466,35 @@
       );
       allReveal.forEach((el) => obs.observe(el));
 
-      const sections = document.querySelectorAll("section[id]");
-      const links = document.querySelectorAll(".nav-links a");
-      const tocLinks = document.querySelectorAll(".page-toc .toc-link");
-      window.addEventListener("scroll", () => {
-        let cur = "";
-        sections.forEach((s) => {
-          if (window.scrollY >= s.offsetTop - 80) cur = s.id;
-        });
-        links.forEach((a) => {
-          a.style.color =
-            a.getAttribute("href") === "#" + cur ? "var(--cyan)" : "";
-        });
-        tocLinks.forEach((a) => {
-          a.classList.toggle(a.getAttribute("href") === "#" + cur, true);
-          a.classList.toggle("active", a.getAttribute("href") === "#" + cur);
-        });
-      });
+      // Nav + TOC active handling using IntersectionObserver for accuracy
+      (function () {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-links a");
+        const tocLinks = document.querySelectorAll(".page-toc .toc-link");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navLinks.forEach((a) => {
+                  a.style.color =
+                    a.getAttribute("href") === "#" + id ? "var(--sky)" : "";
+                });
+                tocLinks.forEach((a) => {
+                  a.classList.toggle(
+                    "active",
+                    a.getAttribute("href") === "#" + id,
+                  );
+                });
+              }
+            });
+          },
+          { root: null, rootMargin: "-120px 0px -50% 0px", threshold: 0.1 },
+        );
+
+        sections.forEach((s) => observer.observe(s));
+      })();
 
       document.querySelectorAll(".clients-logos .client-logo").forEach((c) => {
         if (!c.dataset.caption) {

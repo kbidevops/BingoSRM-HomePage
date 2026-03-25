@@ -150,16 +150,20 @@ nav::after {
    use a compact accent pill with white text so it reads on both
    light and dark header backgrounds. */
 .nav-menu a.active {
-  color: var(--textinv, #ffffff) !important;
-  background: linear-gradient(
-    90deg,
-    var(--red, #cc1520),
-    var(--blue, #1554b0)
-  ) !important;
+  color: #ffffff !important;
+  background: var(--pink, #d40f63) !important;
   padding: 6px 12px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 6px 18px rgba(13, 37, 80, 0.08) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 20px rgba(212, 15, 98, 0.16) !important;
   font-weight: 800 !important;
+  transition:
+    box-shadow 0.18s,
+    transform 0.12s;
+}
+.nav-menu a.active:focus,
+.nav-menu a.active:hover {
+  box-shadow: 0 10px 26px rgba(212, 15, 98, 0.22) !important;
+  transform: translateY(-1px);
 }
 
 .nav-buy {
@@ -300,6 +304,14 @@ nav::after {
   color: #ffffff;
   letter-spacing: -1px;
   margin-bottom: 14px;
+}
+
+/* Improve large display font clarity on high-DPI screens */
+.hero-title,
+.hero-logo-text,
+.hero-kbi {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 .hero-title span,
 .hero-logo-text span {

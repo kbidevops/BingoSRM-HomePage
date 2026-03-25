@@ -6,10 +6,11 @@
     <title>뉴스 — KBi · BingoCVM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/hero.css" />
     <style>
       /* ── TOKENS ── */
       *,
@@ -75,6 +76,7 @@
         position: relative;
         overflow: hidden;
       }
+      /* apply shared hero appearance by also giving the header the .hero class */
       /* Subtle dot pattern */
       .page-header::after {
         content: "";
@@ -93,12 +95,8 @@
           transparent 80%
         );
       }
-      .ph-inner {
-        position: relative;
-        z-index: 1;
-        max-width: 1160px;
-        margin: 0 auto;
-      }
+
+      /* header hero visual is controlled by css/hero.css and css/header.css */
       .ph-kicker {
         display: inline-flex;
         align-items: center;
@@ -1054,7 +1052,9 @@
     </nav>
 
     <!-- PAGE HEADER -->
-    <div class="page-header">
+    <div class="page-header hero light">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-bg-glow"></div>
       <div class="ph-inner">
         <div class="ph-kicker">소식 · 업데이트</div>
         <h1 class="ph-title"><em>BingoCVM</em> 뉴스</h1>
