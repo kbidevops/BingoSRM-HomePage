@@ -198,9 +198,20 @@
         letter-spacing: 0.2px;
         transition: color 0.2s;
       }
-      .nav-menu a:hover,
-      .nav-menu a.active {
+      .nav-menu a:hover {
         color: var(--ink);
+      }
+      .nav-menu a.active {
+        background: transparent;
+        border: 1px solid var(--crimson);
+        color: var(--crimson);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-weight: 700;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
       }
       .nav-buy {
         padding: 7px 18px;
@@ -1223,6 +1234,12 @@
         font-size: 20px;
         transition: background 0.18s;
       }
+      .client-logo .logo-icon img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        object-fit: contain;
+      }
       .client-logo:hover .logo-icon {
         background: rgba(200, 0, 30, 0.06);
       }
@@ -2047,222 +2064,427 @@
             </div>
           </div>
 
-          <div class="clients-cat-label reveal">국가주요기관</div>
+          <div class="clients-cat-label reveal">정부기관</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <div class="logo-icon">🏛️</div>
+              <div class="logo-icon">
+                <img src="../images/청와대.png" alt="청와대" />
+              </div>
               <div class="logo-name">청와대</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🏢</div>
+              <div class="logo-icon">
+                <img src="../images/국세청.png" alt="국세청" />
+              </div>
               <div class="logo-name">국세청</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🏥</div>
+              <div class="logo-icon">
+                <img src="../images/보건복지부.svg" alt="보건복지부" />
+              </div>
               <div class="logo-name">보건복지부</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🌤️</div>
+              <div class="logo-icon">
+                <img src="../images/기상청.svg" alt="기상청" />
+              </div>
               <div class="logo-name">기상청</div>
             </div>
+
             <div class="client-logo">
-              <div class="logo-icon">🏪</div>
-              <div class="logo-name">소상공인<br />시장진흥공단</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🐄</div>
-              <div class="logo-name">가축위생<br />방역지원본부</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">👮</div>
+              <div class="logo-icon">
+                <img src="../images/경찰청.png" alt="충청남도 경찰청" />
+              </div>
               <div class="logo-name">충청남도<br />경찰청</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">👮</div>
+              <div class="logo-icon">
+                <img src="../images/경찰청.png" alt="충청북도 경찰청" />
+              </div>
               <div class="logo-name">충청북도<br />경찰청</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">👮</div>
+              <div class="logo-icon">
+                <img src="../images/경찰청.png" alt="전라남도 경찰청" />
+              </div>
               <div class="logo-name">전라남도<br />경찰청</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">👮</div>
+              <div class="logo-icon">
+                <img src="../images/경찰청.png" alt="전라북도 경찰청" />
+              </div>
+              <div class="logo-name">전라북도<br />경찰청</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/경찰청.png" alt="광주광역시 경찰청" />
+              </div>
               <div class="logo-name">광주광역시<br />경찰청</div>
             </div>
           </div>
 
-          <div class="clients-cat-label reveal">연구 및 교육</div>
+          <div class="clients-cat-label reveal">연구기관 · 교육기관</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <div class="logo-icon">⚛️</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/중이온가속기연구소.png"
+                  alt="중이온가속기연구소"
+                />
+              </div>
               <div class="logo-name">중이온가속기<br />연구소</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🚀</div>
+              <div class="logo-icon">
+                <img src="../images/항공우주연구원.svg" alt="항공우주연구원" />
+              </div>
               <div class="logo-name">항공우주<br />연구원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">📡</div>
+              <div class="logo-icon">
+                <img src="../images/refer_logo_ETRI.png" alt="ETRI" />
+              </div>
               <div class="logo-name">ETRI</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🛒</div>
-              <div class="logo-name">한국<br />소비자원</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/한국한의학연구원.png"
+                  alt="한국한의학연구원"
+                />
+              </div>
+              <div class="logo-name">한국<br />한의학연구원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🏦</div>
-              <div class="logo-name">신용보증<br />재단중앙회</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🌿</div>
-              <div class="logo-name">한국한의학<br />연구원</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🐠</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/국립해양생물자원관.jpg"
+                  alt="국립해양생물자원관"
+                />
+              </div>
               <div class="logo-name">국립해양<br />생물자원관</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🔬</div>
-              <div class="logo-name">KAIST</div>
+              <div class="logo-icon">
+                <img src="../images/한국과학기술원.jpeg" alt="한국과학기술원" />
+              </div>
+              <div class="logo-name">한국과학기술원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🔭</div>
-              <div class="logo-name">기초과학<br />연구원(IBS)</div>
+              <div class="logo-icon">
+                <img src="../images/기초과학연구원.png" alt="기초과학연구원" />
+              </div>
+              <div class="logo-name">기초과학<br />연구원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🪨</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/한국지질자원연구원.jpeg"
+                  alt="한국지질자원연구원"
+                />
+              </div>
               <div class="logo-name">한국지질<br />자원연구원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">📊</div>
-              <div class="logo-name">한국조세<br />재정연구원</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/한국조세재정연구원.svg"
+                  alt="한국조세재정연구원"
+                />
+              </div>
+              <div class="logo-name">한국조세재정<br />연구원(IBS)</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🎓</div>
+              <div class="logo-icon">
+                <img src="../images/충남대학교.svg" alt="충남대학교" />
+              </div>
               <div class="logo-name">충남대학교</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🎓</div>
+              <div class="logo-icon">
+                <img src="../images/한밭대학교.svg" alt="한밭대학교" />
+              </div>
+              <div class="logo-name">한밭대학교</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/원광대학교.svg" alt="원광대학교" />
+              </div>
               <div class="logo-name">원광대학교</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🎓</div>
-              <div class="logo-name">전주비전<br />대학교</div>
+              <div class="logo-icon">
+                <img src="../images/전주비전대학교.svg" alt="전주비전대학교" />
+              </div>
+              <div class="logo-name">전주비전대학교</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">📚</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/충청북도 교육연구정보원.png"
+                  alt="충청북도 교육연구정보원"
+                />
+              </div>
+              <div class="logo-name">충청북도<br />교육연구정보원</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/충청북도 교육연구정보원.png"
+                  alt="충청북도 교육청"
+                />
+              </div>
+
               <div class="logo-name">충청북도<br />교육청</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/한국과학기술정보연구원.svg"
+                  alt="한국과학기술정보연구원"
+                />
+              </div>
+
+              <div class="logo-name">한국과학기술정보연구원</div>
             </div>
           </div>
 
-          <div class="clients-cat-label reveal">공기업 / 지자체</div>
+          <div class="clients-cat-label reveal">공공기관 · 지자체</div>
           <div class="clients-logos reveal">
             <div class="client-logo">
-              <div class="logo-icon">⚡</div>
+              <div class="logo-icon">
+                <img src="../images/한전원자력연료.svg" alt="한전원자력연료" />
+              </div>
               <div class="logo-name">한전원자력<br />연료</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">⚡</div>
+              <div class="logo-icon">
+                <img src="../images/한전KDN.svg" alt="한전KDN" />
+              </div>
               <div class="logo-name">한전KDN</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🌲</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/소상공인시장진흥공단.jpeg"
+                  alt="소상공인시장진흥공단"
+                />
+              </div>
+              <div class="logo-name">소상공인시장<br />진흥공단</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/가축위생방역지원본부.png"
+                  alt="가축위생방역지원본부"
+                />
+              </div>
+              <div class="logo-name">가축위생방역<br />지원본부</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/한국소비자원.svg" alt="한국소비자원" />
+              </div>
+              <div class="logo-name">한국소비자원</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/신용보증재단중앙회.svg"
+                  alt="신용보증재단중앙회"
+                />
+              </div>
+              <div class="logo-name">신용보증재단<br />중앙회</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/한국산림복지진흥원.jpg"
+                  alt="한국산림복지진흥원"
+                />
+              </div>
               <div class="logo-name">한국산림복지<br />진흥원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">💧</div>
-              <div class="logo-name">한국수자원<br />공사</div>
+              <div class="logo-icon">
+                <img src="../images/한국수자원공사.svg" alt="한국수자원공사" />
+              </div>
+              <div class="logo-name">한국수자원공사</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🔌</div>
-              <div class="logo-name">한국전기<br />공사협회</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/한국전기공사협회.png"
+                  alt="한국전기공사협회"
+                />
+              </div>
+              <div class="logo-name">한국전기공사협회</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🏙️</div>
-              <div class="logo-name">청주시</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/한국지역정보개발원.png"
+                  alt="한국지역정보개발원"
+                />
+              </div>
+              <div class="logo-name">한국지역정보<br />개발원</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🏙️</div>
-              <div class="logo-name">충주시설<br />관리공단</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🏙️</div>
-              <div class="logo-name">논산시</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🏙️</div>
-              <div class="logo-name">대전광역시</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🌊</div>
-              <div class="logo-name">제주특별<br />자치도</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">💻</div>
-              <div class="logo-name">한국지역<br />정보개발원</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">📶</div>
-              <div class="logo-name">한국정보통신<br />진흥협회</div>
-            </div>
-          </div>
-
-          <div class="clients-cat-label reveal">국방 / 민간 / IT</div>
-          <div class="clients-logos reveal">
-            <div class="client-logo">
-              <div class="logo-icon">🛡️</div>
-              <div class="logo-name">국방과학<br />연구소</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🛡️</div>
-              <div class="logo-name">국방기술<br />품질원</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🛡️</div>
-              <div class="logo-name">사이버<br />작전사령부</div>
-            </div>
-            <div class="client-logo">
-              <div class="logo-icon">🚂</div>
+              <div class="logo-icon">
+                <img src="../images/코레일테크.svg" alt="코레일테크" />
+              </div>
               <div class="logo-name">코레일테크</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">☁️</div>
-              <div class="logo-name">KT Cloud</div>
+              <div class="logo-icon">
+                <img src="../images/청주시.png" alt="청주시" />
+              </div>
+              <div class="logo-name">청주시</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">☁️</div>
-              <div class="logo-name">Gabia Cloud</div>
+              <div class="logo-icon">
+                <img
+                  src="../images/충주시설관리공단.jpg"
+                  alt="충주시설관리공단"
+                />
+              </div>
+              <div class="logo-name">충주시설관리공단</div>
+            </div>
+
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/논산시.jpeg" alt="논산시" />
+              </div>
+              <div class="logo-name">논산시</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🔐</div>
+              <div class="logo-icon">
+                <img src="../images/대전광역시.svg" alt="대전광역시" />
+              </div>
+              <div class="logo-name">대전광역시</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/영동군.svg" alt="영동군" />
+              </div>
+              <div class="logo-name">영동군</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/공주시.jpg" alt="공주시" />
+              </div>
+              <div class="logo-name">공주시</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/포항시.svg" alt="포항시" />
+              </div>
+              <div class="logo-name">포항시</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/제주특별자치도.svg" alt="제주특별자치도" />
+              </div>
+              <div class="logo-name">제주특별자치도</div>
+            </div>
+          </div>
+
+          <div class="clients-cat-label reveal">국방</div>
+          <div class="clients-logos reveal">
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/국방과학연구소.png" alt="국방과학연구소" />
+              </div>
+              <div class="logo-name">국방과학<br />연구소</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/국방기술품질원.jpeg" alt="국방기술품질원" />
+              </div>
+              <div class="logo-name">국방기술<br />품질원</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/사이버작전사령부.png"
+                  alt="사이버작전사령부"
+                />
+              </div>
+              <div class="logo-name">사이버<br />작전사령부</div>
+            </div>
+          </div>
+          <div class="clients-cat-label reveal">민간 · IT 기업</div>
+          <div class="clients-logos reveal">
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/KT Cloud.png" alt="KT Cloud" />
+              </div>
+              <div class="logo-name">KT<br />Cloud</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/gabia cloud.jpeg" alt="Gabia Cloud" />
+              </div>
+              <div class="logo-name">Gabia<br />Cloud</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/ahnlab CloudMate.png"
+                  alt="AhnLab CloudMate"
+                />
+              </div>
               <div class="logo-name">AhnLab<br />CloudMate</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">💾</div>
+              <div class="logo-icon">
+                <img src="../images/sk hynix.png" alt="SK hynix" />
+              </div>
               <div class="logo-name">SK Hynix</div>
             </div>
             <div class="client-logo">
-              <div class="logo-icon">🖥️</div>
-              <div class="logo-name">KISTI</div>
+              <div class="logo-icon">
+                <img src="../images/다산기공.jpg" alt="DASAN" />
+              </div>
+              <div class="logo-name">DASAN</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img src="../images/catenoid.jpg" alt="Catenoid" />
+              </div>
+              <div class="logo-name">Catenoid</div>
+            </div>
+            <div class="client-logo">
+              <div class="logo-icon">
+                <img
+                  src="../images/한국정보통신진흥협회.jpg"
+                  alt="한국정보통신진흥협회"
+                />
+              </div>
+              <div class="logo-name">한국정보통신진흥협회</div>
             </div>
           </div>
 
           <div class="clients-stats reveal">
             <div class="client-stat">
-              <div class="num">12</div>
-              <div class="lbl">국가주요기관 고객사</div>
+              <div class="num">9</div>
+              <div class="lbl">정부기관</div>
             </div>
             <div class="client-stat">
-              <div class="num">18</div>
-              <div class="lbl">연구·교육 기관</div>
+              <div class="num">16</div>
+              <div class="lbl">연구기관·교육기관</div>
             </div>
             <div class="client-stat">
-              <div class="num">12</div>
-              <div class="lbl">공기업·지자체</div>
+              <div class="num">19</div>
+              <div class="lbl">공공기관·지자체</div>
             </div>
             <div class="client-stat">
-              <div class="num">12</div>
-              <div class="lbl">국방·민간·IT 기업</div>
+              <div class="num">3</div>
+              <div class="lbl">국방</div>
+            </div>
+            <div class="client-stat">
+              <div class="num">7</div>
+              <div class="lbl">민간·IT 기업</div>
             </div>
           </div>
         </section>
@@ -2440,6 +2662,19 @@
           { rootMargin: "-30% 0px -60% 0px", threshold: 0.1 },
         );
         sections.forEach((s) => obs.observe(s));
+      })();
+
+      // ── NAV ACTIVE (ensure current top-level link is highlighted) ──
+      (function () {
+        const navLinks = document.querySelectorAll(".nav-menu a:not(.nav-buy)");
+        const current =
+          window.location.pathname.split("/").pop() || "index.html";
+        navLinks.forEach((a) => {
+          const href = a.getAttribute("href");
+          if (!href || href.startsWith("#")) return;
+          const name = href.split("/").pop();
+          if (name === current) a.classList.add("active");
+        });
       })();
     </script>
   </body>

@@ -167,9 +167,20 @@
         transition: color 0.2s;
       }
 
-      .nav-menu a:hover,
-      .nav-menu a.active {
+      .nav-menu a:hover {
         color: var(--ink);
+      }
+      .nav-menu a.active {
+        background-color: transparent;
+        border: 1px solid var(--crimson);
+        color: var(--crimson);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-weight: 700;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
       }
 
       .nav-buy {
@@ -1743,16 +1754,12 @@
 
       /* ── Nav active ── */
       const navLinks = document.querySelectorAll(".nav-menu a:not(.nav-buy)");
+      const current = window.location.pathname.split("/").pop() || "index.html";
       navLinks.forEach((a) => {
         const href = a.getAttribute("href");
-        if (
-          href &&
-          window.location.pathname.endsWith(
-            href.replace("../", "").replace("./", ""),
-          )
-        ) {
-          a.classList.add("active");
-        }
+        if (!href || href.startsWith("#")) return;
+        const name = href.split("/").pop();
+        if (name === current) a.classList.add("active");
       });
 
       /* ── Reveal on scroll ── */

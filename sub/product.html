@@ -233,9 +233,17 @@
         transition: color 0.2s;
       }
 
-      .nav-menu a:hover,
-      .nav-menu a.active {
+      .nav-menu a:hover {
         color: var(--ink);
+      }
+      .nav-menu a.active {
+        background: transparent;
+        border: 1px solid var(--crimson);
+        color: var(--crimson);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-weight: 700;
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
       }
 
       .nav-buy {
@@ -737,10 +745,11 @@
       }
       .process-steps {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: 0;
         margin-top: 56px;
         position: relative;
+        align-items: start;
       }
       .process-steps::before {
         content: "";
@@ -1182,6 +1191,19 @@
         gap: 80px;
         margin-bottom: 48px;
       }
+      .arch-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+      }
+      .arch-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        box-shadow: 0 12px 36px rgba(26,29,38,0.06);
+        border: 1px solid var(--rule);
+      }
       .arch-col-title {
         font-family: "Barlow", sans-serif;
         font-weight: 800;
@@ -1449,8 +1471,8 @@
       .features-product-col {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center; /* center content vertically to avoid bottom gap */
+        align-items: flex-start;
+        justify-content: flex-start;
         gap: 12px;
         height: 100%;
       }
@@ -1480,13 +1502,13 @@
       }
       .product-caption {
         margin-top: 12px;
-        color: var(--pink);
-        font-size: 13px;
-        font-weight: 700;
-        line-height: 1.5;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.4;
       }
       .product-tagline img {
-        max-width: 340px;
+        max-width: 260px;
         width: 100%;
         height: auto;
         display: block;
@@ -2117,53 +2139,6 @@
             </div>
           </div>
 
-          <!-- Process Flow Bar -->
-          <div class="process-flow reveal">
-            <div class="flow-label">프로세스<br />진행절차</div>
-            <div class="flow-steps">
-              <div class="flow-step">
-                <div class="flow-bubble both">
-                  1. 설치<span class="flow-sub">Manager 구축</span>
-                </div>
-                <div class="flow-arrow">›</div>
-              </div>
-              <div class="flow-step">
-                <div class="flow-bubble both">
-                  2. 자산등록<span class="flow-sub">대상 호스트 등록</span>
-                </div>
-                <div class="flow-arrow">›</div>
-              </div>
-              <div class="flow-step">
-                <div class="flow-bubble both">
-                  3. 진단 실행<span class="flow-sub">취약점 진단 명령</span>
-                </div>
-                <div class="flow-arrow">›</div>
-              </div>
-              <div class="flow-step">
-                <div class="flow-bubble prem">
-                  4.1 수집(내부)<span class="flow-sub">On-Prem 데이터</span>
-                </div>
-                <div class="flow-arrow">›</div>
-              </div>
-              <div class="flow-step">
-                <div class="flow-bubble cloud">
-                  4.2 수집(외부)<span class="flow-sub">Cloud 데이터</span>
-                </div>
-                <div class="flow-arrow">›</div>
-              </div>
-              <div class="flow-step">
-                <div class="flow-bubble both">
-                  5. 분석<span class="flow-sub">취약점 분석</span>
-                </div>
-                <div class="flow-arrow">›</div>
-              </div>
-              <div class="flow-step">
-                <div class="flow-bubble prem">
-                  6. 리포트<span class="flow-sub">결과/조치 가이드</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         <!-- CCE / CVE -->
@@ -2288,90 +2263,8 @@
           </div>
 
           <div class="arch-diagram reveal">
-            <div class="arch-cols">
-              <div>
-                <div class="arch-col-title">Manager Server</div>
-                <div class="arch-box">
-                  <span class="arch-box-badge badge-app">APP</span>
-                  <div class="arch-box-title">BingoCVM 애플리케이션</div>
-                  <div class="arch-box-desc">
-                    수집 진단 분석 및 모니터링 (WEB/WAS/DB) — 관리자, 사용자
-                    화면
-                  </div>
-                </div>
-                <div
-                  style="
-                    text-align: center;
-                    color: var(--gray);
-                    font-size: 20px;
-                    margin: 8px 0;
-                  "
-                >
-                  ⇄
-                </div>
-                <div class="arch-box">
-                  <span class="arch-box-badge badge-core">Core</span>
-                  <div class="arch-box-title">ATC 엔진</div>
-                  <div class="arch-box-desc">
-                    스크립트 자동배포 · 병렬처리프로세스 · 데이터 정규화<br />명령(진단/수집)을
-                    APP과 상호 전달
-                  </div>
-                </div>
-                <div
-                  style="
-                    margin-top: 20px;
-                    font-size: 12px;
-                    color: var(--gray);
-                    padding: 12px;
-                    background: var(--offwhite);
-                    border-left: 3px solid var(--blue);
-                  "
-                >
-                  <strong>Manager License</strong> — 중앙 관리 서버 라이선스
-                </div>
-              </div>
-              <div>
-                <div class="arch-col-title">Device / Agent</div>
-                <div class="arch-deploy">
-                  <div class="deploy-item">
-                    <strong style="color: var(--blue)">On-Premise</strong>
-                    <span>Agent 방식 + Non-Agent 방식 지원</span>
-                  </div>
-                  <div class="deploy-item">
-                    <strong style="color: var(--pink)">Cloud</strong>
-                    <span>Agent 방식 + Non-Agent 방식 지원</span>
-                  </div>
-                </div>
-                <div
-                  style="
-                    margin-top: 20px;
-                    font-size: 12px;
-                    color: var(--gray);
-                    padding: 12px;
-                    background: var(--offwhite);
-                    border-left: 3px solid var(--pink);
-                  "
-                >
-                  <strong>Client License</strong> — Host Device License:
-                  Real-IP, Virtual-IP
-                </div>
-                <div class="arch-box" style="margin-top: 16px">
-                  <div class="arch-box-title" style="margin-top: 0">
-                    연결 방식
-                  </div>
-                  <ul class="panel-list" style="color: var(--gray)">
-                    <li style="color: var(--gray)">
-                      ATC 엔진 ↔ Manager Server 간 명령/수집 자동화
-                    </li>
-                    <li style="color: var(--gray)">
-                      온프레미스 대상: 내부망 직접 연결
-                    </li>
-                    <li style="color: var(--gray)">
-                      클라우드 대상: 보안 터널링을 통한 외부 수집
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div class="arch-image">
+              <img src="../images/BingoCVM-SolutionArchitecture.png" alt="BingoCVM Solution Architecture" />
             </div>
 
             <div class="arch-process">
@@ -2562,292 +2455,7 @@
           </div>
         </section>
 
-        <!-- CLIENTS -->
-        <section id="clients">
-          
 
-
-          <div class="reveal">
-            <div class="section-label">주요 고객사</div>
-            <h2 class="section-title">신뢰받는 54개 고객사</h2>
-            <p class="section-desc">
-              BingoCVM은 은 국가 주요
-                정보통신기반시설부터 공공, 국방, 연구기관까지 다양한 분야에서
-                신뢰받고 있습니다.<br />
-              20년 이상 축적된 기술력으로 고객의 정보보안을 책임집니다.
-            </p>
-          </div>
-          <!-- 1. 정부기관 -->
-          <div class="clients-cat-label reveal">정부기관</div>
-          <div class="clients-logos reveal">
-            <div class="client-logo">
-              <img src="../images/청와대.png" alt="청와대" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/국세청.png" alt="국세청" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/보건복지부.svg" alt="보건복지부" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/기상청.svg" alt="기상청" />
-            </div>
-
-            <!-- 경찰청 (지방청 포함 - 신뢰 강조) -->
-            <div class="client-logo">
-              <img src="../images/경찰청.png" alt="충청북도 경찰청" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/경찰청.png" alt="충청남도 경찰청" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/경찰청.png" alt="전라남도 경찰청" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/경찰청.png" alt="전라북도 경찰청" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/경찰청.png" alt="광주광역시 경찰청" />
-            </div>
-          </div>
-
-          <!-- 2. 연구기관 및 교육기관 -->
-          <div class="clients-cat-label reveal">연구기관 · 교육기관</div>
-          <div class="clients-logos reveal">
-            <div class="client-logo">
-              <img
-                src="../images/중이온가속기연구소.png"
-                alt="중이온가속기연구소"
-              />
-            </div>
-            <div class="client-logo">
-              <img src="../images/항공우주연구원.svg" alt="항공우주연구원" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/refer_logo_ETRI.png" alt="ETRI" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국한의학연구원.png"
-                alt="한국한의학연구원"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/국립해양생물자원관.jpg"
-                alt="국립해양생물자원관"
-              />
-            </div>
-            <div class="client-logo">
-              <img src="../images/한국과학기술원.jpeg" alt="한국과학기술원" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/기초과학연구원.png" alt="기초과학연구원" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국지질자원연구원.jpeg"
-                alt="한국지질자원연구원"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국조세재정연구원.svg"
-                alt="한국조세재정연구원"
-              />
-            </div>
-
-            <!-- 교육기관 -->
-            <div class="client-logo">
-              <img src="../images/충남대학교.svg" alt="충남대학교" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/한밭대학교.svg" alt="한밭대학교" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/원광대학교.svg" alt="원광대학교" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/전주비전대학교.svg" alt="전주비전대학교" />
-            </div>
-
-            <!-- 교육청 복원 -->
-            <div class="client-logo">
-              <img
-                src="../images/충청북도 교육연구정보원.png"
-                alt="충청북도 교육연구정보원"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/충청북도 교육연구정보원.png"
-                alt="충청북도 교육청"
-              />
-            </div>
-          </div>
-
-          <!-- 3. 공공기관 및 지자체 -->
-          <div class="clients-cat-label reveal">공공기관 · 지자체</div>
-          <div class="clients-logos reveal">
-            <!-- 공기업 (누락 복원) -->
-            <div class="client-logo">
-              <img src="../images/한전원자력연료.svg" alt="한전원자력연료" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/한전KDN.svg" alt="한전KDN" />
-            </div>
-
-            <!-- 공공기관 -->
-            <div class="client-logo">
-              <img
-                src="../images/소상공인시장진흥공단.jpeg"
-                alt="소상공인시장진흥공단"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/가축위생방역지원본부.png"
-                alt="가축위생방역지원본부"
-              />
-            </div>
-            <div class="client-logo">
-              <img src="../images/한국소비자원.svg" alt="한국소비자원" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/신용보증재단중앙회.svg"
-                alt="신용보증재단중앙회"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국산림복지진흥원.jpg"
-                alt="한국산림복지진흥원"
-              />
-            </div>
-            <div class="client-logo">
-              <img src="../images/한국수자원공사.svg" alt="한국수자원공사" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국전기공사협회.png"
-                alt="한국전기공사협회"
-              />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국지역정보개발원.png"
-                alt="한국지역정보개발원"
-              />
-            </div>
-
-            <!-- 코레일테크 위치 수정 -->
-            <div class="client-logo">
-              <img src="../images/코레일테크.svg" alt="코레일테크" />
-            </div>
-
-            <!-- 지자체 -->
-            <div class="client-logo">
-              <img src="../images/청주시.png" alt="청주시" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/충주시설관리공단.jpg"
-                alt="충주시설관리공단"
-              />
-            </div>
-            <div class="client-logo">
-              <img src="../images/논산시.jpeg" alt="논산시" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/대전광역시.svg" alt="대전광역시" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/영동군.svg" alt="영동군" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/공주시.jpg" alt="공주시" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/포항시.svg" alt="포항시" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/제주특별자치도.svg" alt="제주특별자치도" />
-            </div>
-          </div>
-
-          <!-- 4. 국방 -->
-          <div class="clients-cat-label reveal">국방</div>
-          <div class="clients-logos reveal">
-            <div class="client-logo">
-              <img src="../images/국방과학연구소.png" alt="국방과학연구소" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/국방기술품질원.jpeg" alt="국방기술품질원" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/사이버작전사령부.png"
-                alt="사이버작전사령부"
-              />
-            </div>
-          </div>
-
-          <!-- 5. 민간 및 IT 기업 -->
-          <div class="clients-cat-label reveal">민간 · IT 기업</div>
-          <div class="clients-logos reveal">
-            <div class="client-logo">
-              <img src="../images/KT Cloud.png" alt="KT Cloud" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/gabia cloud.jpeg" alt="Gabia Cloud" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/ahnlab CloudMate.png"
-                alt="AhnLab CloudMate"
-              />
-            </div>
-            <div class="client-logo">
-              <img src="../images/sk hynix.png" alt="SK hynix" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/다산기공.jpg" alt="DASAN" />
-            </div>
-            <div class="client-logo">
-              <img src="../images/catenoid.jpg" alt="Catenoid" />
-            </div>
-            <div class="client-logo">
-              <img
-                src="../images/한국정보통신진흥협회.jpg"
-                alt="한국정보통신진흥협회"
-              />
-            </div>
-          </div>
-
-          <div class="clients-stats reveal">
-            <div class="client-stat">
-              <div class="num">9</div>
-              <div class="lbl">정부기관</div>
-            </div>
-            <div class="client-stat">
-              <div class="num">15</div>
-              <div class="lbl">연구기관·교육기관</div>
-            </div>
-            <div class="client-stat">
-              <div class="num">19</div>
-              <div class="lbl">공공기관·지자체</div>
-            </div>
-            <div class="client-stat">
-              <div class="num">3</div>
-              <div class="lbl">국방</div>
-            </div>
-            <div class="client-stat">
-              <div class="num">7</div>
-              <div class="lbl">민간·IT 기업</div>
-            </div>
-          </div>
-        </section>
       </div>
       <aside class="page-toc">
         <div class="toc-title">이 문서의 내용</div>
@@ -2857,7 +2465,8 @@
         <a class="toc-link" href="#architecture">시스템 구성</a>
         <a class="toc-link" href="#platforms">지원 플랫폼</a>
         <a class="toc-link" href="#features">기능·특장점</a>
-        <a class="toc-link" href="#clients">주요 고객사</a>
+        <div class="toc-divider"></div>
+        <a class="toc-cta" href="https://digitalmall.g2b.go.kr/" target="_blank">조달청 구매 →</a>
       </aside>
       <!-- .page-content -->
     </div>
@@ -2940,33 +2549,34 @@
       );
       allReveal.forEach((el) => obs.observe(el));
 
-      // Nav + TOC active handling using IntersectionObserver for accuracy
+      // Nav active (mark current top-level page) + TOC active handling
       (function () {
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll(".nav-links a");
-        const tocLinks = document.querySelectorAll(".page-toc .toc-link");
+        // Mark top-level nav links as active based on current pathname
+        const navLinks = document.querySelectorAll(".nav-menu a:not(.nav-buy)");
+        const current = window.location.pathname.split("/").pop() || "index.html";
+        navLinks.forEach((a) => {
+          const href = a.getAttribute("href");
+          if (!href || href.startsWith("#")) return;
+          const name = href.split("/").pop();
+          if (name === current) a.classList.add("active");
+        });
 
+        // TOC links: highlight based on section intersection
+        const sections = document.querySelectorAll("section[id]");
+        const tocLinks = document.querySelectorAll(".page-toc .toc-link");
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const id = entry.target.id;
-                navLinks.forEach((a) => {
-                  a.style.color =
-                    a.getAttribute("href") === "#" + id ? "var(--sky)" : "";
-                });
                 tocLinks.forEach((a) => {
-                  a.classList.toggle(
-                    "active",
-                    a.getAttribute("href") === "#" + id,
-                  );
+                  a.classList.toggle("active", a.getAttribute("href") === "#" + id);
                 });
               }
             });
           },
           { root: null, rootMargin: "-40% 0px -50% 0px", threshold: 0.1 },
         );
-
         sections.forEach((s) => observer.observe(s));
       })();
 
