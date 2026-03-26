@@ -1243,7 +1243,15 @@
         <!-- Featured video card -->
         <div class="card-featured reveal" data-cat="video">
           <div class="video-wrap">
-            <video controls playsinline title="BingoCVM 소개 영상" poster="">
+            <video
+              controls
+              playsinline
+              controlsList="nodownload"
+              disablePictureInPicture
+              oncontextmenu="return false;"
+              title="BingoCVM 소개 영상"
+              poster=""
+            >
               <source
                 src="/css/videos/KakaoTalk_20260202_161437440.mp4"
                 type="video/mp4"
@@ -1285,7 +1293,36 @@
           <!-- Article 1 -->
           <div class="news-card reveal" data-cat="update">
             <div class="nc-thumb">
-              <div class="nc-thumb-icon">📋</div>
+              <div class="nc-thumb-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  focusable="false"
+                >
+                  <rect
+                    x="6"
+                    y="3"
+                    width="12"
+                    height="18"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M9 8h6M9 12h6M9 16h4"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
               <span class="tag tag-update">업데이트</span>
               <div class="nc-new-dot"></div>
             </div>
@@ -1461,7 +1498,18 @@
               target="_blank"
               rel="noopener"
             >
-              <span class="sb-blog-icon">📝</span>
+              <img
+                class="sb-blog-icon"
+                src="../images/NaverIcon.jpeg"
+                alt=""
+                aria-hidden="true"
+                style="
+                  width: 22px;
+                  height: 22px;
+                  object-fit: cover;
+                  border-radius: 3px;
+                "
+              />
               <div class="sb-blog-txt">
                 <div class="sb-blog-name">BingoCVM 블로그</div>
                 <div class="sb-blog-url">blog.naver.com/bingocvm</div>
