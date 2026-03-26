@@ -162,6 +162,7 @@
         align-items: center;
         gap: 7px;
       }
+      .nav-product .nav-icon { width: 28px; height: 28px; object-fit: contain; }
       .nav-cube {
         width: 16px;
         height: 16px;
@@ -301,7 +302,7 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 24px;
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-size: 10px;
         color: var(--muted);
         letter-spacing: 3px;
@@ -360,7 +361,7 @@
         margin-bottom: 16px;
       }
       .hero-prod-label {
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-size: 10px;
         color: var(--crimson);
         letter-spacing: 2px;
@@ -370,7 +371,7 @@
       .hero-prod-name {
         font-family: "Bebas Neue", sans-serif;
         font-size: clamp(36px, 5vw, 68px);
-        color: var(--navy);
+        color: var(--navy2);
         line-height: 0.92;
         letter-spacing: 1px;
       }
@@ -820,7 +821,7 @@
         background: rgba(200, 0, 30, 0.03);
       }
       .ref-org {
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-size: 10px;
         color: var(--ink2);
         min-width: 80px;
@@ -832,7 +833,7 @@
         background: var(--border);
       }
       .ref-tag {
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-size: 10px;
         color: var(--blue);
         white-space: nowrap;
@@ -1292,7 +1293,7 @@
         padding: 18px;
       }
       .bs-sol-label {
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-size: 9px;
         color: var(--muted);
         letter-spacing: 2px;
@@ -2116,6 +2117,7 @@
         white-space: nowrap !important;
         border: 0 !important;
       }
+      
 
       /* ── RESPONSIVE ── */
       @media (max-width: 1100px) {
@@ -2189,9 +2191,7 @@
         <div class="nav-logo">KB<em>i</em></div>
         <div class="nav-vr"></div>
         <div class="nav-product">
-          <div class="nav-cube">
-            <span></span><span></span><span></span><span></span>
-          </div>
+          <img class="nav-icon" src="./images/fabi.ico" alt="BingoCVM" />
           <span class="nav-pname">Bingo<span>CVM</span></span>
         </div>
       </div>
@@ -2236,15 +2236,13 @@
               <div class="hero-rule-line"></div>
             </div>
             <div class="hero-product">
-              <div class="hero-prod-label">취약점진단 자동화 플랫폼</div>
+              <div class="hero-eyebrow">취약점진단 자동화 플랫폼</div>
               <div class="hero-prod-name">Bingo<span>CVM</span></div>
-              <div class="hero-prod-sub">
-                CCE + CVE · On-Premise + Cloud · ATC 자동화 엔진
-              </div>
+              
             </div>
             <p class="hero-desc">
-              <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong
-              >로<br />기업 보안의 신뢰와 믿음을 만들겠습니다.
+              <strong>독보적인 ATC 자동화 엔진</strong
+              >을 통해 자산 등록부터 진단, 분석,<br />조치, 보고서 작성까지 전 과정을 원스톱으로 제공합니다.
             </p>
             <p class="hero-desc2">
               정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 플랫폼 —<br />온프레미스에서
@@ -2259,8 +2257,10 @@
             <div class="hero-badges" style="margin-top: 22px">
               <span class="hbadge">GS 1등급 인증</span>
               <span class="hbadge">설립 2003년</span>
-              <span class="hbadge">CSAP 클라우드</span>
-              <span class="hbadge">K-RMF · K-STIG</span>
+             
+              <span class="hbadge">K-RMF</span>
+              <span class="hbadge">K-STIG</span>
+              <span class="hbadge">K-SCAP</span>
             </div>
           </div>
           <div class="hero-right">
@@ -2291,17 +2291,7 @@
                 <div class="stat-lbl">진단 프로세스</div>
               </div>
             </div>
-            <div class="cert-panel">
-              <div class="cert-label">주요 인증 · 기술</div>
-              <div class="cert-pills">
-                <span class="cert-pill">CSAP 클라우드</span>
-                <span class="cert-pill">K-RMF</span>
-                <span class="cert-pill">K-STIG</span>
-                <span class="cert-pill">K-SCAP</span>
-                <span class="cert-pill">GS 1등급</span>
-                <span class="cert-pill">ATC 엔진</span>
-              </div>
-            </div>
+            
             <div class="g2b-panel">
               <div class="g2b-text">
                 조달청 디지털서비스몰 등록<br />검색: 케이비아이, BingoCVM
@@ -2381,13 +2371,17 @@
             <div class="bingocvm-card">
               <div class="card-header">
                 <div class="mini-cube">
-                  <span></span><span></span><span></span><span></span>
+                  
+                  <img
+                    src="./images/fabi.ico"
+                    alt="BingoCVM icon"
+                    style="width: 16px; height: 16px; margin-left: 4px">
                 </div>
-                <div class="bs-name">Bingo<span>CVM</span></div>
+                <div class="bs-name">Bingo<span style="color: var(--crimson)">CVM</span></div>
               </div>
               <div class="card-grid">
                 <div class="card-grid-cell">
-                  <div class="cell-title">CCE</div>
+                  <div class="cell-title" style="color: var(--brand-cyan)">CCE</div>
                   <div class="cell-desc">설정 취약점</div>
                 </div>
                 <div class="card-grid-cell">
@@ -2401,7 +2395,11 @@
                 온프레미스 + 클라우드를
                 <span style="color: var(--brand-cyan); font-weight: 600"
                   >하나의 플랫폼</span
-                >에서 —<br />CCE와 CVE 취약점을 통합 진단합니다.
+                >에서 <br /><span style="color: var(--brand-cyan); font-weight: 600"
+                  >CCE</span
+                >와 <span style="color: var(--brand-cyan); font-weight: 600"
+                  >CVE</span
+                > 취약점을 통합 진단합니다.
               </div>
               <div class="bs-tags">
                 <span class="bs-tag">On-Premise</span>
@@ -2410,7 +2408,7 @@
                 <span class="bs-tag">Naver Cloud</span>
               </div>
               <div class="card-footer">
-                <span>조달청 등록 · GS 1등급 인증</span>
+                <span>조달청 디지털서비스몰 등록 </br> 검색: 케이비아이, BingoCVM</span>
                 <a
                   class="g2b-link"
                   href="https://digitalmall.g2b.go.kr/"
@@ -2642,9 +2640,9 @@
     <!-- BINGO SECTION -->
     <section id="bingo">
       <div class="section-header reveal">
-        <div class="section-num">01</div>
+        <div class="section-num">KBI</div>
         <div class="section-eyebrow">자사 대표 제품</div>
-        <h2 class="section-title">BingoCVM — 취약점진단 자동화 플랫폼</h2>
+        <h2 class="section-title">Bingo<span style="color: var(--crimson)">CVM</span> — 취약점진단 자동화 플랫폼</h2>
         <p class="section-desc">
           <strong>정보통신기반시설 및 클라우드 시스템 취약점진단 자동화</strong
           >를 제공하는 KBi의 핵심 플래그십 솔루션입니다. 진단 / 평가 / 분류 /
@@ -2710,34 +2708,10 @@
                 class="mini-cube"
                 style="width: 18px; height: 18px; gap: 2px"
               >
-                <span
-                  style="
-                    background: var(--crimson);
-                    border-radius: 2px;
-                    opacity: 0.85;
-                  "
-                ></span
-                ><span
-                  style="
-                    background: var(--crimson);
-                    border-radius: 2px;
-                    opacity: 0.85;
-                  "
-                ></span
-                ><span
-                  style="
-                    background: var(--crimson);
-                    border-radius: 2px;
-                    opacity: 0.85;
-                  "
-                ></span
-                ><span
-                  style="
-                    background: var(--crimson);
-                    border-radius: 2px;
-                    opacity: 0.85;
-                  "
-                ></span>
+                <img
+                  src="./images/fabi.ico"
+                  alt="BingoCVM icon"
+                  style="width: 18px; height: 18px; margin-left: 4px">
               </div>
               <div class="bs-name" style="color: var(--ink)">
                 Bingo<span>CVM</span>
@@ -2799,9 +2773,7 @@
           <div class="f-logo">KB<em>i</em></div>
           <div class="f-sub">e-Security Consulting</div>
           <div class="f-prow">
-            <div class="f-pcube">
-              <span></span><span></span><span></span><span></span>
-            </div>
+            <img src="./images/fabi.ico" alt="BingoCVM icon" style="width: 16px; height: 16px; margin-right: 6px">
             <div class="f-pname">Bingo<span>CVM</span></div>
           </div>
         </div>

@@ -892,3 +892,48 @@
     margin: 0 0 16px 0;
   }
 }
+
+/* BingoCVM badge styling (improves contrast and alignment) */
+.bingocvm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(3, 37, 76, 0.92);
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+
+.bingocvm-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex: 0 0 36px;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.bingocvm-texts {
+  line-height: 1;
+}
+
+.bingocvm-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+
+@media (max-width: 720px) {
+  .bingocvm-badge {
+    padding: 6px 8px;
+    gap: 8px;
+  }
+  .bingocvm-title {
+    font-size: 13px;
+  }
+  .bingocvm-logo {
+    width: 32px;
+    height: 32px;
+  }
+}
