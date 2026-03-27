@@ -745,72 +745,82 @@
       }
       .process-steps {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 0;
-        margin-top: 56px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 24px;
+        margin-top: 40px;
         position: relative;
         align-items: start;
       }
       .process-steps::before {
         content: "";
         position: absolute;
-        top: 50px;
-        left: 10%;
-        right: 10%;
-        height: 2px;
+        top: 62px;
+        left: 8%;
+        right: 8%;
+        height: 3px;
         background: linear-gradient(90deg, var(--blue), var(--cyan), var(--pink));
         z-index: 0;
+        opacity: 0.9;
       }
       .process-step {
-        padding: 0 16px;
+        padding: 18px 14px;
         position: relative;
         z-index: 2;
         height: 100%;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(26,29,38,0.04);
+        transition: transform 0.18s, box-shadow 0.18s;
+      }
+      .process-step:focus-within,
+      .process-step:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(26,29,38,0.08);
       }
       .step-icon-wrap {
         display: flex;
         justify-content: center;
-        margin-bottom: 6px;
+        margin-bottom: 12px;
       }
       .step-icon {
-        width: 96px;
-        height: 96px;
+        width: 84px;
+        height: 84px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: "Barlow", sans-serif;
         font-weight: 800;
-        font-size: 28px;
+        font-size: 24px;
         position: relative;
         z-index: 3;
-        background: var(--white);
-        border: 2px solid var(--light);
+        background: linear-gradient(180deg, var(--white), #fbfbfb);
+        border: 1px solid rgba(26,29,38,0.06);
         transition: transform 0.18s, box-shadow 0.18s;
       }
       .step-icon svg {
-        width: 38px;
-        height: 38px;
-      }
-      .process-step:hover .step-icon {
-        transform: translateY(-6px);
-        box-shadow: 0 18px 36px rgba(22, 87, 181, 0.12);
+        width: 36px;
+        height: 36px;
       }
       .step-num {
         position: absolute;
-        top: -10px;
-        right: -10px;
-        width: 30px;
-        height: 30px;
+        top: -12px;
+        right: -12px;
+        width: 34px;
+        height: 34px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 900;
         color: var(--white);
-        box-shadow: 0 6px 14px rgba(26,29,38,0.08);
+        box-shadow: 0 6px 18px rgba(26,29,38,0.08);
         z-index: 4;
       }
       .step-num-1 { background: var(--blue); }
@@ -819,11 +829,11 @@
       .step-num-4 { background: #22a86a; }
       .step-num-5 { background: var(--pink); }
       .step-name {
-        font-size: 15px;
-        font-weight: 900;
+        font-size: 16px;
+        font-weight: 800;
         color: var(--navy);
         text-align: center;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
       }
       /* When description is a list (panel-list), style it for the process column */
       .process-step .panel-list {
@@ -833,11 +843,12 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        max-width: 240px;
+        max-width: 320px;
         text-align: left;
+        margin-top: 8px;
       }
       .process-step .panel-list li {
-        font-size: 13px;
+        font-size: 14px;
         color: var(--muted);
         line-height: 1.6;
         padding-left: 18px;
@@ -855,15 +866,15 @@
         display: inline-block;
         font-size: 11px;
         font-weight: 700;
-        padding: 4px 10px;
-        margin-top: 8px;
+        padding: 6px 12px;
+        margin-top: 10px;
         background: rgba(56, 160, 240, 0.12);
         color: var(--sky);
         border: 1px solid rgba(56, 160, 240, 0.18);
-        border-radius: 4px;
+        border-radius: 18px;
       }
       .process-flow {
-        margin-top: 56px;
+        margin-top: 48px;
         background: var(--navy);
         padding: 36px 48px;
         display: flex;

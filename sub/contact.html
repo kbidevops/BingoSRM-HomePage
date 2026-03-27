@@ -147,6 +147,16 @@
         height: 18px;
         background: var(--rule);
       }
+      .nav-product {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .nav-product .nav-icon {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+      }
       .nav-pname {
         font-family: "IBM Plex Mono", monospace;
         font-size: 10px;
@@ -1025,6 +1035,33 @@
       }
 
       /* FOOTER */
+      .f-prow {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 16px;
+      }
+      .f-pcube {
+        width: 14px;
+        height: 14px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+      .f-pcube span {
+        background: var(--crimson);
+        border-radius: 1px;
+        opacity: 0.6;
+      }
+      .f-pname {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .f-pname span {
+        color: var(--crimson);
+      }
+
       footer {
         background: var(--ink);
         padding: 56px 80px 36px;
@@ -1182,6 +1219,7 @@
         <div class="nav-logo">KB<em>i</em></div>
         <div class="nav-vr"></div>
         <div class="nav-product">
+          <img class="nav-icon" src="/images/fabi.ico" alt="BingoCVM" />
           <span class="nav-pname">Bingo<span>CVM</span></span>
         </div>
       </div>
