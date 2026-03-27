@@ -1,0 +1,1716 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KBI e-Security Consulting | 영업문의</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f4f2ee;
+        --bg2: #eceae5;
+        --bg3: #e2dfd8;
+        --ink: #1a1d26;
+        --ink2: #3a3d4a;
+        --muted: #8a8880;
+        --rule: rgba(26, 29, 38, 0.1);
+        --rule2: rgba(26, 29, 38, 0.06);
+        --crimson: #c8001e;
+        --crimson2: #a0001a;
+        --surface: #ffffff;
+        --navy: #1a1d26;
+        --navy2: #3a3d4a;
+        --white: #ffffff;
+        --border: rgba(26, 29, 38, 0.1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(26, 29, 38, 0.12) var(--bg);
+      }
+      body {
+        font-family:
+          "Pretendard",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.35;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+      }
+
+      /* CURSOR */
+      .cursor-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--crimson);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-ring {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(200, 0, 30, 0.35);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.15s ease,
+          height 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(26, 29, 38, 0.12);
+        border-radius: 8px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+      }
+
+      /* NAV */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 56px;
+        background: rgba(244, 242, 238, 0.92);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--rule);
+        transition: box-shadow 0.3s;
+      }
+      .nav.scrolled {
+        box-shadow: 0 4px 20px rgba(26, 29, 38, 0.08);
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 26px;
+        letter-spacing: 3px;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .nav-logo em {
+        font-style: normal;
+        color: var(--crimson);
+      }
+      .nav-vr {
+        width: 1px;
+        height: 18px;
+        background: var(--rule);
+      }
+      .nav-pname {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 1.5px;
+      }
+      .nav-pname span {
+        color: var(--crimson);
+        font-weight: 500;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .nav-menu a {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        text-decoration: none;
+        letter-spacing: 0.2px;
+        transition: color 0.2s;
+      }
+      .nav-menu a:hover {
+        color: var(--ink);
+      }
+      .nav-menu a.active {
+        background: transparent;
+        border: 1px solid var(--crimson);
+        color: var(--crimson);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-weight: 700;
+      }
+      .nav-buy {
+        padding: 7px 18px;
+        background: var(--ink) !important;
+        color: var(--white) !important;
+        border-radius: 3px;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        transition: background 0.2s !important;
+      }
+      .nav-buy:hover {
+        background: var(--crimson) !important;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 52vh;
+        display: flex;
+        align-items: flex-end;
+        padding: 120px 80px 64px;
+        position: relative;
+        overflow: hidden;
+        background: var(--bg);
+        background-image:
+          linear-gradient(var(--rule2) 1px, transparent 1px),
+          linear-gradient(90deg, var(--rule2) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+      .hero::after {
+        content: "CONTACT";
+        position: absolute;
+        right: -20px;
+        bottom: -30px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 260px;
+        line-height: 1;
+        color: rgba(26, 29, 38, 0.03);
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: -6px;
+        z-index: 0;
+      }
+      .hero-bg-glow {
+        position: absolute;
+        right: 5%;
+        top: 15%;
+        width: 480px;
+        height: 480px;
+        background: radial-gradient(
+          circle,
+          rgba(200, 0, 30, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--crimson);
+        flex-shrink: 0;
+      }
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(56px, 7vw, 96px);
+        line-height: 0.9;
+        letter-spacing: 3px;
+        color: var(--ink);
+        margin-bottom: 10px;
+      }
+      .hero-title span {
+        color: var(--crimson);
+      }
+      .hero-title-sub {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(200, 0, 30, 0.2);
+        background: rgba(200, 0, 30, 0.04);
+        padding: 5px 12px;
+        border-radius: 2px;
+        margin-bottom: 20px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--crimson2);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .hero-title-sub::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: var(--crimson);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+      .hero-desc {
+        font-size: 15px;
+        line-height: 1.85;
+        color: var(--muted);
+      }
+      .hero-desc strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      /* INFO STRIP */
+      .info-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+        color: var(--white);
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .info-cell {
+        padding: 22px 28px;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        transition: background 0.2s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .info-cell:first-child {
+        border-left: none;
+      }
+      .info-cell:hover {
+        background: rgba(200, 0, 30, 0.06);
+      }
+      .info-cell::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--crimson);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .info-cell:hover::after {
+        transform: scaleX(1);
+      }
+      .info-cell-lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+      .info-cell-val {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--white);
+        line-height: 1.55;
+      }
+      .info-cell-val a {
+        color: rgba(200, 0, 30, 0.8);
+        text-decoration: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        transition: color 0.2s;
+      }
+      .info-cell-val a:hover {
+        color: var(--crimson);
+      }
+
+      /* PAGE LAYOUT */
+      .page-layout {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 32px;
+        align-items: start;
+        margin: 40px 80px;
+      }
+      .page-toc {
+        position: sticky;
+        top: 84px;
+        width: 220px;
+        padding: 18px;
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(26, 29, 38, 0.06);
+      }
+      .toc-title {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--muted);
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .toc-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        border-radius: 4px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .toc-link::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--muted);
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .toc-link:hover,
+      .toc-link.active {
+        background: rgba(200, 0, 30, 0.06);
+        color: var(--crimson);
+      }
+      .toc-link.active::before,
+      .toc-link:hover::before {
+        background: var(--crimson);
+      }
+      .toc-divider {
+        height: 1px;
+        background: var(--rule);
+        margin: 12px 0;
+      }
+      .toc-cta {
+        display: block;
+        text-align: center;
+        padding: 9px 14px;
+        background: var(--ink);
+        color: var(--white);
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 3px;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+        transition: background 0.2s;
+      }
+      .toc-cta:hover {
+        background: var(--crimson);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 80px 0;
+        position: relative;
+        z-index: 1;
+      }
+      .section-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 80px;
+        color: rgba(26, 29, 38, 0.04);
+        line-height: 1;
+        margin-bottom: -20px;
+        user-select: none;
+      }
+      .section-eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--crimson);
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .section-eyebrow::before {
+        content: "";
+        width: 18px;
+        height: 2px;
+        background: var(--crimson);
+      }
+      .section-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--ink);
+        position: relative;
+        display: inline-block;
+        margin-bottom: 16px;
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 36px;
+        height: 3px;
+        background: var(--crimson);
+        margin-top: 10px;
+      }
+      .section-desc {
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.85;
+        max-width: 660px;
+      }
+      .section-desc strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .section-header {
+        margin-bottom: 48px;
+      }
+
+      /* CONTACT SECTION */
+      #contact {
+        background: var(--surface);
+        border-top: 1px solid var(--rule);
+      }
+
+      .contact-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .contact-card {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+      }
+      .contact-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--crimson);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .contact-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(26, 29, 38, 0.08);
+      }
+      .contact-card:hover::before {
+        transform: scaleX(1);
+      }
+      .contact-card-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(200, 0, 30, 0.08);
+        border: 1px solid rgba(200, 0, 30, 0.15);
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+      .contact-card-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--muted);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .contact-card-val {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--navy);
+        margin-bottom: 6px;
+        letter-spacing: 0.3px;
+        line-height: 1.2;
+      }
+      .contact-card-sub {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .hours-banner {
+        background: var(--bg2);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 18px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .hours-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .hours-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--crimson);
+        animation: pulse 2s ease-in-out infinite;
+      }
+      .hours-text {
+        font-size: 13px;
+        color: var(--ink2);
+        font-weight: 600;
+      }
+      .hours-text span {
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .hours-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .hours-pill {
+        padding: 4px 12px;
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ink2);
+        font-family: "IBM Plex Mono", monospace;
+        letter-spacing: 0.5px;
+      }
+
+      .contact-bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .g2b-card {
+        background: var(--ink);
+        padding: 32px;
+        border-radius: 4px;
+        border-top: 3px solid var(--crimson);
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+      }
+      .g2b-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 36px rgba(26, 29, 38, 0.2);
+      }
+      .g2b-card::after {
+        content: "G2B";
+        position: absolute;
+        right: -10px;
+        bottom: -20px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 120px;
+        color: rgba(255, 255, 255, 0.03);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .g2b-card-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .g2b-card-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 10px;
+        line-height: 1.35;
+      }
+      .g2b-card-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+      .g2b-card-desc strong {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .g2b-card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 11px 22px;
+        background: var(--crimson);
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 3px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        transition: all 0.22s;
+      }
+      .g2b-card-link:hover {
+        background: var(--crimson2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 0, 30, 0.3);
+      }
+
+      .map-card {
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        overflow: hidden;
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+      }
+      .map-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(26, 29, 38, 0.08);
+      }
+      .map-placeholder {
+        height: 180px;
+        background: var(--bg2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+      .map-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--rule2) 1px, transparent 1px),
+          linear-gradient(90deg, var(--rule2) 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .map-placeholder::after {
+        content: "DAEJEON";
+        position: absolute;
+        bottom: 8px;
+        right: 12px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 48px;
+        color: rgba(26, 29, 38, 0.05);
+        letter-spacing: 3px;
+        line-height: 1;
+        pointer-events: none;
+      }
+      .map-pin {
+        font-size: 36px;
+        position: relative;
+        z-index: 1;
+        animation: pinBounce 2.2s ease-in-out infinite;
+      }
+      @keyframes pinBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .map-coords {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 1.5px;
+        position: relative;
+        z-index: 1;
+      }
+      .map-info {
+        padding: 20px 22px;
+      }
+      .map-addr strong {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .map-addr span {
+        font-size: 13px;
+        color: var(--ink2);
+        line-height: 1.65;
+      }
+      .map-meta {
+        display: flex;
+        gap: 16px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+      .map-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .map-meta-item::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--crimson);
+        flex-shrink: 0;
+      }
+      .map-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--crimson);
+        text-decoration: none;
+        font-family: "IBM Plex Mono", monospace;
+        margin-top: 10px;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(200, 0, 30, 0.2);
+        padding: 5px 10px;
+        border-radius: 2px;
+        transition:
+          opacity 0.2s,
+          background 0.2s;
+      }
+      .map-link:hover {
+        opacity: 0.75;
+        background: rgba(200, 0, 30, 0.04);
+      }
+
+      /* FAQ SECTION */
+      #faq {
+        background: var(--bg);
+        border-top: 1px solid var(--rule);
+      }
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .faq-item {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+      }
+      .faq-item:hover {
+        box-shadow: 0 4px 16px rgba(26, 29, 38, 0.06);
+      }
+      .faq-q {
+        padding: 18px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        user-select: none;
+      }
+      .faq-q-text {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.5;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .faq-q-badge {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--crimson);
+        background: rgba(200, 0, 30, 0.07);
+        padding: 2px 7px;
+        border-radius: 2px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        letter-spacing: 0.5px;
+      }
+      .faq-arrow {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        border: 1px solid var(--rule);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          transform 0.3s,
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .faq-arrow svg {
+        width: 10px;
+        height: 10px;
+        stroke: var(--muted);
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: stroke 0.2s;
+      }
+      .faq-item.open .faq-arrow {
+        transform: rotate(180deg);
+        border-color: var(--crimson);
+        background: rgba(200, 0, 30, 0.06);
+      }
+      .faq-item.open .faq-arrow svg {
+        stroke: var(--crimson);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0 20px;
+      }
+      .faq-item.open .faq-a {
+        max-height: 400px;
+        padding: 0 20px 18px;
+      }
+      .faq-a-inner {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.85;
+        border-top: 1px solid var(--rule);
+        padding-top: 14px;
+      }
+      .faq-a-inner strong {
+        color: var(--ink2);
+        font-weight: 600;
+      }
+      .faq-a-inner a {
+        color: var(--crimson);
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.2s;
+      }
+      .faq-a-inner a:hover {
+        opacity: 0.75;
+      }
+
+      /* SCROLL TO TOP */
+      .scroll-top {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 300;
+        background: var(--ink);
+        color: var(--white);
+        border: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.25s,
+          transform 0.25s,
+          background 0.2s;
+        pointer-events: none;
+      }
+      .scroll-top.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .scroll-top:hover {
+        background: var(--crimson);
+      }
+      .scroll-top svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--white);
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .scroll-top span {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 8px;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--ink);
+        padding: 56px 80px 36px;
+        border-top: 3px solid var(--crimson);
+      }
+      .footer-cols {
+        display: grid;
+        grid-template-columns: auto 1fr 2fr;
+        gap: 56px;
+        margin-bottom: 36px;
+      }
+      .f-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 40px;
+        color: var(--white);
+        letter-spacing: 3px;
+        line-height: 1;
+      }
+      .f-logo em {
+        font-style: normal;
+        color: var(--crimson);
+      }
+      .f-sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
+      .f-col-lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .f-links {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .f-links a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .f-links a:hover {
+        color: var(--white);
+      }
+      .f-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.2);
+        font-family: "IBM Plex Mono", monospace;
+        letter-spacing: 0.3px;
+      }
+
+      /* REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-l {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal-l.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-r {
+        opacity: 0;
+        transform: translateX(24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal-r.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 1100px) {
+        .page-toc {
+          display: none;
+        }
+        .page-layout {
+          grid-template-columns: 1fr;
+          margin: 0 24px;
+        }
+        .hero {
+          padding: 100px 40px 56px;
+        }
+        .hero::after {
+          display: none;
+        }
+        .contact-cards-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-bottom {
+          grid-template-columns: 1fr;
+        }
+        .info-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+        .nav {
+          padding: 0 24px;
+        }
+        footer {
+          padding: 48px 40px 32px;
+        }
+        .footer-cols {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        section {
+          padding: 60px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <button
+      class="scroll-top"
+      id="scrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      aria-label="맨 위로"
+    >
+      <svg viewBox="0 0 16 16"><polyline points="3,10 8,5 13,10" /></svg>
+      <span>TOP</span>
+    </button>
+
+    <!-- NAV -->
+    <nav class="nav" id="mainNav">
+      <div class="nav-brand">
+        <div class="nav-logo">KB<em>i</em></div>
+        <div class="nav-vr"></div>
+        <div class="nav-product">
+          <span class="nav-pname">Bingo<span>CVM</span></span>
+        </div>
+      </div>
+      <nav class="nav-menu">
+        <a href="../index.html">홈</a>
+        <a href="./product.html">제품 소개</a>
+        <a href="./about.html">회사 소개</a>
+        <a href="./news.html">뉴스</a>
+        <a href="./contact.html" class="active">영업문의</a>
+        <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
+          >조달청 구매 →</a
+        >
+      </nav>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Sales Inquiry</div>
+        <div class="hero-title">영업<span>문의</span></div>
+        <div class="hero-title-sub">Contact KBI e-Security</div>
+        <p class="hero-desc">
+          <strong>BingoCVM 도입 상담, 기술 문의, 견적 요청</strong>까지<br />
+          KBI 전문 컨설턴트가 신속하게 답변드리겠습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPANY INFO STRIP -->
+    <div class="info-strip">
+      <div class="info-cell">
+        <div class="info-cell-lbl">전화번호</div>
+        <div class="info-cell-val">042-826-4660</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-lbl">팩스번호</div>
+        <div class="info-cell-val">042-935-6445</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-lbl">홈페이지</div>
+        <div class="info-cell-val">
+          <a href="https://www.kbisys.com" target="_blank">www.kbisys.com</a
+          ><br />
+          <a href="https://www.bingocvm.com" target="_blank"
+            >www.bingocvm.com</a
+          >
+        </div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-lbl">주소</div>
+        <div class="info-cell-val" style="font-size: 12px">
+          대전광역시 서구 둔산대로117번길 44, 415호
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE LAYOUT -->
+    <div class="page-layout">
+      <div class="page-content">
+        <!-- CONTACT CHANNELS -->
+        <section id="contact">
+          <div class="section-header reveal">
+            <div class="section-num">01</div>
+            <div class="section-eyebrow">연락처 안내</div>
+            <h2 class="section-title">문의 채널</h2>
+            <p class="section-desc">
+              <strong>전화, 팩스, 홈페이지, 조달청</strong> 등 다양한 채널로
+              문의하실 수 있습니다.<br />
+              영업 담당자가 신속하게 안내해 드리겠습니다.
+            </p>
+          </div>
+
+          <div class="contact-cards-grid reveal">
+            <div class="contact-card">
+              <div class="contact-card-icon">📞</div>
+              <div class="contact-card-label">전화 문의</div>
+              <div class="contact-card-val">042-826-4660</div>
+              <div class="contact-card-sub">
+                영업·기술 상담 전화<br />견적 요청 및 데모 일정 협의
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">📠</div>
+              <div class="contact-card-label">팩스</div>
+              <div class="contact-card-val">042-935-6445</div>
+              <div class="contact-card-sub">
+                제안서 및 견적서 송부<br />공문 발송
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">🌐</div>
+              <div class="contact-card-label">홈페이지</div>
+              <div
+                class="contact-card-val"
+                style="font-size: 15px; line-height: 1.6"
+              >
+                <a
+                  href="https://www.kbisys.com"
+                  target="_blank"
+                  style="
+                    color: var(--crimson);
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 800;
+                    display: block;
+                  "
+                  >www.kbisys.com</a
+                >
+                <a
+                  href="https://www.bingocvm.com"
+                  target="_blank"
+                  style="
+                    color: var(--crimson);
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 800;
+                    display: block;
+                  "
+                  >www.bingocvm.com</a
+                >
+              </div>
+              <div class="contact-card-sub" style="margin-top: 8px">
+                제품 정보 및 자료 다운로드
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-banner reveal">
+            <div class="hours-left">
+              <div class="hours-dot"></div>
+              <div class="hours-text">
+                운영 시간
+                <span>평일 09:00 – 18:00 &nbsp;|&nbsp; 점심 12:00 – 13:00</span>
+              </div>
+            </div>
+            <div class="hours-pills">
+              <span class="hours-pill">월–금 운영</span>
+              <span class="hours-pill">토·일·공휴일 휴무</span>
+            </div>
+          </div>
+
+          <div class="contact-bottom">
+            <div class="g2b-card reveal-l">
+              <div class="g2b-card-label">조달청 디지털서비스몰</div>
+              <div class="g2b-card-title">
+                나라장터·디지털서비스몰을<br />통한 공공기관 구매
+              </div>
+              <div class="g2b-card-desc">
+                검색어: <strong>케이비아이</strong> 또는
+                <strong>BingoCVM</strong><br />공공기관 계약 및 견적 발급 지원
+              </div>
+              <a
+                href="https://digitalmall.g2b.go.kr/"
+                target="_blank"
+                class="g2b-card-link"
+              >
+                디지털서비스몰 바로가기
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="3" y1="8" x2="13" y2="8" />
+                  <polyline points="9,4 13,8 9,12" />
+                </svg>
+              </a>
+            </div>
+            <div class="map-card reveal-r">
+              <div class="map-placeholder">
+                <div class="map-pin">📍</div>
+                <div class="map-coords">36.3504° N, 127.3845° E</div>
+              </div>
+              <div class="map-info">
+                <div class="map-addr">
+                  <strong>본사 위치</strong>
+                  <span>대전광역시 서구 둔산대로117번길 44, 415호</span>
+                </div>
+                <div class="map-meta">
+                  <div class="map-meta-item">설립 2003년</div>
+                  <div class="map-meta-item">대전 서구</div>
+                </div>
+                <a
+                  href="https://map.kakao.com/link/search/대전광역시+서구+둔산대로117번길+44"
+                  target="_blank"
+                  class="map-link"
+                  >카카오맵에서 보기 →</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+          <div class="section-header reveal">
+            <div class="section-num">02</div>
+            <div class="section-eyebrow">자주 묻는 질문</div>
+            <h2 class="section-title">문의 전 확인해보세요</h2>
+            <p class="section-desc">
+              영업 문의 전 자주 묻는 질문을 먼저 확인해 보세요.<br />
+              <strong>추가 문의는 전화(042-826-4660)</strong>로 주시면 빠르게
+              안내드립니다.
+            </p>
+          </div>
+
+          <div class="faq-list reveal">
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <div class="faq-q-text">
+                  <span class="faq-q-badge">Q</span>BingoCVM 무료 체험 또는 데모
+                  시연이 가능한가요?
+                </div>
+                <div class="faq-arrow">
+                  <svg viewBox="0 0 12 8">
+                    <polyline points="1,1 6,6 11,1" />
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  네, 가능합니다. 전화(042-826-4660)로 연락 주시면
+                  <strong>온라인 데모 시연 일정을 협의</strong>해드립니다. 도입
+                  환경에 맞는 맞춤형 시연을 제공하며, POC(기술검증) 진행도
+                  요청하실 수 있습니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <div class="faq-q-text">
+                  <span class="faq-q-badge">Q</span>조달청을 통한 구매는 어떻게
+                  진행되나요?
+                </div>
+                <div class="faq-arrow">
+                  <svg viewBox="0 0 12 8">
+                    <polyline points="1,1 6,6 11,1" />
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  <strong
+                    >조달청 디지털서비스몰(<a
+                      href="https://digitalmall.g2b.go.kr/"
+                      target="_blank"
+                      >digitalmall.g2b.go.kr</a
+                    >)</strong
+                  >에서 '케이비아이' 또는 'BingoCVM'으로 검색하여 구매하실 수
+                  있습니다. 공공기관은 나라장터를 통해 계약이 가능하며, 사전
+                  문의 후 견적서 발급도 지원합니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <div class="faq-q-text">
+                  <span class="faq-q-badge">Q</span>클라우드 환경(CSAP)에서도
+                  사용 가능한가요?
+                </div>
+                <div class="faq-arrow">
+                  <svg viewBox="0 0 12 8">
+                    <polyline points="1,1 6,6 11,1" />
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  BingoCVM은
+                  <strong>온프레미스와 클라우드 환경 모두 지원</strong>합니다.
+                  CSAP(클라우드 보안인증) 심사 도구로도 활용되며, KT Cloud·Gabia
+                  Cloud·AhnLab CloudMate 등 주요 클라우드 사업자와의 협력 경험을
+                  보유하고 있습니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <div class="faq-q-text">
+                  <span class="faq-q-badge">Q</span>K-RMF, K-STIG, K-SCAP 관련
+                  국방 분야 지원도 가능한가요?
+                </div>
+                <div class="faq-arrow">
+                  <svg viewBox="0 0 12 8">
+                    <polyline points="1,1 6,6 11,1" />
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  네. ㈜케이비아이는
+                  <strong>국방과학연구소, 국방기술품질원(DTaQ)</strong>과
+                  협력하여 K-RMF, K-STIG, K-SCAP 시험평가 도구를 개발했습니다.
+                  국내 최초로 국방표준과 미국표준을 동시 적용한 도구를
+                  개발·납품한 경험이 있습니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <div class="faq-q-text">
+                  <span class="faq-q-badge">Q</span>견적 요청 시 필요한 정보는
+                  무엇인가요?
+                </div>
+                <div class="faq-arrow">
+                  <svg viewBox="0 0 12 8">
+                    <polyline points="1,1 6,6 11,1" />
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  정확한 견적을 위해
+                  <strong
+                    >①도입 환경(온프레미스/클라우드), ②진단 대상 시스템 수,
+                    ③도입 희망 일정</strong
+                  >을 알려주시면 빠른 안내가 가능합니다. 전화(042-826-4660) 또는
+                  팩스(042-935-6445)로 연락 주시기 바랍니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <div class="faq-q-text">
+                  <span class="faq-q-badge">Q</span>기술 교육 및 운영 지원도
+                  제공하나요?
+                </div>
+                <div class="faq-arrow">
+                  <svg viewBox="0 0 12 8">
+                    <polyline points="1,1 6,6 11,1" />
+                  </svg>
+                </div>
+              </div>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  ㈜케이비아이는 도입 후
+                  <strong>정보보안 기술 교육 및 실습 서비스</strong>를 별도
+                  제공합니다. 제품 사용 교육은 물론, CCE/CVE 취약점 진단 방법론,
+                  보안컨설팅 실무 등 고객 맞춤형 교육 프로그램을 운영합니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- .page-content -->
+
+      <aside class="page-toc">
+        <div class="toc-title">이 문서의 내용</div>
+        <a class="toc-link" href="#contact">01 문의 채널</a>
+        <a class="toc-link" href="#faq">02 자주 묻는 질문</a>
+        <div class="toc-divider"></div>
+        <a class="toc-cta" href="https://digitalmall.g2b.go.kr/" target="_blank"
+          >조달청 구매 →</a
+        >
+      </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <div class="f-logo">KB<em>i</em></div>
+          <div class="f-sub">e-Security Consulting</div>
+        </div>
+        <div>
+          <div class="f-col-lbl">사이트맵</div>
+          <div class="f-links">
+            <a href="../index.html">홈</a>
+            <a href="./product.html">제품 소개</a>
+            <a href="./about.html">회사 소개</a>
+            <a href="./news.html">뉴스</a>
+            <a href="./contact.html">영업문의</a>
+          </div>
+        </div>
+        <div>
+          <div class="f-col-lbl">연락처</div>
+          <p
+            style="
+              font-size: 12.5px;
+              color: rgba(255, 255, 255, 0.35);
+              line-height: 1.85;
+            "
+          >
+            <strong style="color: rgba(255, 255, 255, 0.55)"
+              >㈜케이비아이</strong
+            ><br />
+            대전광역시 서구 둔산대로117번길 44, 415호<br />
+            Tel. 042-826-4660 &nbsp;|&nbsp; Fax. 042-935-6445<br /><br />
+            <a
+              href="https://digitalmall.g2b.go.kr/"
+              target="_blank"
+              style="
+                color: rgba(200, 0, 30, 0.7);
+                text-decoration: none;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 10px;
+              "
+              >https://digitalmall.g2b.go.kr/ →</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="f-bottom">
+        <span
+          >© 2025 KBI e-Security Consulting. All rights reserved. | 설립
+          2003년</span
+        >
+        <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
+      </div>
+    </footer>
+
+    <script>
+      // CURSOR
+      const dot = document.getElementById("cursorDot");
+      const ring = document.getElementById("cursorRing");
+      if (dot && ring) {
+        let mx = 0,
+          my = 0,
+          rx = 0,
+          ry = 0;
+        document.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+        });
+        (function tick() {
+          rx += (mx - rx) * 0.12;
+          ry += (my - ry) * 0.12;
+          dot.style.left = mx + "px";
+          dot.style.top = my + "px";
+          ring.style.left = rx + "px";
+          ring.style.top = ry + "px";
+          requestAnimationFrame(tick);
+        })();
+        document
+          .querySelectorAll(
+            "a,button,.contact-card,.faq-item,.map-card,.g2b-card,.toc-link",
+          )
+          .forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+              ring.style.width = "44px";
+              ring.style.height = "44px";
+              ring.style.borderColor = "rgba(200,0,30,0.5)";
+            });
+            el.addEventListener("mouseleave", () => {
+              ring.style.width = "28px";
+              ring.style.height = "28px";
+              ring.style.borderColor = "rgba(200,0,30,0.35)";
+            });
+          });
+      }
+      // NAV SCROLL
+      const nav = document.getElementById("mainNav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", scrollY > 30);
+        },
+        { passive: true },
+      );
+      // SCROLL TO TOP
+      const scrollBtn = document.getElementById("scrollTop");
+      window.addEventListener(
+        "scroll",
+        () => {
+          scrollBtn.classList.toggle("show", scrollY > 400);
+        },
+        { passive: true },
+      );
+      // REVEAL
+      const revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), i * 60);
+              revealObs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.07 },
+      );
+      document
+        .querySelectorAll(".reveal,.reveal-l,.reveal-r")
+        .forEach((el) => revealObs.observe(el));
+      // FAQ
+      function toggleFaq(el) {
+        const item = el.closest(".faq-item");
+        const wasOpen = item.classList.contains("open");
+        document
+          .querySelectorAll(".faq-item.open")
+          .forEach((i) => i.classList.remove("open"));
+        if (!wasOpen) item.classList.add("open");
+      }
+      // TOC ACTIVE
+      (function () {
+        const header = document.getElementById("mainNav");
+        const headerHeight = header ? header.offsetHeight : 60;
+        const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
+        const sections = Array.from(document.querySelectorAll("section[id]"));
+        function setActive(id) {
+          tocLinks.forEach((a) =>
+            a.classList.toggle("active", a.getAttribute("href") === "#" + id),
+          );
+        }
+        let ticking = false;
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+              ticking = false;
+              const pos = window.scrollY + headerHeight + 1;
+              let current = sections[0];
+              for (const s of sections) {
+                if (s.offsetTop <= pos) current = s;
+                else break;
+              }
+              if (current) setActive(current.id);
+            });
+          },
+          { passive: true },
+        );
+      })();
+    </script>
+  </body>
+</html>
