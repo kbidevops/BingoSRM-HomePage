@@ -754,104 +754,113 @@
       .process-steps::before {
         content: "";
         position: absolute;
-        top: 60px;
+        top: 50px;
         left: 10%;
         right: 10%;
         height: 2px;
-        background: linear-gradient(
-          90deg,
-          var(--blue),
-          var(--cyan),
-          var(--pink)
-        );
+        background: linear-gradient(90deg, var(--blue), var(--cyan), var(--pink));
         z-index: 0;
       }
       .process-step {
         padding: 0 16px;
         position: relative;
-        z-index: 1;
+        z-index: 2;
+        height: 100%;
+        width: 100%;
       }
       .step-icon-wrap {
         display: flex;
         justify-content: center;
-        margin-bottom: 24px;
+        margin-bottom: 6px;
       }
       .step-icon {
-        width: 80px;
-        height: 80px;
+        width: 96px;
+        height: 96px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: "Barlow", sans-serif;
         font-weight: 800;
-        font-size: 22px;
+        font-size: 28px;
         position: relative;
+        z-index: 3;
         background: var(--white);
         border: 2px solid var(--light);
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
+        transition: transform 0.18s, box-shadow 0.18s;
       }
       .step-icon svg {
-        width: 32px;
-        height: 32px;
+        width: 38px;
+        height: 38px;
       }
       .process-step:hover .step-icon {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(22, 87, 181, 0.2);
+        transform: translateY(-6px);
+        box-shadow: 0 18px 36px rgba(22, 87, 181, 0.12);
       }
       .step-num {
         position: absolute;
-        top: -8px;
-        right: -8px;
-        width: 26px;
-        height: 26px;
+        top: -10px;
+        right: -10px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 11px;
-        font-weight: 800;
+        font-size: 12px;
+        font-weight: 900;
         color: var(--white);
+        box-shadow: 0 6px 14px rgba(26,29,38,0.08);
+        z-index: 4;
       }
-      .step-num-1 {
-        background: var(--blue);
-      }
-      .step-num-2 {
-        background: var(--midblue);
-      }
-      .step-num-3 {
-        background: var(--sky);
-      }
-      .step-num-4 {
-        background: #22a86a;
-      }
-      .step-num-5 {
-        background: var(--pink);
-      }
+      .step-num-1 { background: var(--blue); }
+      .step-num-2 { background: var(--midblue); }
+      .step-num-3 { background: var(--sky); }
+      .step-num-4 { background: #22a86a; }
+      .step-num-5 { background: var(--pink); }
       .step-name {
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 900;
         color: var(--navy);
         text-align: center;
-        margin-bottom: 14px;
+        margin-bottom: 6px;
       }
-      .step-desc {
-        font-size: 12px;
-        color: var(--gray);
-        line-height: 1.75;
-        text-align: center;
+      /* When description is a list (panel-list), style it for the process column */
+      .process-step .panel-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        max-width: 240px;
+        text-align: left;
+      }
+      .process-step .panel-list li {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+        padding-left: 18px;
+        position: relative;
+      }
+      .process-step .panel-list li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--sky);
+        font-size: 16px;
+        line-height: 1.2;
       }
       .step-tag {
         display: inline-block;
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 700;
-        padding: 2px 8px;
+        padding: 4px 10px;
         margin-top: 8px;
         background: rgba(56, 160, 240, 0.12);
         color: var(--sky);
-        border: 1px solid rgba(56, 160, 240, 0.25);
+        border: 1px solid rgba(56, 160, 240, 0.18);
+        border-radius: 4px;
       }
       .process-flow {
         margin-top: 56px;
@@ -1080,7 +1089,7 @@
       }
       .panel-title {
         font-family: "Barlow", sans-serif;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 900;
         color: var(--white);
         margin-bottom: 18px;
@@ -2015,9 +2024,9 @@
                 </div>
               </div>
               <div class="step-name">자산등록</div>
-              <p class="step-desc">
-                모든 IT 자산을 Agent, Non-Agent 방식을 선택 식별하여 자산등록
-              </p>
+              <ul class="panel-list">
+                <li>모든 IT 자산을 Agent 또는 Non‑Agent 방식으로 식별하여 등록</li>
+              </ul>
             </div>
 
             <div class="process-step">
@@ -2041,10 +2050,10 @@
                 </div>
               </div>
               <div class="step-name">취약점 진단</div>
-              <p class="step-desc">
-                CCE 진단 스크립트를 자동 배포하고, 진단하여 결과 파일을 수집,
-                CVE 진단 자산 자동 매핑을 통해 스캔 결과 파일 수집 (2026년 적용)
-              </p>
+              <ul class="panel-list">
+                <li>CCE 진단 스크립트를 자동으로 배포·실행하고 결과 파일을 수집</li>
+                <li>CVE 기반 자산 자동 매핑으로 스캔 결과를 통합 수집 (2026년 적용)</li>
+              </ul>
               <div style="text-align: center; margin-top: 10px">
                 <span class="step-tag">자동화</span>
               </div>
@@ -2066,11 +2075,10 @@
                 </div>
               </div>
               <div class="step-name">취약점 분석</div>
-              <p class="step-desc">
-                수집된 취약점 CCE 진단 파일을 분석하여 진단 항목을
-                취약/양호/예외로 분류, CVE 진단 AI를 통해 취약점 분석 (2026년
-                적용)
-              </p>
+              <ul class="panel-list">
+                <li>수집된 CCE 진단 결과를 분석하여 항목을 취약 / 양호 / 예외로 분류</li>
+                <li>CVE 기반 AI 분석으로 취약점에 대한 정밀 분석 수행 (2026년 적용)</li>
+              </ul>
               <div style="text-align: center; margin-top: 10px">
                 <span class="step-tag">AI 분석</span>
               </div>
@@ -2097,10 +2105,11 @@
                 </div>
               </div>
               <div class="step-name">취약점 조치</div>
-              <p class="step-desc">
-                발견된 취약점을 조치 수동 조치 / 자동 조치 (AI 엔진으로 취약항목
-                조치 안내, 2026년 적용), 조치한 내용과 증적 자료 저장
-              </p>
+              <ul class="panel-list">
+                <li>발견된 취약점에 대해 수동 또는 자동으로 조치 수행</li>
+                <li>AI 엔진을 활용한 조치 가이드를 제공 (2026년 적용)</li>
+                <li>조치 이력과 증적 자료를 체계적으로 저장</li>
+              </ul>
               <div style="text-align: center; margin-top: 10px">
                 <span class="step-tag">AI 조치</span>
               </div>
@@ -2122,10 +2131,10 @@
                 </div>
               </div>
               <div class="step-name">이행 점검</div>
-              <p class="step-desc">
-                취약점 조치 후 재 진단 최종 진단 결과 보고서, 비교보고서
-                다운로드
-              </p>
+              <ul class="panel-list">
+                <li>조치 완료 후 재진단을 수행하여 이행 여부를 검증</li>
+                <li>최종 진단 보고서 및 비교 보고서 제공 (다운로드 가능)</li>
+              </ul>
             </div>
           </div>
 
@@ -2157,9 +2166,9 @@
 
           <div class="cce-cve-grid reveal">
             <div class="cce-panel">
-              <span class="panel-badge badge-blue">CCE</span>
+              <span class="panel-badge badge-blue">Common Configuration Enumeration</span>
               <div class="panel-title">
-                CCE (Common Configuration Enumeration) 개요
+                CCE 개요
               </div>
               <div class="panel-body">
                 CCE는 시스템과 소프트웨어의 보안 설정 오류(Configuration
@@ -2194,9 +2203,9 @@
             </div>
 
             <div class="cve-panel">
-              <span class="panel-badge badge-pink">CVE</span>
+              <span class="panel-badge badge-pink">Common Vulnerabilities and Exposures</span>
               <div class="panel-title">
-                CVE (Common Vulnerabilities and Exposures) 개요
+                CVE 개요
               </div>
               <div class="panel-body">
                 소프트웨어나 하드웨어 제품에 존재하는 보안 취약점(버그)에
