@@ -2552,23 +2552,111 @@
           if (name === current) a.classList.add("active");
         });
 
-        // TOC links: highlight based on section intersection
-        const sections = document.querySelectorAll("section[id]");
-        const tocLinks = document.querySelectorAll(".page-toc .toc-link");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const id = entry.target.id;
-                tocLinks.forEach((a) => {
-                  a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+        // TOC links: activate when header bottom meets section top using sentinels
+        (function () {
+          const tocLinks = document.querySelectorAll(".page-toc .toc-link");
+          const sections = Array.from(document.querySelectorAll("section[id]"));
+          const header = document.getElementById("mainNav");
+
+          function setActive(id) {
+            tocLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+          }
+
+          let observer = null;
+
+          function createObserver() {
+            const headerHeight = header ? Math.round(header.getBoundingClientRect().height) : 60;
+            if (observer) observer.disconnect();
+            const TOC_DEBUG = false; // debug off in production
+
+            observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (TOC_DEBUG) console.debug("TOC IO:", entry.target, "isIntersecting:", entry.isIntersecting, "dataset:", entry.target.dataset);
+                  if (entry.isIntersecting) {
+                    const id = entry.target.dataset.tocFor || entry.target.id;
+                    if (id) setActive(id);
+                  }
                 });
+              },
+              { root: null, rootMargin: `-${headerHeight}px 0px 0px 0px`, threshold: 0 },
+            );
+
+            // create/observe a tiny sentinel element before each section
+              // ensure anchored scrolling leaves room for the sticky header
+              sections.forEach((s) => {
+                s.style.scrollMarginTop = headerHeight + "px";
+                let sentinel = s.previousElementSibling;
+                if (!sentinel || !sentinel.classList || !sentinel.classList.contains("toc-sentinel")) {
+                  sentinel = document.createElement("div");
+                  sentinel.className = "toc-sentinel";
+                  sentinel.style.cssText = "display:block;height:1px;visibility:hidden;margin:0;padding:0;";
+                  s.parentNode.insertBefore(sentinel, s);
+                }
+                sentinel.dataset.tocFor = s.id;
+                observer.observe(sentinel);
+                // also observe the section itself as a fallback (helps when DOM layout
+                // or transforms cause the sentinel to miss intersections)
+                try {
+                  s.dataset.tocFor = s.id;
+                  observer.observe(s);
+                } catch (e) {
+                  if (TOC_DEBUG) console.warn('Failed to observe section', s, e);
+                }
+              });
+
+              // expose header height as a CSS variable for any styles that might need it
+              try {
+                document.documentElement.style.setProperty("--header-height", headerHeight + "px");
+              } catch (e) {
+                // ignore if setting style fails in old browsers
               }
-            });
-          },
-          { root: null, rootMargin: "-40% 0px -50% 0px", threshold: 0.1 },
-        );
-        sections.forEach((s) => observer.observe(s));
+          }
+
+          function debounce(fn, wait = 120) {
+            let t = null;
+            return () => {
+              clearTimeout(t);
+              t = setTimeout(fn, wait);
+            };
+          }
+
+          createObserver();
+          // if page loaded with a hash, ensure the corresponding TOC item is marked active
+          if (window.location.hash) {
+            const idFromHash = window.location.hash.replace(/^#/, "");
+            setTimeout(() => setActive(idFromHash), 80);
+          }
+          window.addEventListener("resize", debounce(createObserver), { passive: true });
+          // Fallback: rAF-throttled scroll check using document-space offsets
+          // (more robust when transforms or layout quirks affect getBoundingClientRect intersections)
+          let ticking = false;
+          function updateActiveByScroll() {
+            ticking = false;
+            const headerHeight = header ? Math.round(header.getBoundingClientRect().height) : 60;
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+            let candidate = null;
+            for (const s of sections) {
+              const sectionTopDoc = s.getBoundingClientRect().top + scrollY;
+              if (scrollY + headerHeight >= sectionTopDoc - 1) {
+                candidate = s.id;
+              }
+            }
+            if (candidate) setActive(candidate);
+          }
+
+          window.addEventListener(
+            "scroll",
+            () => {
+              if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateActiveByScroll);
+              }
+            },
+            { passive: true },
+          );
+          window.addEventListener("load", createObserver);
+        })();
       })();
 
       document.querySelectorAll(".clients-logos .client-logo").forEach((c) => {

@@ -2664,27 +2664,85 @@
         .querySelectorAll(".reveal,.reveal-l,.reveal-r")
         .forEach((el) => revealObs.observe(el));
 
-      // ── TOC ACTIVE ──
+      // ── TOC ACTIVE (header-aware sentinels + rAF fallback)
       (function () {
-        const sections = document.querySelectorAll("section[id]");
-        const tocLinks = document.querySelectorAll(".toc-link");
-        const obs = new IntersectionObserver(
+        const header = document.getElementById("mainNav");
+        const headerHeight = header ? header.offsetHeight : 60;
+        document.documentElement.style.setProperty(
+          "--header-height",
+          headerHeight + "px",
+        );
+
+        const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
+        const sections = Array.from(document.querySelectorAll("section[id]"));
+
+        function setActive(id) {
+          tocLinks.forEach((a) =>
+            a.classList.toggle("active", a.getAttribute("href") === "#" + id),
+          );
+        }
+
+        const io = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                const id = entry.target.id;
-                tocLinks.forEach((a) =>
-                  a.classList.toggle(
-                    "active",
-                    a.getAttribute("href") === "#" + id,
-                  ),
-                );
+                const id = entry.target.dataset.tocFor || entry.target.id;
+                if (id) setActive(id);
               }
             });
           },
-          { rootMargin: "-30% 0px -60% 0px", threshold: 0.1 },
+          {
+            root: null,
+            rootMargin: `-${headerHeight}px 0px 0px 0px`,
+            threshold: 0,
+          },
         );
-        sections.forEach((s) => obs.observe(s));
+
+        sections.forEach((s) => {
+          s.style.scrollMarginTop = headerHeight + "px";
+
+          const sentinel = document.createElement("div");
+          sentinel.className = "toc-sentinel";
+          sentinel.dataset.tocFor = s.id;
+          sentinel.style.cssText =
+            "height:1px;margin:0;padding:0;visibility:hidden;";
+          s.parentNode.insertBefore(sentinel, s);
+
+          io.observe(sentinel);
+          io.observe(s);
+        });
+
+        // rAF-throttled document-space fallback for layouts where IO misses
+        let ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            ticking = false;
+            const pos = window.scrollY + headerHeight + 1;
+            let current = sections[0];
+            for (const s of sections) {
+              if (s.offsetTop <= pos) current = s;
+              else break;
+            }
+            if (current) setActive(current.id);
+          });
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", () => {
+          const hh = header ? header.offsetHeight : headerHeight;
+          document.documentElement.style.setProperty(
+            "--header-height",
+            hh + "px",
+          );
+          sections.forEach((s) => (s.style.scrollMarginTop = hh + "px"));
+        });
+
+        if (location.hash) {
+          const id = location.hash.slice(1);
+          setTimeout(() => setActive(id), 60);
+        }
       })();
 
       // ── NAV ACTIVE (ensure current top-level link is highlighted) ──
