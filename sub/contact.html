@@ -131,6 +131,43 @@
         align-items: center;
         gap: 14px;
       }
+      .nav-brand > img {
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
+      .brand-logo {
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
+      .logo-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(36px, 3.2vw, 44px);
+        height: clamp(36px, 3.2vw, 44px);
+        max-height: 44px;
+        max-width: 44px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #fff 0%,
+          #fbfbfb 35%,
+          #fff 100%
+        );
+        box-shadow: 0 8px 18px rgba(26, 29, 38, 0.06);
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 10px;
+        overflow: visible;
+      }
+      .logo-badge > img {
+        width: 52%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
       .nav-logo {
         font-family: "Bebas Neue", sans-serif;
         font-size: 26px;
@@ -151,6 +188,14 @@
         display: flex;
         align-items: center;
         gap: 7px;
+      }
+      .nav-product img {
+        height: 32px;
+        max-height: 36px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        flex-shrink: 0;
       }
       .nav-product .nav-icon {
         width: 28px;
@@ -1216,11 +1261,19 @@
     <!-- NAV -->
     <nav class="nav" id="mainNav">
       <div class="nav-brand">
-        <div class="nav-logo">KB<em>i</em></div>
+        <div
+          class="logo-badge"
+          role="img"
+          aria-label="KBI e-Security Consulting"
+        >
+          <img
+            src="../images/KBI-RepresentativeLogo-without-E-security.jpg"
+            alt="KBI e-Security Consulting"
+          />
+        </div>
         <div class="nav-vr"></div>
         <div class="nav-product">
-          <img class="nav-icon" src="/images/fabi.ico" alt="BingoCVM" />
-          <span class="nav-pname">Bingo<span>CVM</span></span>
+          <img src="../images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
         </div>
       </div>
       <nav class="nav-menu">
@@ -1582,15 +1635,22 @@
     <footer>
       <div class="footer-cols">
         <div>
-          <div class="f-logo">KB<em>i</em></div>
+          <img
+            class="brand-logo"
+            src="../images/LogoWithoutBackgroundWhite(DarkBackground).png"
+            alt="KBI e-Security Consulting"
+            loading="lazy"
+          />
           <div class="f-sub">e-Security Consulting</div>
-          <div class="f-prow">
+
+          <div style="margin-top: 20px">
             <img
-              src="/images/fabi.ico"
-              alt="BingoCVM icon"
-              style="width: 16px; height: 16px; margin-right: 6px"
+              class="brand-logo footer-bingo"
+              src="../images/BingoCVM-logo-noline-one-whlong.png"
+              alt="BingoCVM"
+              loading="lazy"
             />
-            <div class="f-pname">Bingo<span>CVM</span></div>
+            <div class="f-sub">취약점진단 자동화 플랫폼</div>
           </div>
         </div>
         <div>
@@ -1604,7 +1664,7 @@
           </div>
         </div>
         <div>
-          <div class="f-col-lbl">연락처</div>
+          <div class="f-col-lbl">조달청 디지털서비스몰</div>
           <p
             style="
               font-size: 12.5px;
