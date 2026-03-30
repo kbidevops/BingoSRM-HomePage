@@ -237,9 +237,10 @@
         position: relative;
         overflow: hidden;
         background: var(--bg);
+        /* dim the background grid for better content contrast */
         background-image:
-          linear-gradient(var(--rule2) 1px, transparent 1px),
-          linear-gradient(90deg, var(--rule2) 1px, transparent 1px);
+          linear-gradient(rgba(26, 29, 38, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26, 29, 38, 0.03) 1px, transparent 1px);
         background-size: 48px 48px;
       }
 
@@ -247,8 +248,9 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
+        /* make the dotted overlay more subtle */
         background-image: radial-gradient(
-          var(--rule2) 1.2px,
+          rgba(26, 29, 38, 0.02) 1.2px,
           transparent 1.2px
         );
         background-size: 28px 28px;
@@ -320,17 +322,110 @@
         flex-shrink: 0;
       }
 
+      /* KBI logo badge - mock visual polish (rings, soft shadow, slow pulse) */
       .hero-kbi {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(52px, 7.5vw, 100px);
-        letter-spacing: 2px;
-        line-height: 0.9;
-        color: var(--navy2);
-        margin-bottom: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(92px, 9.5vw, 160px);
+        height: clamp(92px, 9.5vw, 160px);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.98),
+          var(--surface)
+        );
+        box-shadow:
+          0 20px 50px rgba(26, 29, 38, 0.12),
+          inset 0 2px 6px rgba(255, 255, 255, 0.65);
+        position: relative;
+        margin-bottom: 12px;
+        z-index: 3;
+        flex-shrink: 0;
+      }
+      .hero-kbi img {
+        max-height: 48%;
+        max-width: 62%;
+        object-fit: contain;
+        display: block;
+        z-index: 4;
+        filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.02));
       }
       .hero-kbi em {
-        color: var(--crimson);
+        /* text fallback */
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(20px, 3.2vw, 36px);
+        color: var(--navy2);
         font-style: normal;
+      }
+
+      /* Concentric rings behind the badge */
+      .hero-kbi::before,
+      .hero-kbi::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero-kbi::before {
+        width: calc(100% + 96px);
+        height: calc(100% + 96px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid rgba(145, 110, 210, 0.08);
+        box-shadow: 0 6px 20px rgba(145, 110, 210, 0.02) inset;
+        opacity: 0.95;
+        animation: ringPulse 6s ease-in-out infinite;
+      }
+      .hero-kbi::after {
+        width: calc(100% + 168px);
+        height: calc(100% + 168px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(145, 110, 210, 0.04);
+        opacity: 0.9;
+      }
+
+      @keyframes ringPulse {
+        0% {
+          transform: translate(-50%, -50%) scale(0.995);
+          opacity: 0.95;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.02);
+          opacity: 0.78;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(0.995);
+          opacity: 0.95;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-kbi::before {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-kbi {
+          width: 84px;
+          height: 84px;
+        }
+        .hero-kbi img {
+          max-height: 44%;
+        }
+        .hero-kbi::before {
+          width: calc(100% + 56px);
+          height: calc(100% + 56px);
+        }
+        .hero-kbi::after {
+          width: calc(100% + 96px);
+          height: calc(100% + 96px);
+        }
       }
 
       .hero-kbi-sub {
@@ -378,6 +473,150 @@
         color: var(--navy2);
         line-height: 0.92;
         letter-spacing: 1px;
+      }
+      .hero-prod-name img {
+        height: clamp(40px, 6vw, 72px);
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* allow using a wordmark or text heading inside hero-kbi without the circular badge */
+      .hero-kbi.hero-kbi--wordmark {
+        width: auto;
+        height: auto;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        display: block;
+        text-align: left;
+        margin-bottom: 18px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(36px, 6.5vw, 64px);
+        color: var(--navy2);
+        line-height: 1;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+      .hero-kbi.hero-kbi--wordmark em {
+        color: var(--crimson);
+        font-style: normal;
+        font-weight: 900;
+        margin-left: 8px;
+        font-size: 1.05em;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .hero-kbi.hero-kbi--wordmark img {
+        height: auto;
+        max-height: 72px;
+        max-width: 100%;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      /* slightly tighten the subheading for visual rhythm */
+      .hero-kbi-sub {
+        margin-top: 8px;
+        margin-bottom: 18px;
+        letter-spacing: 3px;
+      }
+      /* remove concentric rings and badge pseudo-elements for wordmark variant */
+      .hero-kbi.hero-kbi--wordmark::before,
+      .hero-kbi.hero-kbi--wordmark::after {
+        display: none;
+        content: none;
+      }
+      .nav-brand > img {
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
+      /* shared brand logo sizing for header and footer */
+      .brand-logo {
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
+      .nav-product img {
+        height: 28px;
+        object-fit: contain;
+        display: block;
+      }
+      /* circular badge for nav logo (matches hero badge style) */
+      /* Constrain badge so it never exceeds the nav height (60px) */
+      .logo-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(40px, 3.6vw, 52px);
+        height: clamp(40px, 3.6vw, 52px);
+        max-height: 52px;
+        max-width: 52px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #fff 0%,
+          #fbfbfb 35%,
+          #fff 100%
+        );
+        box-shadow: 0 10px 26px rgba(26, 29, 38, 0.08);
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 10px;
+      }
+      .logo-badge > img {
+        width: 60%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .logo-badge::before,
+      .logo-badge::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .logo-badge::before {
+        width: calc(100% + 48px);
+        height: calc(100% + 48px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(145, 110, 210, 0.06);
+      }
+      .logo-badge::after {
+        width: calc(100% + 88px);
+        height: calc(100% + 88px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(145, 110, 210, 0.04);
+        filter: blur(0.2px);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .logo-badge::before,
+        .logo-badge::after {
+          transition: none;
+        }
+      }
+      @media (max-width: 900px) {
+        .logo-badge {
+          width: 44px;
+          height: 44px;
+          max-width: 44px;
+          max-height: 44px;
+        }
+        .logo-badge::before {
+          width: calc(100% + 36px);
+          height: calc(100% + 36px);
+        }
+        .logo-badge::after {
+          width: calc(100% + 64px);
+          height: calc(100% + 64px);
+        }
       }
       .hero-prod-name span {
         color: var(--crimson);
@@ -702,11 +941,11 @@
         background: linear-gradient(160deg, var(--navy2) 0%, var(--ink) 100%);
         color: var(--white);
         border-radius: 8px;
-        padding: 20px;
+        padding: 24px; /* increased padding for better spacing */
         box-shadow: 0 12px 36px rgba(3, 24, 56, 0.22);
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 18px; /* increased vertical rhythm */
       }
       .bingocvm-card .card-header {
         display: flex;
@@ -728,7 +967,7 @@
       .bs-name {
         font-weight: 900;
         color: var(--white);
-        font-size: 18px;
+        font-size: 20px; /* slightly larger for hierarchy */
         letter-spacing: 0.5px;
       }
       .bs-name span {
@@ -737,13 +976,13 @@
       .card-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        gap: 12px; /* more breathing room between cells */
       }
       .card-grid-cell {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 4px;
-        padding: 12px 10px;
+        padding: 14px 12px; /* larger tappable area */
         transition:
           background 0.18s,
           transform 0.18s;
@@ -765,7 +1004,7 @@
       }
       .card-desc {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.85); /* improved contrast */
         line-height: 1.65;
       }
       .bs-tags {
@@ -791,15 +1030,43 @@
       .bs-g2b-link {
         background: var(--crimson);
         color: var(--white);
-        padding: 7px 12px;
-        border-radius: 3px;
+        padding: 9px 16px; /* larger, more tappable */
+        border-radius: 4px;
         text-decoration: none;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 700;
-        transition: background 0.2s;
+        transition:
+          background 0.18s,
+          transform 0.12s,
+          box-shadow 0.18s;
       }
       .bs-g2b-link:hover {
         background: var(--crimson2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(200, 0, 30, 0.18);
+      }
+      .bs-g2b-link:focus {
+        outline: 3px solid rgba(59, 162, 242, 0.12);
+        outline-offset: 2px;
+      }
+
+      /* Responsive tweaks for BingoCVM card */
+      @media (max-width: 700px) {
+        .card-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .bingocvm-card {
+          padding: 22px;
+          gap: 12px;
+        }
+        .bs-name {
+          font-size: 18px;
+        }
+        .bs-g2b-link {
+          padding: 10px 14px;
+          font-size: 13px;
+        }
       }
 
       /* Slide 3 reference list */
@@ -1987,13 +2254,17 @@
       footer {
         background: var(--ink);
         padding: 56px 80px 36px;
-        border-top: 3px solid var(--crimson);
+        border-top: 3px solid rgba(200, 0, 30, 0.12);
       }
       .footer-cols {
         display: grid;
-        grid-template-columns: auto 1fr 2fr;
-        gap: 56px;
+        grid-template-columns: 260px 1fr 1fr;
+        gap: 48px;
         margin-bottom: 36px;
+        align-items: start;
+      }
+      .footer-cols > div:first-child {
+        min-width: 220px;
       }
       .f-logo {
         font-family: "Bebas Neue", sans-serif;
@@ -2003,22 +2274,22 @@
         line-height: 1;
       }
       .f-logo em {
-        font-style: normal;
         color: var(--crimson);
+        font-style: normal;
       }
       .f-sub {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
-        color: rgba(255, 255, 255, 0.3);
-        letter-spacing: 2px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        margin-top: 6px;
+        margin-top: 8px;
       }
       .f-prow {
         display: flex;
         align-items: center;
-        gap: 7px;
-        margin-top: 16px;
+        gap: 12px;
+        margin-top: 12px;
       }
       .f-pcube {
         width: 14px;
@@ -2035,43 +2306,83 @@
       .f-pname {
         font-family: "IBM Plex Mono", monospace;
         font-size: 10px;
-        color: rgba(255, 255, 255, 0.35);
+        color: rgba(255, 255, 255, 0.42);
         letter-spacing: 1.5px;
       }
       .f-pname span {
         color: var(--crimson);
       }
+      .f-prow .brand-logo {
+        height: 44px;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Footer links: increase hit area and improve contrast */
+      .f-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .f-links a {
+        display: block;
+        padding: 8px 0;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        transition:
+          color 0.15s,
+          transform 0.12s;
+      }
+      .f-links a:hover,
+      .f-links a:focus {
+        color: var(--white);
+        transform: translateX(4px);
+        outline: none;
+      }
+
       .f-col-lbl {
         font-family: "IBM Plex Mono", monospace;
         font-size: 9px;
-        color: rgba(255, 255, 255, 0.25);
+        color: rgba(255, 255, 255, 0.28);
         letter-spacing: 2px;
         text-transform: uppercase;
         margin-bottom: 14px;
       }
-      .f-links {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-      }
-      .f-links a {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.45);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .f-links a:hover {
-        color: var(--white);
-      }
+
       .f-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
-        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 18px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.22);
         font-family: "IBM Plex Mono", monospace;
         letter-spacing: 0.3px;
+      }
+
+      /* Responsive footer */
+      @media (max-width: 900px) {
+        .footer-cols {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        footer {
+          padding: 36px 28px 24px;
+        }
+      }
+      @media (max-width: 420px) {
+        .f-prow .brand-logo {
+          height: 36px;
+        }
+        .f-links a {
+          padding: 10px 0;
+        }
+        .f-bottom {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
       }
 
       /* ── REVEAL ── */
@@ -2191,11 +2502,19 @@
     <!-- NAV -->
     <nav class="nav" id="mainNav">
       <div class="nav-brand">
-        <div class="nav-logo">KB<em>i</em></div>
+        <div
+          class="logo-badge"
+          role="img"
+          aria-label="KBI e-Security Consulting"
+        >
+          <img
+            src="./images/KBI-RepresentativeLogo-without-E-security.jpg"
+            alt="KBI e-Security Consulting"
+          />
+        </div>
         <div class="nav-vr"></div>
         <div class="nav-product">
-          <img class="nav-icon" src="./images/fabi.ico" alt="BingoCVM" />
-          <span class="nav-pname">Bingo<span>CVM</span></span>
+          <img src="./images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
         </div>
       </div>
       <nav class="nav-menu">
@@ -2232,8 +2551,13 @@
         >
           <div class="hero-left">
             <div class="hero-eyebrow">e-Security Consulting</div>
-            <div class="hero-kbi">KB<em>i</em></div>
-            <div class="hero-kbi-sub">Korea Business Intelligence</div>
+            <div class="hero-kbi">
+              <img
+                src="./images/KBI-RepresentativeLogo-without-E-security.jpg"
+                alt="KBI e-Security Consulting"
+              />
+            </div>
+
             <div class="hero-rule">
               <div class="hero-rule-line"></div>
               <span class="hero-rule-text">flagship product</span>
@@ -2241,7 +2565,13 @@
             </div>
             <div class="hero-product">
               <div class="hero-eyebrow">취약점진단 자동화 플랫폼</div>
-              <div class="hero-prod-name">Bingo<span>CVM</span></div>
+              <div class="hero-prod-name">
+                <img
+                  src="./images/bingoCVM-logo-bklong2.png"
+                  alt="BingoCVM"
+                  loading="lazy"
+                />
+              </div>
             </div>
             <p class="hero-desc">
               <strong>독보적인 ATC 자동화 엔진</strong>을 통해 자산 등록부터
@@ -2320,8 +2650,12 @@
         >
           <div class="hero-left">
             <div class="hero-eyebrow">자사 대표 솔루션</div>
-            <div class="hero-kbi">
-              Bingo<em style="color: var(--crimson)">CVM</em>
+            <div class="hero-kbi hero-kbi--wordmark">
+              <img
+                src="./images/bingoCVM-logo-bklong2.png"
+                alt="BingoCVM"
+                loading="lazy"
+              />
             </div>
             <div class="hero-kbi-sub">
               취약점진단 자동화 플랫폼 — 5단계 프로세스
@@ -2378,6 +2712,7 @@
                   <img
                     src="./images/fabi.ico"
                     alt="BingoCVM icon"
+                    loading="lazy"
                     style="width: 16px; height: 16px; margin-left: 4px"
                   />
                 </div>
@@ -2423,9 +2758,10 @@
                   >조달청 디지털서비스몰<br />검색: 케이비아이, BingoCVM</span
                 >
                 <a
-                  class="g2b-link"
+                  class="g2b-link bs-g2b-link"
                   href="https://digitalmall.g2b.go.kr/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >구매하기 →</a
                 >
               </div>
@@ -2443,7 +2779,7 @@
         >
           <div class="hero-left">
             <div class="hero-eyebrow">검증된 신뢰</div>
-            <div class="hero-kbi">
+            <div class="hero-kbi hero-kbi--wordmark">
               주요 <em style="color: var(--crimson)">고객사</em>
             </div>
             <div class="hero-kbi-sub">
@@ -2656,10 +2992,7 @@
       <div class="section-header reveal">
         <div class="section-num">KBI</div>
         <div class="section-eyebrow">자사 대표 제품</div>
-        <h2 class="section-title">
-          Bingo<span style="color: var(--crimson)">CVM</span> — 취약점진단
-          자동화 플랫폼
-        </h2>
+        <h2 class="section-title">BingoCVM — 취약점진단 자동화 플랫폼</h2>
         <p class="section-desc">
           <strong>정보통신기반시설 및 클라우드 시스템 취약점진단 자동화</strong
           >를 제공하는 KBi의 대표 보안 솔루션입니다. 진단 / 평가 / 분류 / 조치 /
@@ -2721,19 +3054,7 @@
         <div class="bingo-side reveal-r">
           <div class="bs-head">
             <div class="bs-brand">
-              <div
-                class="mini-cube"
-                style="width: 18px; height: 18px; gap: 2px"
-              >
-                <img
-                  src="./images/fabi.ico"
-                  alt="BingoCVM icon"
-                  style="width: 18px; height: 18px; margin-left: 4px"
-                />
-              </div>
-              <div class="bs-name" style="color: var(--ink)">
-                Bingo<span>CVM</span>
-              </div>
+              <div class="bs-name" style="color: var(--ink)">BingoCVM</div>
             </div>
             <div class="bs-tags">
               <span class="bs-tag-light">GS 1등급</span>
@@ -2788,15 +3109,22 @@
     <footer>
       <div class="footer-cols">
         <div>
-          <div class="f-logo">KB<em>i</em></div>
+          <img
+            class="brand-logo"
+            src="./images/LogoWithoutBackgroundWhite(DarkBackground).png"
+            alt="KBI e-Security Consulting"
+            loading="lazy"
+          />
           <div class="f-sub">e-Security Consulting</div>
-          <div class="f-prow">
+
+          <div style="margin-top: 20px">
             <img
-              src="./images/fabi.ico"
-              alt="BingoCVM icon"
-              style="width: 16px; height: 16px; margin-right: 6px"
+              class="brand-logo footer-bingo"
+              src="./images/BingoCVM-logo-noline-one-whlong.png"
+              alt="BingoCVM"
+              loading="lazy"
             />
-            <div class="f-pname">Bingo<span>CVM</span></div>
+            <div class="f-sub">취약점진단 자동화 플랫폼</div>
           </div>
         </div>
         <div>
@@ -2818,7 +3146,7 @@
               line-height: 1.85;
             "
           >
-            BingoCVM은 조달청 디지털서비스몰에 등록된 검증된 솔루션입니다.<br /><br />
+            BingoCVM은 조달청 디지털서비스몰을 통해 구매하실 수 있습니다.<br /><br />
             <a
               href="https://digitalmall.g2b.go.kr/"
               target="_blank"
@@ -2843,7 +3171,7 @@
       </div>
       <div class="f-bottom">
         <span
-          >© 2025 KBI e-Security Consulting. All rights reserved. | 설립
+          >© 2026 KBI e-Security Consulting. All rights reserved. | 설립
           2003년</span
         >
         <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
