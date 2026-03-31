@@ -123,9 +123,9 @@
       .hero {
         min-height: 100vh;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 460px;
         align-items: center;
-        padding: 120px 80px 80px;
+        padding: 80px 80px;
         position: relative;
         overflow: hidden;
         background: var(--bg);
@@ -136,57 +136,21 @@
       }
 
       /* Big decorative letter */
-      .hero::after {
-        content: "KBI";
-        position: absolute;
-        right: -30px;
-        bottom: -40px;
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 380px;
-        line-height: 1;
-        color: rgba(26, 29, 38, 0.03);
-        pointer-events: none;
-        user-select: none;
-        letter-spacing: -8px;
-        z-index: 0;
-      }
-
-      .hero-bg-glow {
-        position: absolute;
-        right: 5%;
-        top: 15%;
-        width: 480px;
-        height: 480px;
-        background: radial-gradient(
-          circle,
-          rgba(200, 0, 30, 0.05) 0%,
-          transparent 70%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-      .hero-dots {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background-image: radial-gradient(
-          var(--rule2) 1.2px,
-          transparent 1.2px
-        );
-        background-size: 28px 28px;
-        opacity: 0.7;
-        mask-image: radial-gradient(
-          ellipse 80% 80% at 50% 50%,
-          black 40%,
-          transparent 100%
-        );
-        z-index: 0;
-      }
 
       .hero-content {
         position: relative;
         z-index: 1;
         animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      /* Force vertical stacking for the hero top; important to override
+         any conflicting rules from other stylesheets or user agent styles */
+      .hero-top {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        text-align: center;
+        gap: 8px;
       }
 
       @keyframes fadeUp {
@@ -231,20 +195,61 @@
         color: var(--crimson);
       }
 
+      /* KBi circular badge (matches provided attachment) */
+      .hero-title {
+        display: block;
+      }
+      .hero-title .kb-badge {
+        width: 140px;
+        height: 140px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(26, 29, 38, 0.06);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 40px;
+        color: #6b6b6b;
+        position: relative;
+        margin: 6px 0 12px 0;
+      }
+      .hero-title .kb-badge .kb-i {
+        color: var(--crimson);
+        margin-left: 6px;
+        font-size: 38px;
+      }
+      .hero-title .kb-badge::after {
+        content: "";
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 16px solid var(--crimson);
+      }
+
       .hero-title-sub {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         border: 1px solid rgba(200, 0, 30, 0.2);
         background: rgba(200, 0, 30, 0.04);
-        padding: 5px 12px;
-        border-radius: 2px;
-        margin-bottom: 32px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        margin-bottom: 18px;
         font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
+        font-size: 12px;
         color: var(--crimson2);
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-transform: none;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(26, 29, 38, 0.03);
+        border: none;
+        width: max-content;
       }
       .hero-title-sub::before {
         content: "";
@@ -1418,6 +1423,72 @@
           padding: 0 24px;
         }
       }
+      /* KBI logo badge - mock visual polish (rings, soft shadow, slow pulse) */
+      .hero-kbi {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(92px, 9.5vw, 160px);
+        height: clamp(92px, 9.5vw, 160px);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.98),
+          var(--surface)
+        );
+        box-shadow:
+          0 20px 50px rgba(26, 29, 38, 0.12),
+          inset 0 2px 6px rgba(255, 255, 255, 0.65);
+        position: relative;
+        margin-bottom: 12px;
+        z-index: 3;
+        flex-shrink: 0;
+      }
+      .hero-kbi img {
+        max-height: 48%;
+        max-width: 62%;
+        object-fit: contain;
+        display: block;
+        z-index: 4;
+        filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.02));
+      }
+      .hero-kbi em {
+        /* text fallback */
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(20px, 3.2vw, 36px);
+        color: var(--navy2);
+        font-style: normal;
+      }
+
+      /* Concentric rings behind the badge */
+      .hero-kbi::before,
+      .hero-kbi::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero-kbi::before {
+        width: calc(100% + 96px);
+        height: calc(100% + 96px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid rgba(145, 110, 210, 0.08);
+        box-shadow: 0 6px 20px rgba(145, 110, 210, 0.02) inset;
+        opacity: 0.95;
+        animation: ringPulse 6s ease-in-out infinite;
+      }
+      .hero-kbi::after {
+        width: calc(100% + 168px);
+        height: calc(100% + 168px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(145, 110, 210, 0.04);
+        opacity: 0.9;
+      }
     </style>
   </head>
   <body class="about">
@@ -1446,17 +1517,22 @@
 
       <div class="hero-content">
         <div class="hero-eyebrow">e-Security Consulting</div>
-        <div class="hero-title">KB<span>i</span></div>
-        <div class="hero-title-sub">Korea Business Intelligence</div>
+        <div class="hero-top">
+          <div class="hero-kbi">
+            <img
+              src="../images/KBI-RepresentativeLogo-without-E-security.jpg"
+              alt="KBI e-Security Consulting"
+            />
+          </div>
+        </div>
         <p class="hero-desc">
-          <strong>AI 빅데이터 분석 기반의 보안취약점 진단 기술</strong>을
-          제공합니다.<br />
-          기업 보안의 <strong>신뢰와 믿음</strong>을 만들겠습니다.
+          <strong
+            >(주)케이비아이는 AI 빅데이터 분석 기반의 보안취약점 진단
+            기술</strong
+          >로<br />
+          기업 보안의 <strong>신뢰와 믿음</strong>을 만들었습니다.
         </p>
-        <p class="hero-desc2">
-          ㈜케이비아이는 2003년 설립 이래 20년 이상의 기술력으로<br />
-          대한민국 정보보안을 책임지고 있습니다.
-        </p>
+
         <div class="hero-actions">
           <a class="btn-primary" href="#history">연혁 살펴보기 →</a>
           <a class="btn-secondary" href="#services">사업 내용</a>

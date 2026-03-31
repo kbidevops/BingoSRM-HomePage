@@ -192,6 +192,13 @@
         color: var(--ink);
         margin-bottom: 10px;
       }
+      /* constrain logo image when used inside hero-title */
+      .hero-title img {
+        max-width: 420px;
+        width: 100%;
+        height: auto;
+        display: block;
+      }
       .hero-title span {
         color: var(--crimson);
       }
@@ -1024,8 +1031,10 @@
     <section class="hero" id="hero">
       <div class="hero-bg-glow"></div>
       <div class="hero-content">
-        <div class="hero-eyebrow">Sales Inquiry</div>
-        <div class="hero-title">영업<span>문의</span></div>
+        <div class="hero-eyebrow">영업 문의</div>
+        <div class="hero-title">
+          <img src="/images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
+        </div>
         <div class="hero-title-sub">㈜케이비아이 문의</div>
         <p class="hero-desc">
           <strong>BingoCVM 도입 상담, 기술 문의</strong>까지<br />

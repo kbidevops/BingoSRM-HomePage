@@ -364,7 +364,7 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 28px;
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-size: 10px;
         color: var(--muted);
         letter-spacing: 3px;
@@ -386,6 +386,14 @@
         letter-spacing: 4px;
         color: var(--ink);
         margin-bottom: 12px;
+      }
+
+      /* constrain logo image when used inside hero-title */
+      .hero-title img {
+        max-width: 420px;
+        width: 100%;
+        height: auto;
+        display: block;
       }
 
       .hero-title span {
@@ -1608,8 +1616,8 @@
                 <!-- LEFT CONTENT -->
         <div>
           <div class="hero-eyebrow">취약점진단 자동화 플랫폼</div>
-          <div class="hero-title">Bingo<span>CVM</span></div>
-          <div class="hero-title-sub">빙고씨브이엠</div>
+          <div class="hero-title"><img src="../images/bingoCVM-logo-bklong2.png" alt="BingoCVM"></div>
+          
 
           <p class="hero-desc">
             <strong>
