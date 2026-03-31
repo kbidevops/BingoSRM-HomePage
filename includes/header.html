@@ -1,5 +1,12 @@
 <!-- NAV -->
 <nav class="nav" id="mainNav">
+  <!-- Skip link for keyboard users -->
+  <a
+    class="skip-link"
+    href="#main"
+    style="position: absolute; left: -9999px; top: auto"
+    >Skip to content</a
+  >
   <div class="nav-brand">
     <!-- <div class="logo-badge" role="img" aria-label="KBI e-Security Consulting">
       <img
@@ -12,14 +19,29 @@
       <img src="/images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
     </div>
   </div>
-  <nav class="nav-menu">
+  <nav class="nav-menu" id="siteNav" aria-label="주요 메뉴">
     <a href="/index.html">홈</a>
     <a href="/sub/product.html">제품 소개</a>
     <a href="/sub/about.html">회사 소개</a>
     <a href="/sub/news.html">뉴스</a>
     <a href="/sub/contact.html">영업문의</a>
-    <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
-      >조달청 구매 →</a
+    <a
+      href="https://digitalmall.g2b.go.kr/link/GDSF001_01/?ctrtItemMngNo=002461084_1010000003"
+      target="_blank"
+      class="nav-buy"
     >
+      <img
+        src="/images/digitalMall.png"
+        alt="조달청 디지털서비스몰"
+        style="height: 22px; display: inline-block; vertical-align: middle"
+      />
+      <span style="margin-left: 10px; vertical-align: middle; font-weight: 700"
+        >조달청 디지털서비스몰 바로가기 →</span
+      >
+    </a>
   </nav>
+  <button class="nav-toggle" aria-expanded="false" aria-label="메뉴 열기">
+    ☰
+  </button>
+  <script src="/js/nav-toggle.js" defer></script>
 </nav>

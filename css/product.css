@@ -75,6 +75,13 @@
 .prod-section h2 .accent {
   color: #c4207a;
 }
+/* Larger section titles used on the product page */
+h2.section-title {
+  font-size: clamp(28px, 3.5vw, 40px) !important;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
 /* Small sub-tag used on some section headings */
 .prod-section h2 .sub-tag {
   display: inline-block;
@@ -220,7 +227,7 @@
   height: 72px;
   border-radius: 50%;
   color: var(--blue);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -436,7 +443,7 @@
   border-left: 8px solid #fff;
   margin-left: 2px;
 }
-.arch-desc {
+.arch-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
@@ -577,7 +584,7 @@
   padding: 24px;
 }
 .feat-card h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #222;
   margin-bottom: 16px;
@@ -724,7 +731,7 @@
     flex-direction: column;
     gap: 16px;
   }
-  .arch-desc {
+  .arch-grid {
     grid-template-columns: 1fr;
   }
   .cve-twocol {

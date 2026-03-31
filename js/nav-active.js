@@ -105,6 +105,30 @@ document.addEventListener("includesLoaded", () => {
   try {
   } catch (e) {}
   initNavs();
+  // ensure nav-toggle behavior is available after dynamic header include
+  try {
+    // If nav-toggle is already available, initialize it; otherwise reload and execute it
+    if (window.initNavToggle) {
+      window.initNavToggle();
+    } else {
+      // remove any existing script tags with same src (they may have been injected via innerHTML
+      document
+        .querySelectorAll('script[src="/js/nav-toggle.js"]')
+        .forEach((el) => el.remove());
+      const s = document.createElement("script");
+      s.src = "/js/nav-toggle.js";
+      s.defer = true;
+      s.onload = function () {
+        if (window.initNavToggle) window.initNavToggle();
+        try {
+          if (window.ensureFloatingToggle) window.ensureFloatingToggle();
+        } catch (e) {}
+      };
+      document.body.appendChild(s);
+    }
+  } catch (e) {
+    /* ignore */
+  }
 });
 
 // also expose for manual calls

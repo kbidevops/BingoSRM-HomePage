@@ -19,4 +19,9 @@
   --hero-accent: var(--crimson);
   --hero-accent-2: var(--crimson2);
   --border: var(--rule);
+  /* Korean-friendly UI font stack — used as the primary site font */
+  --font-ui:
+    "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", "Nanum Gothic", "Segoe UI",
+    "Roboto", sans-serif;
 }

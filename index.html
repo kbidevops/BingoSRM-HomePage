@@ -53,11 +53,20 @@
       }
 
       body {
+        /* Korean-friendly UI font stack and slightly larger base size */
         font-family:
           "Pretendard",
+          "Noto Sans KR",
           -apple-system,
           BlinkMacSystemFont,
+          "Apple SD Gothic Neo",
+          "Malgun Gothic",
+          "Nanum Gothic",
           sans-serif;
+        font-size: 20px;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         background: var(--bg);
         color: var(--ink);
         overflow-x: hidden;
@@ -232,7 +241,9 @@
         flex-shrink: 0;
       }
       .hero-kbi img {
-        max-height: 48%;
+        /* match the responsive logo height used elsewhere */
+        height: clamp(40px, 6vw, 72px);
+        max-height: 72px;
         max-width: 62%;
         object-fit: contain;
         display: block;
@@ -402,6 +413,18 @@
         max-width: 100%;
         display: inline-block;
         vertical-align: middle;
+      }
+      /* Make the KBI wordmark on slide 3 match the BingoCVM logo size (responsive) */
+      .hero-slide[aria-label="3 of 3"] .hero-kbi.hero-kbi--wordmark {
+        font-size: clamp(40px, 6vw, 72px) !important;
+        line-height: 1;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .hero-slide[aria-label="3 of 3"] .hero-kbi.hero-kbi--wordmark em {
+        font-size: 1em !important;
+        margin-left: 8px;
+        font-weight: 900;
       }
       /* slightly tighten the subheading for visual rhythm */
       .hero-kbi-sub {
@@ -933,7 +956,7 @@
           gap: 12px;
         }
         .bs-name {
-          font-size: 18px;
+          font-size: 20px;
         }
         .bs-g2b-link {
           padding: 10px 14px;
@@ -1268,6 +1291,13 @@
         display: inline-block;
         margin-bottom: 16px;
       }
+      /* Larger bingo section title */
+      #bingo .section-title {
+        font-size: clamp(36px, 6vw, 64px) !important;
+        line-height: 1.04 !important;
+        font-weight: 900 !important;
+        margin-bottom: 18px !important;
+      }
       .section-title::after {
         content: "";
         display: block;
@@ -1393,7 +1423,7 @@
         background: var(--crimson);
       }
       .bs-brand .bs-name {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 900;
         color: var(--ink);
       }
@@ -1427,6 +1457,9 @@
         font-size: 13px;
         color: var(--muted);
         line-height: 1.7;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        white-space: normal;
       }
 
       .bs-solutions {
@@ -2309,7 +2342,7 @@
                 <div class="stat-num">
                   5<em
                     style="
-                      font-size: 18px;
+                      font-size: 20px;
                       color: var(--muted);
                       font-style: normal;
                     "
@@ -2318,18 +2351,6 @@
                 </div>
                 <div class="stat-lbl">진단 프로세스</div>
               </div>
-            </div>
-
-            <div class="g2b-panel">
-              <div class="g2b-text">
-                조달청 디지털서비스몰<br />검색: 케이비아이, BingoCVM
-              </div>
-              <a
-                class="g2b-link"
-                href="https://digitalmall.g2b.go.kr/"
-                target="_blank"
-                >바로가기 →</a
-              >
             </div>
           </div>
         </div>
@@ -2436,18 +2457,6 @@
                 <span class="bs-tag">AWS · Azure · GCP</span>
                 <span class="bs-tag">KT Cloud</span>
                 <span class="bs-tag">Naver Cloud</span>
-              </div>
-              <div class="card-footer">
-                <span
-                  >조달청 디지털서비스몰<br />검색: 케이비아이, BingoCVM</span
-                >
-                <a
-                  class="g2b-link"
-                  href="https://digitalmall.g2b.go.kr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >구매하기 →</a
-                >
               </div>
             </div>
           </div>
@@ -2769,17 +2778,6 @@
               <div class="bs-sol-name">BingoNaru</div>
               <div class="bs-sol-desc">DBMS to PostgreSQL 마이그레이션</div>
             </div>
-          </div>
-          <div class="bs-g2b">
-            <div class="bs-g2b-txt">
-              조달청 디지털서비스몰<br />검색: 케이비아이, BingoCVM
-            </div>
-            <a
-              class="g2b-link"
-              href="https://digitalmall.g2b.go.kr/"
-              target="_blank"
-              >구매하기 →</a
-            >
           </div>
         </div>
       </div>

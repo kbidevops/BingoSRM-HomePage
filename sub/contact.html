@@ -51,9 +51,17 @@
       body {
         font-family:
           "Pretendard",
+          "Noto Sans KR",
           -apple-system,
           BlinkMacSystemFont,
+          "Apple SD Gothic Neo",
+          "Malgun Gothic",
+          "Nanum Gothic",
           sans-serif;
+        font-size: 20px;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         background: var(--bg);
         color: var(--ink);
         overflow-x: hidden;
@@ -438,6 +446,14 @@
         background: var(--crimson);
         margin-top: 10px;
       }
+      /* Larger titles for Contact page */
+      #contact .section-title,
+      #faq .section-title {
+        font-size: clamp(34px, 5.2vw, 48px) !important;
+        line-height: 1.06 !important;
+        font-weight: 900 !important;
+        margin-bottom: 18px !important;
+      }
       .section-desc {
         font-size: 15px;
         color: var(--muted);
@@ -620,7 +636,7 @@
         margin-bottom: 10px;
       }
       .g2b-card-title {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 800;
         color: var(--white);
         margin-bottom: 10px;
@@ -880,9 +896,6 @@
         line-height: 1.85;
         border-top: 1px solid var(--rule);
         padding-top: 14px;
-      }
-      .faq-a-inner strong {
-        color: var(--ink2);
         font-weight: 600;
       }
       .faq-a-inner a {
@@ -1046,12 +1059,12 @@
     <!-- COMPANY INFO STRIP -->
     <div class="info-strip">
       <div class="info-cell">
-        <div class="info-cell-lbl">전화번호</div>
-        <div class="info-cell-val">042-826-4660</div>
+        <div class="info-cell-lbl">영업 대표 1</div>
+        <div class="info-cell-val">010-5458-9315</div>
       </div>
       <div class="info-cell">
-        <div class="info-cell-lbl">팩스번호</div>
-        <div class="info-cell-val">042-935-6445</div>
+        <div class="info-cell-lbl">영업 대표 2</div>
+        <div class="info-cell-val">010-8080-7839</div>
       </div>
       <div class="info-cell">
         <div class="info-cell-lbl">홈페이지</div>
@@ -1090,15 +1103,15 @@
           <div class="contact-cards-grid reveal">
             <div class="contact-card">
               <div class="contact-card-icon">📞</div>
-              <div class="contact-card-label">전화 문의</div>
-              <div class="contact-card-val">042-826-4660</div>
+              <div class="contact-card-label">영업 대표 1</div>
+              <div class="contact-card-val">010-5458-9315</div>
               <div class="contact-card-sub">영업·기술 상담 전화</div>
             </div>
             <div class="contact-card">
-              <div class="contact-card-icon">📠</div>
-              <div class="contact-card-label">팩스</div>
-              <div class="contact-card-val">042-935-6445</div>
-              <div class="contact-card-sub">공문 발송</div>
+              <div class="contact-card-icon">📞</div>
+              <div class="contact-card-label">영업 대표 2</div>
+              <div class="contact-card-val">010-8080-7839</div>
+              <div class="contact-card-sub">영업 상담 전화</div>
             </div>
             <div class="contact-card">
               <div class="contact-card-icon">🌐</div>
@@ -1216,8 +1229,8 @@
             <h2 class="section-title">문의 전 확인해보세요</h2>
             <p class="section-desc">
               영업 문의 전 자주 묻는 질문을 먼저 확인해 보세요.<br />
-              <strong>추가 문의는 전화(042-826-4660)</strong>로 주시면 빠르게
-              안내드립니다.
+              <strong>추가 문의는 전화(bingocvm@kbisys.com)</strong>로 주시면
+              빠르게 안내드립니다.
             </p>
           </div>
 
@@ -1365,10 +1378,6 @@
         <div class="toc-title">이 문서의 내용</div>
         <a class="toc-link" href="#contact">01 문의 채널</a>
         <a class="toc-link" href="#faq">02 자주 묻는 질문</a>
-        <div class="toc-divider"></div>
-        <a class="toc-cta" href="https://digitalmall.g2b.go.kr/" target="_blank"
-          >조달청 구매 →</a
-        >
       </aside>
     </div>
 
