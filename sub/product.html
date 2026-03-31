@@ -166,7 +166,58 @@
         align-items: center;
         gap: 14px;
       }
-
+      .nav-brand > img {
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
+      .logo-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(36px, 3.2vw, 44px);
+        height: clamp(36px, 3.2vw, 44px);
+        max-height: 44px;
+        max-width: 44px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #fff 0%, #fbfbfb 35%, #fff 100%);
+        box-shadow: 0 8px 18px rgba(26, 29, 38, 0.06);
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 10px;
+        overflow: visible;
+      }
+      .logo-badge > img {
+        width: 52%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .logo-badge::before,
+      .logo-badge::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .logo-badge::before {
+        width: calc(100% + 16px);
+        height: calc(100% + 16px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(145, 110, 210, 0.05);
+      }
+      .logo-badge::after {
+        width: calc(100% + 36px);
+        height: calc(100% + 36px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(145, 110, 210, 0.03);
+        filter: blur(0.2px);
+      }
       .nav-logo {
         font-family: "Bebas Neue", sans-serif;
         font-size: 26px;
@@ -191,7 +242,19 @@
         align-items: center;
         gap: 7px;
       }
-      .nav-product .nav-icon { width: 28px; height: 28px; object-fit: contain; }
+      .nav-product img {
+        height: 32px;
+        max-height: 36px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+      .nav-product .nav-icon {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+      }
       .nav-cube {
         width: 16px;
         height: 16px;
@@ -1644,6 +1707,7 @@
       }
 
       /* ── FOOTER ── */
+
       footer {
         background: var(--ink);
         padding: 56px 80px 36px;
@@ -1746,6 +1810,11 @@
         opacity: 1;
         transform: none;
       }
+      .brand-logo {
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
 
       @media (max-width: 1100px) {
         .hero-content {
@@ -1825,11 +1894,19 @@
     <!-- NAV -->
     <nav class="nav" id="mainNav">
       <div class="nav-brand">
-        <div class="nav-logo">KB<em>i</em></div>
+        <div
+          class="logo-badge"
+          role="img"
+          aria-label="KBI e-Security Consulting"
+        >
+          <img
+            src="../images/KBI-RepresentativeLogo-without-E-security.jpg"
+            alt="KBI e-Security Consulting"
+          />
+        </div>
         <div class="nav-vr"></div>
         <div class="nav-product">
-          <img class="nav-icon" src="/images/fabi.ico" alt="BingoCVM" />
-          <span class="nav-pname">Bingo<span>CVM</span></span>
+          <img src="../images/bingoCVM-logo-bklong2.png" alt="BingoCVM"/>
         </div>
       </div>
       <nav class="nav-menu">
@@ -2481,11 +2558,22 @@
     <footer>
       <div class="footer-cols">
         <div>
-          <div class="f-logo">KB<em>i</em></div>
+          <img
+            class="brand-logo"
+            src="../images/LogoWithoutBackgroundWhite(DarkBackground).png"
+            alt="KBI e-Security Consulting"
+            loading="lazy"
+          />
           <div class="f-sub">e-Security Consulting</div>
-          <div class="f-prow">
-            <img src="/images/fabi.ico" alt="BingoCVM icon" style="width: 16px; height: 16px; margin-right: 6px">
-            <div class="f-pname">Bingo<span>CVM</span></div>
+
+          <div style="margin-top: 20px">
+            <img
+              class="brand-logo footer-bingo"
+              src="../images/BingoCVM-logo-noline-one-whlong.png"
+              alt="BingoCVM"
+              loading="lazy"
+            />
+            <div class="f-sub">취약점진단 자동화 플랫폼</div>
           </div>
         </div>
         <div>
@@ -2499,11 +2587,13 @@
           </div>
         </div>
         <div>
-          <div class="f-col-lbl">회사 소개</div>
+          <div class="f-col-lbl">조달청 디지털서비스몰</div>
           <p
             style="
               font-size: 12.5px;
               color: rgba(255, 255, 255, 0.35);
+              line-height: 1.85;
+            "
               line-height: 1.85;
             "
           >
@@ -2529,10 +2619,9 @@
       </div>
       <div class="f-bottom">
         <span
-          >© 2025 KBI e-Security Consulting. All rights reserved. | 설립
-          2003년</span
+          >© 2026 (주) 케이비아이 e-Security Consulting. All rights reserved.</span
         >
-        <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
+        
       </div>
     </footer>
 
