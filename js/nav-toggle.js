@@ -61,7 +61,7 @@ function ensureFloatingToggle() {
   if (!toggle) return;
   // Only create fallback on small screens (mobile breakpoint)
   if (window.innerWidth > 980) {
-    const existing = document.querySelector('.nav-toggle-floating');
+    const existing = document.querySelector(".nav-toggle-floating");
     if (existing) existing.remove();
     return;
   }
