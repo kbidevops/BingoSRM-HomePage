@@ -13,6 +13,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
     />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <script src="/js/nav-active.js" defer></script>
     <style>
       *,
       *::before,
@@ -104,150 +107,6 @@
         border-radius: 8px;
         border: 2px solid transparent;
         background-clip: padding-box;
-      }
-
-      /* NAV */
-      .nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 56px;
-        background: rgba(244, 242, 238, 0.92);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--rule);
-        transition: box-shadow 0.3s;
-      }
-      .nav.scrolled {
-        box-shadow: 0 4px 20px rgba(26, 29, 38, 0.08);
-      }
-      .nav-brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      .nav-brand > img {
-        height: 32px;
-        object-fit: contain;
-        display: block;
-      }
-      .brand-logo {
-        height: 32px;
-        object-fit: contain;
-        display: block;
-      }
-      .logo-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: clamp(36px, 3.2vw, 44px);
-        height: clamp(36px, 3.2vw, 44px);
-        max-height: 44px;
-        max-width: 44px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle at 30% 30%,
-          #fff 0%,
-          #fbfbfb 35%,
-          #fff 100%
-        );
-        box-shadow: 0 8px 18px rgba(26, 29, 38, 0.06);
-        position: relative;
-        flex-shrink: 0;
-        margin-right: 10px;
-        overflow: visible;
-      }
-      .logo-badge > img {
-        width: 52%;
-        height: auto;
-        display: block;
-        object-fit: contain;
-      }
-      .nav-logo {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 26px;
-        letter-spacing: 3px;
-        color: var(--ink);
-        line-height: 1;
-      }
-      .nav-logo em {
-        font-style: normal;
-        color: var(--crimson);
-      }
-      .nav-vr {
-        width: 1px;
-        height: 18px;
-        background: var(--rule);
-      }
-      .nav-product {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-      }
-      .nav-product img {
-        height: 32px;
-        max-height: 36px;
-        width: auto;
-        display: block;
-        object-fit: contain;
-        flex-shrink: 0;
-      }
-      .nav-product .nav-icon {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-      }
-      .nav-pname {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
-        color: var(--muted);
-        letter-spacing: 1.5px;
-      }
-      .nav-pname span {
-        color: var(--crimson);
-        font-weight: 500;
-      }
-      .nav-menu {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-      }
-      .nav-menu a {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--ink2);
-        text-decoration: none;
-        letter-spacing: 0.2px;
-        transition: color 0.2s;
-      }
-      .nav-menu a:hover {
-        color: var(--ink);
-      }
-      .nav-menu a.active {
-        background: transparent;
-        border: 1px solid var(--crimson);
-        color: var(--crimson);
-        padding: 6px 14px;
-        border-radius: 6px;
-        font-weight: 700;
-      }
-      .nav-buy {
-        padding: 7px 18px;
-        background: var(--ink) !important;
-        color: var(--white) !important;
-        border-radius: 3px;
-        font-size: 12px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.5px !important;
-        transition: background 0.2s !important;
-      }
-      .nav-buy:hover {
-        background: var(--crimson) !important;
       }
 
       /* HERO */
@@ -1079,97 +938,6 @@
         color: rgba(255, 255, 255, 0.6);
       }
 
-      /* FOOTER */
-      .f-prow {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        margin-top: 16px;
-      }
-      .f-pcube {
-        width: 14px;
-        height: 14px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2px;
-      }
-      .f-pcube span {
-        background: var(--crimson);
-        border-radius: 1px;
-        opacity: 0.6;
-      }
-      .f-pname {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
-        color: rgba(255, 255, 255, 0.35);
-      }
-      .f-pname span {
-        color: var(--crimson);
-      }
-
-      footer {
-        background: var(--ink);
-        padding: 56px 80px 36px;
-        border-top: 3px solid var(--crimson);
-      }
-      .footer-cols {
-        display: grid;
-        grid-template-columns: auto 1fr 2fr;
-        gap: 56px;
-        margin-bottom: 36px;
-      }
-      .f-logo {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 40px;
-        color: var(--white);
-        letter-spacing: 3px;
-        line-height: 1;
-      }
-      .f-logo em {
-        font-style: normal;
-        color: var(--crimson);
-      }
-      .f-sub {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
-        color: rgba(255, 255, 255, 0.3);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-top: 6px;
-      }
-      .f-col-lbl {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
-        color: rgba(255, 255, 255, 0.25);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 14px;
-      }
-      .f-links {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-      }
-      .f-links a {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.45);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .f-links a:hover {
-        color: var(--white);
-      }
-      .f-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
-        padding-top: 22px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.2);
-        font-family: "IBM Plex Mono", monospace;
-        letter-spacing: 0.3px;
-      }
-
       /* REVEAL */
       .reveal {
         opacity: 0;
@@ -1228,16 +996,7 @@
         .info-strip {
           grid-template-columns: 1fr 1fr;
         }
-        .nav {
-          padding: 0 24px;
-        }
-        footer {
-          padding: 48px 40px 32px;
-        }
-        .footer-cols {
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
+
         section {
           padding: 60px 0;
         }
@@ -1259,34 +1018,7 @@
     </button>
 
     <!-- NAV -->
-    <nav class="nav" id="mainNav">
-      <div class="nav-brand">
-        <div
-          class="logo-badge"
-          role="img"
-          aria-label="KBI e-Security Consulting"
-        >
-          <img
-            src="../images/KBI-RepresentativeLogo-without-E-security.jpg"
-            alt="KBI e-Security Consulting"
-          />
-        </div>
-        <div class="nav-vr"></div>
-        <div class="nav-product">
-          <img src="../images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
-        </div>
-      </div>
-      <nav class="nav-menu">
-        <a href="../index.html">홈</a>
-        <a href="./product.html">제품 소개</a>
-        <a href="./about.html">회사 소개</a>
-        <a href="./news.html">뉴스</a>
-        <a href="./contact.html" class="active">영업문의</a>
-        <a href="https://digitalmall.g2b.go.kr/" target="_blank" class="nav-buy"
-          >조달청 구매 →</a
-        >
-      </nav>
-    </nav>
+    <div id="header"></div>
 
     <!-- HERO -->
     <section class="hero" id="hero">
@@ -1632,75 +1364,25 @@
     </div>
 
     <!-- FOOTER -->
-    <footer>
-      <div class="footer-cols">
-        <div>
-          <img
-            class="brand-logo"
-            src="../images/LogoWithoutBackgroundWhite(DarkBackground).png"
-            alt="KBI e-Security Consulting"
-            loading="lazy"
-          />
-          <div class="f-sub">e-Security Consulting</div>
-
-          <div style="margin-top: 20px">
-            <img
-              class="brand-logo footer-bingo"
-              src="../images/BingoCVM-logo-noline-one-whlong.png"
-              alt="BingoCVM"
-              loading="lazy"
-            />
-            <div class="f-sub">취약점진단 자동화 플랫폼</div>
-          </div>
-        </div>
-        <div>
-          <div class="f-col-lbl">사이트맵</div>
-          <div class="f-links">
-            <a href="../index.html">홈</a>
-            <a href="./product.html">제품 소개</a>
-            <a href="./about.html">회사 소개</a>
-            <a href="./news.html">뉴스</a>
-            <a href="./contact.html">영업문의</a>
-          </div>
-        </div>
-        <div>
-          <div class="f-col-lbl">조달청 디지털서비스몰</div>
-          <p
-            style="
-              font-size: 12.5px;
-              color: rgba(255, 255, 255, 0.35);
-              line-height: 1.85;
-            "
-          >
-            <strong style="color: rgba(255, 255, 255, 0.55)"
-              >㈜케이비아이</strong
-            ><br />
-            대전광역시 서구 둔산대로117번길 44, 415호<br />
-            Tel. 042-826-4660 &nbsp;|&nbsp; Fax. 042-935-6445<br /><br />
-            <a
-              href="https://digitalmall.g2b.go.kr/"
-              target="_blank"
-              style="
-                color: rgba(200, 0, 30, 0.7);
-                text-decoration: none;
-                font-family: &quot;IBM Plex Mono&quot;, monospace;
-                font-size: 10px;
-              "
-              >https://digitalmall.g2b.go.kr/ →</a
-            >
-          </p>
-        </div>
-      </div>
-      <div class="f-bottom">
-        <span
-          >© 2025 KBI e-Security Consulting. All rights reserved. | 설립
-          2003년</span
-        >
-        <span>GS 1등급 인증 · CSAP 클라우드 보안 · K-RMF / K-STIG 전문</span>
-      </div>
-    </footer>
-
+    <div id="footer"></div>
     <script>
+      Promise.all([
+        fetch("../includes/header.html").then((r) => r.text()),
+        fetch("../includes/footer.html").then((r) => r.text()),
+      ])
+        .then(([headerHtml, footerHtml]) => {
+          const h = document.getElementById("header");
+          if (h) h.innerHTML = headerHtml;
+          const f = document.getElementById("footer");
+          if (f) f.innerHTML = footerHtml;
+          document.dispatchEvent(new CustomEvent("includesLoaded"));
+          setTimeout(() => {
+            if (window.initNavs) window.initNavs();
+          }, 50);
+        })
+        .catch(() => {
+          // ignore include loading errors
+        });
       // CURSOR
       const dot = document.getElementById("cursorDot");
       const ring = document.getElementById("cursorRing");
