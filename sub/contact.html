@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/scrollTop.css" />
     <script src="/js/nav-active.js" defer></script>
     <style>
       *,
@@ -889,56 +890,6 @@
         opacity: 0.75;
       }
 
-      /* SCROLL TO TOP */
-      .scroll-top {
-        position: fixed;
-        bottom: 32px;
-        right: 32px;
-        z-index: 300;
-        background: var(--ink);
-        color: var(--white);
-        border: none;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2px;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(14px);
-        transition:
-          opacity 0.25s,
-          transform 0.25s,
-          background 0.2s;
-        pointer-events: none;
-      }
-      .scroll-top.show {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      .scroll-top:hover {
-        background: var(--crimson);
-      }
-      .scroll-top svg {
-        width: 14px;
-        height: 14px;
-        stroke: var(--white);
-        stroke-width: 2;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .scroll-top span {
-        font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 14px;
-        letter-spacing: 1px;
-        color: rgba(255, 255, 255, 0.6);
-      }
-
       /* REVEAL */
       .reveal {
         opacity: 0;
@@ -1036,15 +987,7 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
-    <button
-      class="scroll-top"
-      id="scrollTop"
-      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-      aria-label="맨 위로"
-    >
-      <svg viewBox="0 0 16 16"><polyline points="3,10 8,5 13,10" /></svg>
-      <span>TOP</span>
-    </button>
+    <div id="scrollTop"></div>
 
     <!-- NAV -->
     <div id="header"></div>
@@ -1441,14 +1384,20 @@
         { passive: true },
       );
       // SCROLL TO TOP
-      const scrollBtn = document.getElementById("scrollTop");
-      window.addEventListener(
-        "scroll",
-        () => {
-          scrollBtn.classList.toggle("show", scrollY > 400);
-        },
-        { passive: true },
-      );
+      fetch("/includes/scrollTop.html")
+        .then((r) => r.text())
+        .then((html) => {
+          const el = document.getElementById("scrollTop");
+          if (el) el.outerHTML = html;
+          const scrollBtn = document.querySelector(".scroll-top");
+          if (scrollBtn) {
+            window.addEventListener(
+              "scroll",
+              () => scrollBtn.classList.toggle("show", scrollY > 400),
+              { passive: true },
+            );
+          }
+        });
       // REVEAL
       const revealObs = new IntersectionObserver(
         (entries) => {
