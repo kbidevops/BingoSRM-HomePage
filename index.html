@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -63,7 +63,7 @@
           "Malgun Gothic",
           "Nanum Gothic",
           sans-serif;
-        font-size: 20px;
+        font-size: 17px;
         line-height: 1.75;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -126,6 +126,259 @@
           height 0.15s ease,
           border-color 0.15s ease,
           opacity 0.15s ease;
+      }
+
+      /* ── SLIDE-1 ZERO TRUST FEATURE CARDS ── */
+      .zt-headline {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 800;
+        color: var(--ink);
+        line-height: 1.15;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+      .zt-headline em {
+        color: var(--crimson);
+        font-style: normal;
+      }
+      .zt-sub {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 28px;
+        max-width: 560px;
+      }
+      .zt-sub strong {
+        color: var(--ink2);
+      }
+      /* pill tags row */
+      .zt-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+      .zt-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 99px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        border: 1px solid var(--rule);
+        background: var(--surface);
+        color: var(--ink2);
+        opacity: 0;
+        transform: translateY(8px);
+        animation: ztPillIn 0.5s ease forwards;
+      }
+      .zt-pill:nth-child(1) {
+        animation-delay: 0.15s;
+      }
+      .zt-pill:nth-child(2) {
+        animation-delay: 0.25s;
+      }
+      .zt-pill:nth-child(3) {
+        animation-delay: 0.35s;
+      }
+      .zt-pill:nth-child(4) {
+        animation-delay: 0.45s;
+      }
+      .zt-pill:nth-child(5) {
+        animation-delay: 0.55s;
+      }
+      .zt-pill .pill-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .pill-dot--red {
+        background: var(--crimson);
+      }
+      .pill-dot--blue {
+        background: var(--accent-blue);
+      }
+      .pill-dot--cyan {
+        background: var(--brand-cyan);
+      }
+      @keyframes ztPillIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* feature card grid on the right */
+      .zt-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .zt-card {
+        position: relative;
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 22px 20px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: ztCardIn 0.55s ease forwards;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.25s;
+      }
+      .zt-card:hover {
+        border-color: rgba(26, 29, 38, 0.18);
+        box-shadow: 0 8px 28px rgba(26, 29, 38, 0.07);
+      }
+      .zt-card:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .zt-card:nth-child(2) {
+        animation-delay: 0.35s;
+      }
+      .zt-card:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      .zt-card:nth-child(4) {
+        animation-delay: 0.65s;
+      }
+      @keyframes ztCardIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .zt-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        border-radius: 14px 14px 0 0;
+        background: var(--rule);
+        transition: background 0.2s;
+      }
+      .zt-card:hover::before {
+        background: var(--crimson);
+      }
+      .zt-card-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        flex-shrink: 0;
+      }
+      .zt-card-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+      .zci-red {
+        background: rgba(200, 0, 30, 0.08);
+        color: var(--crimson);
+      }
+      .zci-blue {
+        background: rgba(11, 111, 184, 0.08);
+        color: var(--accent-blue);
+      }
+      .zci-cyan {
+        background: rgba(0, 166, 214, 0.08);
+        color: var(--brand-cyan);
+      }
+      .zci-ink {
+        background: rgba(26, 29, 38, 0.06);
+        color: var(--ink2);
+      }
+      .zt-card-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 4px;
+        letter-spacing: -0.2px;
+      }
+      .zt-card-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      /* wide card spanning full width */
+      .zt-card--wide {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: start;
+        gap: 14px;
+        padding: 20px 22px;
+      }
+      .zt-card--wide .zt-card-icon {
+        margin-bottom: 0;
+      }
+      /* scanning line animation on the STIG card */
+      .zt-scan-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--crimson),
+          transparent
+        );
+        opacity: 0.35;
+        animation: ztScan 3.5s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+      @keyframes ztScan {
+        0% {
+          top: 10%;
+          opacity: 0;
+        }
+        15% {
+          opacity: 0.35;
+        }
+        85% {
+          opacity: 0.35;
+        }
+        100% {
+          top: 90%;
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .zt-pill,
+        .zt-card {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+        .zt-scan-line {
+          animation: none;
+          opacity: 0;
+        }
+      }
+      @media (max-width: 980px) {
+        .zt-cards {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+      }
+      @media (max-width: 600px) {
+        .zt-cards {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .zt-card--wide {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* ── HERO CAROUSEL ── */
@@ -206,7 +459,7 @@
         gap: 10px;
         margin-bottom: 24px;
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 10px;
+        font-size: 14px;
         color: var(--muted);
         letter-spacing: 3px;
         text-transform: uppercase;
@@ -329,7 +582,7 @@
 
       .hero-kbi-sub {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 11px;
+        font-size: 15px;
         color: var(--muted);
         letter-spacing: 2px;
         margin-bottom: 16px;
@@ -349,7 +602,7 @@
       }
       .hero-rule-text {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 9px;
+        font-size: 14px;
         color: var(--muted);
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -360,7 +613,7 @@
       }
       .hero-prod-label {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 10px;
+        font-size: 14px;
         color: var(--crimson);
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -517,7 +770,7 @@
         color: var(--crimson);
       }
       .hero-prod-sub {
-        font-size: 13px;
+        font-size: 15px;
         color: var(--muted);
         margin-top: 6px;
       }
@@ -533,7 +786,7 @@
         font-weight: 700;
       }
       .hero-desc2 {
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.9;
         color: var(--muted);
         margin-bottom: 28px;
@@ -554,10 +807,10 @@
         background: var(--crimson);
         color: var(--white);
         text-decoration: none;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 700;
         letter-spacing: 0.8px;
-        border-radius: 3px;
+        border-radius: 8px;
         transition: all 0.22s;
       }
       .btn-primary:hover {
@@ -575,9 +828,9 @@
         background: transparent;
         color: var(--ink2);
         text-decoration: none;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 600;
-        border-radius: 3px;
+        border-radius: 8px;
         transition: all 0.22s;
       }
       .btn-secondary:hover {
@@ -596,7 +849,7 @@
         align-items: center;
         gap: 5px;
         padding: 5px 11px;
-        font-size: 11px;
+        font-size: 15px;
         font-weight: 600;
         border-radius: 20px;
         border: 1px solid var(--rule);
@@ -623,7 +876,7 @@
       .hero-right {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 8px;
+        border-radius: 14px;
         padding: 22px;
         box-shadow: 0 12px 36px rgba(26, 29, 38, 0.08);
         display: flex;
@@ -640,7 +893,7 @@
       .stat-cell {
         background: var(--bg);
         border: 1px solid var(--border);
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 16px 12px;
         text-align: center;
         position: relative;
@@ -688,8 +941,8 @@
         font-style: normal;
       }
       .stat-lbl {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: var(--muted);
         margin-top: 4px;
         text-transform: uppercase;
@@ -700,12 +953,12 @@
       .cert-panel {
         background: var(--bg);
         border: 1px solid var(--border);
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 12px 14px;
       }
       .cert-label {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: var(--muted);
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -719,7 +972,7 @@
       .cert-pill {
         display: inline-block;
         padding: 4px 9px;
-        font-size: 11px;
+        font-size: 15px;
         font-weight: 600;
         color: var(--ink2);
         background: var(--surface);
@@ -737,7 +990,7 @@
       /* G2B panel */
       .g2b-panel {
         background: var(--ink);
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 13px 15px;
         display: flex;
         align-items: center;
@@ -745,20 +998,20 @@
         gap: 10px;
       }
       .g2b-text {
-        font-size: 11px;
+        font-size: 15px;
         color: rgba(255, 255, 255, 0.5);
         line-height: 1.6;
       }
       .g2b-link {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 15px;
         font-weight: 600;
         color: var(--crimson);
         text-decoration: none;
         white-space: nowrap;
         padding: 6px 11px;
         border: 1px solid rgba(200, 0, 30, 0.3);
-        border-radius: 3px;
+        border-radius: 8px;
         transition: background 0.2s;
       }
       .g2b-link:hover {
@@ -776,10 +1029,10 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        padding: 12px 16px;
+        padding: 14px 18px;
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 10px;
         transition:
           border-color 0.2s,
           transform 0.2s,
@@ -815,14 +1068,14 @@
         line-height: 1;
       }
       .step-title {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 700;
         color: var(--ink);
         flex: 1;
       }
       .step-badge {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: var(--muted);
         letter-spacing: 1px;
         padding: 3px 8px;
@@ -835,7 +1088,7 @@
       .bingocvm-card {
         background: linear-gradient(160deg, var(--navy2) 0%, var(--ink) 100%);
         color: var(--white);
-        border-radius: 8px;
+        border-radius: 14px;
         padding: 24px; /* increased padding for better spacing */
         box-shadow: 0 12px 36px rgba(3, 24, 56, 0.22);
         display: flex;
@@ -876,7 +1129,7 @@
       .card-grid-cell {
         background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 14px 12px; /* larger tappable area */
         transition:
           background 0.18s,
@@ -893,12 +1146,12 @@
         line-height: 1;
       }
       .cell-desc {
-        font-size: 11px;
+        font-size: 15px;
         color: rgba(255, 255, 255, 0.5);
         margin-top: 3px;
       }
       .card-desc {
-        font-size: 13px;
+        font-size: 15px;
         color: rgba(255, 255, 255, 0.85); /* improved contrast */
         line-height: 1.65;
       }
@@ -909,9 +1162,9 @@
       }
       .bs-tag {
         background: rgba(255, 255, 255, 0.06);
-        padding: 5px 9px;
-        border-radius: 4px;
-        font-size: 11px;
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 15px;
         color: var(--brand-cyan);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
@@ -920,7 +1173,7 @@
         justify-content: space-between;
         align-items: center;
         color: rgba(255, 255, 255, 0.6);
-        font-size: 12px;
+        font-size: 15px;
       }
       .bs-g2b-link {
         background: var(--crimson);
@@ -928,7 +1181,7 @@
         padding: 9px 16px; /* larger, more tappable */
         border-radius: 4px;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 700;
         transition:
           background 0.18s,
@@ -960,7 +1213,7 @@
         }
         .bs-g2b-link {
           padding: 10px 14px;
-          font-size: 13px;
+          font-size: 15px;
         }
       }
 
@@ -974,10 +1227,10 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 9px 12px;
+        padding: 11px 14px;
         background: var(--bg);
-        border-radius: 3px;
-        border-left: 2px solid var(--rule);
+        border-radius: 8px;
+        border-left: 3px solid var(--rule);
         transition:
           border-color 0.2s,
           background 0.2s;
@@ -988,7 +1241,7 @@
       }
       .ref-org {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 10px;
+        font-size: 14px;
         color: var(--ink2);
         min-width: 80px;
         font-weight: 500;
@@ -1000,7 +1253,7 @@
       }
       .ref-tag {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 10px;
+        font-size: 14px;
         color: var(--blue);
         white-space: nowrap;
       }
@@ -1009,10 +1262,10 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 8px;
-        padding: 10px 12px;
+        padding: 12px 14px;
         background: rgba(21, 84, 176, 0.05);
         border: 1px solid rgba(21, 84, 176, 0.15);
-        border-radius: 3px;
+        border-radius: 8px;
         text-decoration: none;
         transition: background 0.2s;
       }
@@ -1020,7 +1273,7 @@
         background: rgba(21, 84, 176, 0.1);
       }
       .ref-all span {
-        font-size: 12px;
+        font-size: 15px;
         color: var(--blue);
         font-weight: 600;
       }
@@ -1033,10 +1286,10 @@
         margin-bottom: 24px;
       }
       .client-mini {
-        padding: 14px;
+        padding: 16px;
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 10px;
         position: relative;
         overflow: hidden;
         transition:
@@ -1074,8 +1327,8 @@
         line-height: 1;
       }
       .client-mini .cm-lbl {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: var(--muted);
         letter-spacing: 1.5px;
         margin-top: 3px;
@@ -1092,7 +1345,7 @@
         height: 48px;
         background: rgba(255, 255, 255, 0.92);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 50%;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -1166,8 +1419,8 @@
         bottom: 28px;
         right: 80px;
         z-index: 10;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 15px;
         color: var(--muted);
         letter-spacing: 2px;
       }
@@ -1195,13 +1448,15 @@
         background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
         color: var(--white);
         border-top: 1px solid rgba(255, 255, 255, 0.04);
+        counter-reset: about-cell;
       }
       .about-cell {
-        padding: 28px 32px;
-        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 32px 32px;
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
         position: relative;
         overflow: hidden;
-        transition: background 0.2s;
+        transition: background 0.25s;
+        counter-increment: about-cell;
       }
       .about-cell:first-child {
         border-left: none;
@@ -1209,24 +1464,39 @@
       .about-cell:hover {
         background: rgba(200, 0, 30, 0.06);
       }
+      .about-cell::before {
+        content: "0" counter(about-cell);
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.08);
+        letter-spacing: 1px;
+        pointer-events: none;
+      }
       .about-cell::after {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
-        background: var(--crimson);
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--crimson),
+          rgba(200, 0, 30, 0.3)
+        );
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.3s;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .about-cell:hover::after {
         transform: scaleX(1);
       }
       .about-num {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 48px;
+        font-size: 52px;
         color: var(--white);
         letter-spacing: 1px;
         line-height: 1;
@@ -1238,17 +1508,17 @@
         margin-left: 4px;
       }
       .about-lbl {
-        font-size: 10px;
-        color: rgba(255, 255, 255, 0.45);
-        letter-spacing: 2px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 2.5px;
         text-transform: uppercase;
-        margin-bottom: 8px;
-        font-family: "IBM Plex Mono", monospace;
+        margin-bottom: 10px;
+        font-family: "IBM Plex Sans KR", sans-serif;
       }
       .about-desc {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1.65;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.7;
       }
 
       /* ── SECTIONS ── */
@@ -1267,8 +1537,8 @@
         user-select: none;
       }
       .section-eyebrow {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: var(--crimson);
         letter-spacing: 2.5px;
         text-transform: uppercase;
@@ -1284,15 +1554,15 @@
         background: var(--crimson);
       }
       .section-title {
-        font-size: 32px;
-        font-weight: 800;
+        font-size: 34px;
+        font-weight: 900;
         color: var(--ink);
         position: relative;
         display: inline-block;
         margin-bottom: 16px;
       }
       /* Larger bingo section title */
-      #bingo .section-title {
+      #bingo {
         font-size: clamp(36px, 6vw, 64px) !important;
         line-height: 1.04 !important;
         font-weight: 900 !important;
@@ -1328,75 +1598,92 @@
 
       .bingo-layout {
         display: grid;
-        grid-template-columns: 1fr 400px;
-        gap: 40px;
+        grid-template-columns: 1fr 380px;
+        gap: 48px;
         align-items: start;
       }
 
       .bingo-feats {
         display: flex;
         flex-direction: column;
+        gap: 0;
+        counter-reset: feat;
       }
       .bingo-feat {
-        padding: 24px 0;
+        padding: 28px 20px 28px 24px;
         border-bottom: 1px solid var(--rule);
-        display: flex;
-        gap: 20px;
-        align-items: flex-start;
-        transition: background 0.18s;
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 18px;
+        align-items: start;
         position: relative;
+        border-radius: 0;
+        transition:
+          background 0.25s,
+          border-color 0.2s;
+      }
+      .bingo-feat:first-child {
+        border-top: 1px solid var(--rule);
+      }
+      .bingo-feat:hover {
+        background: rgba(200, 0, 30, 0.015);
       }
       .bingo-feat::before {
         content: "";
         position: absolute;
-        left: -16px;
+        left: 0;
         top: 0;
         bottom: 0;
-        width: 2px;
+        width: 3px;
         background: var(--crimson);
+        border-radius: 0 3px 3px 0;
         transform: scaleY(0);
-        transform-origin: bottom;
-        transition: transform 0.3s;
+        transform-origin: center;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .bingo-feat:hover::before {
         transform: scaleY(1);
       }
       .feat-n {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 20px;
+        font-size: 18px;
         color: var(--crimson);
-        min-width: 52px;
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
         flex-shrink: 0;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(
-          180deg,
-          rgba(26, 29, 38, 0.04),
-          rgba(26, 29, 38, 0.02)
-        );
+        background: var(--surface);
         border: 1px solid var(--rule);
-        box-shadow: 0 4px 14px rgba(26, 29, 38, 0.04);
+        box-shadow: 0 2px 8px rgba(26, 29, 38, 0.04);
         transition:
-          background 0.2s,
-          border-color 0.2s;
+          background 0.25s,
+          border-color 0.25s,
+          transform 0.25s,
+          box-shadow 0.25s;
       }
       .bingo-feat:hover .feat-n {
         background: rgba(200, 0, 30, 0.06);
-        border-color: rgba(200, 0, 30, 0.25);
+        border-color: rgba(200, 0, 30, 0.22);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(200, 0, 30, 0.08);
       }
       .feat-title {
-        font-weight: 800;
-        color: var(--navy);
-        margin-bottom: 5px;
-        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 6px;
+        font-size: 17px;
+        letter-spacing: -0.2px;
+        transition: color 0.2s;
+      }
+      .bingo-feat:hover .feat-title {
+        color: var(--crimson);
       }
       .feat-desc {
         color: var(--muted);
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.7;
       }
 
@@ -1404,28 +1691,62 @@
       .bingo-side {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 14px;
+        position: sticky;
+        top: 88px;
       }
       .bs-head {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 20px;
-        border-top: 3px solid var(--crimson);
+        background: var(--ink);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 14px;
+        padding: 28px;
+        border-top: none;
+        position: relative;
+        overflow: hidden;
+      }
+      .bs-head::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--crimson) 0%,
+          #3b7cf5 55%,
+          rgba(59, 124, 245, 0) 100%
+        );
+      }
+      .bs-head::after {
+        content: "B";
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 160px;
+        color: rgba(255, 255, 255, 0.025);
+        position: absolute;
+        right: -4px;
+        bottom: -22px;
+        line-height: 1;
+        pointer-events: none;
+        letter-spacing: -6px;
       }
       .bs-brand {
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 12px;
+        margin-bottom: 18px;
       }
-      .bs-brand .mini-cube span {
-        background: var(--crimson);
+      .bs-brand img {
+        height: 28px;
+        width: auto;
+        display: block;
+        border-radius: 0;
       }
       .bs-brand .bs-name {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 900;
-        color: var(--ink);
+        color: var(--white);
+        letter-spacing: -0.3px;
       }
       .bs-brand .bs-name span {
         color: var(--crimson);
@@ -1434,75 +1755,157 @@
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
       }
       .bs-tag-light {
         display: inline-block;
-        padding: 4px 9px;
-        font-size: 11px;
+        padding: 5px 13px;
+        font-size: 13px;
         font-weight: 600;
-        color: var(--ink2);
-        background: var(--bg);
-        border: 1px solid var(--rule);
-        border-radius: 20px;
+        color: rgba(255, 255, 255, 0.65);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 99px;
         transition:
           border-color 0.2s,
-          color 0.2s;
+          color 0.2s,
+          background 0.2s;
       }
       .bs-tag-light:hover {
-        border-color: var(--crimson);
-        color: var(--crimson);
+        border-color: rgba(200, 0, 30, 0.5);
+        color: #ff8a9c;
+        background: rgba(200, 0, 30, 0.12);
       }
       .bs-desc {
-        font-size: 13px;
-        color: var(--muted);
-        line-height: 1.7;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.75;
         overflow-wrap: anywhere;
         word-break: break-word;
         white-space: normal;
+        margin-bottom: 20px;
+      }
+      .bs-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--white);
+        background: var(--crimson);
+        border-radius: 8px;
+        text-decoration: none;
+        letter-spacing: 0.15px;
+        position: relative;
+        z-index: 1;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+      }
+      .bs-cta:hover {
+        background: #d4001a;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(200, 0, 30, 0.3);
+      }
+      .bs-cta svg {
+        width: 13px;
+        height: 13px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
       .bs-solutions {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 18px;
+        border-radius: 14px;
+        padding: 20px 22px;
+        overflow: hidden;
       }
       .bs-sol-label {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 9px;
+        font-size: 12px;
         color: var(--muted);
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .bs-sol-label::before {
+        content: "";
+        width: 12px;
+        height: 2px;
+        background: var(--crimson);
+        flex-shrink: 0;
       }
       .bs-sol {
-        padding: 10px 0;
+        padding: 11px 12px 11px 14px;
         border-bottom: 1px solid var(--rule);
-        transition: background 0.15s;
+        border-radius: 8px;
+        border-left: 2px solid transparent;
+        margin-left: -2px;
+        transition:
+          background 0.15s,
+          border-left-color 0.2s;
         cursor: default;
       }
       .bs-sol:last-child {
         border-bottom: none;
-        padding-bottom: 0;
       }
       .bs-sol:hover {
-        padding-left: 6px;
+        background: rgba(26, 29, 38, 0.025);
+        border-left-color: var(--crimson);
       }
       .bs-sol-name {
-        font-size: 13px;
+        font-size: 16px;
         font-weight: 700;
         color: var(--ink);
-        margin-bottom: 2px;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: color 0.2s;
+      }
+      .bs-sol-name::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .bs-sol:nth-child(2) .bs-sol-name::before {
+        background: var(--crimson);
+      }
+      .bs-sol:nth-child(3) .bs-sol-name::before {
+        background: #3b7cf5;
+      }
+      .bs-sol:nth-child(4) .bs-sol-name::before {
+        background: #22a86a;
+      }
+      .bs-sol:nth-child(5) .bs-sol-name::before {
+        background: #e06530;
+      }
+      .bs-sol:hover .bs-sol-name {
+        color: var(--crimson);
       }
       .bs-sol-desc {
-        font-size: 11px;
+        font-size: 14px;
         color: var(--muted);
+        line-height: 1.55;
+        padding-left: 13px;
       }
 
       .bs-g2b {
         background: var(--ink);
-        border-radius: 8px;
+        border-radius: 10px;
         padding: 16px 18px;
         display: flex;
         align-items: center;
@@ -1510,13 +1913,13 @@
         gap: 12px;
       }
       .bs-g2b-txt {
-        font-size: 12px;
+        font-size: 15px;
         color: rgba(255, 255, 255, 0.5);
         line-height: 1.65;
       }
       .bs-g2b-link {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 15px;
         font-weight: 600;
         color: var(--crimson);
         text-decoration: none;
@@ -1592,9 +1995,9 @@
         background: rgba(200, 0, 30, 0.08);
       }
       .timeline-period {
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-weight: 500;
-        font-size: 12px;
+        font-size: 15px;
         color: var(--ink);
         text-align: center;
         margin-bottom: 14px;
@@ -1604,7 +2007,7 @@
         background: var(--bg);
         padding: 18px;
         border-top: 3px solid var(--ink2);
-        border-radius: 0 0 4px 4px;
+        border-radius: 0 0 10px 10px;
         transition:
           transform 0.22s,
           box-shadow 0.22s;
@@ -1614,7 +2017,7 @@
         box-shadow: 0 12px 32px rgba(26, 29, 38, 0.1);
       }
       .timeline-card-title {
-        font-size: 12px;
+        font-size: 15px;
         font-weight: 700;
         color: var(--ink);
         margin-bottom: 10px;
@@ -1626,7 +2029,7 @@
         gap: 6px;
       }
       .timeline-card ul li {
-        font-size: 11px;
+        font-size: 15px;
         color: var(--muted);
         line-height: 1.65;
         padding-left: 13px;
@@ -1654,7 +2057,7 @@
         padding: 28px;
         position: relative;
         overflow: hidden;
-        border-radius: 4px;
+        border-radius: 12px;
         transition:
           transform 0.2s,
           box-shadow 0.2s;
@@ -1673,9 +2076,9 @@
         box-shadow: 0 12px 36px rgba(26, 29, 38, 0.2);
       }
       .timeline-bottom-card .era {
-        font-family: "IBM Plex Mono", monospace;
+        font-family: "IBM Plex Sans KR", sans-serif;
         font-weight: 500;
-        font-size: 10px;
+        font-size: 14px;
         color: rgba(255, 255, 255, 0.4);
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -1694,7 +2097,7 @@
         gap: 7px;
       }
       .timeline-bottom-card ul li {
-        font-size: 12px;
+        font-size: 15px;
         color: rgba(255, 255, 255, 0.55);
         line-height: 1.65;
         padding-left: 14px;
@@ -1736,7 +2139,7 @@
           transform 0.22s,
           box-shadow 0.22s;
         position: relative;
-        border-radius: 4px;
+        border-radius: 12px;
         overflow: hidden;
       }
       .partner-card::before {
@@ -1759,20 +2162,20 @@
         transform: scaleX(1);
       }
       .partner-name {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 700;
         color: var(--ink);
         margin-bottom: 8px;
       }
       .partner-badge {
         display: inline-block;
-        font-size: 9px;
+        font-size: 14px;
         font-weight: 700;
-        padding: 3px 9px;
+        padding: 4px 10px;
         letter-spacing: 1px;
         margin-bottom: 12px;
-        border-radius: 2px;
-        font-family: "IBM Plex Mono", monospace;
+        border-radius: 6px;
+        font-family: "IBM Plex Sans KR", sans-serif;
       }
       .badge-blue {
         background: var(--ink);
@@ -1797,7 +2200,7 @@
         gap: 6px;
       }
       .partner-card ul li {
-        font-size: 12px;
+        font-size: 15px;
         color: var(--muted);
         line-height: 1.7;
         padding-left: 13px;
@@ -1845,8 +2248,8 @@
         color: var(--crimson);
       }
       .hub-sub {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 9px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: rgba(255, 255, 255, 0.4);
         letter-spacing: 1.5px;
         text-transform: uppercase;
@@ -1887,13 +2290,16 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 2px;
         background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        overflow: hidden;
       }
       .service-card {
         background: #1e2230;
         padding: 40px 30px;
-        transition: background 0.2s;
+        transition: background 0.25s;
         position: relative;
         overflow: hidden;
+        border-radius: 0;
       }
       .service-card::after {
         content: "";
@@ -1923,7 +2329,7 @@
         justify-content: center;
         font-size: 20px;
         margin-bottom: 22px;
-        border-radius: 3px;
+        border-radius: 12px;
       }
       .service-title {
         font-size: 20px;
@@ -1939,7 +2345,7 @@
         gap: 10px;
       }
       .service-card ul li {
-        font-size: 13px;
+        font-size: 15px;
         color: rgba(255, 255, 255, 0.52);
         line-height: 1.75;
         padding-left: 14px;
@@ -1977,7 +2383,7 @@
         padding: 24px 28px;
         text-align: center;
         min-width: 190px;
-        border-radius: 4px;
+        border-radius: 12px;
         border-top: 3px solid var(--crimson);
       }
       .bingocvm-badge .product-name {
@@ -1987,8 +2393,8 @@
         letter-spacing: 2px;
       }
       .bingocvm-badge .product-sub {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: rgba(255, 255, 255, 0.4);
         letter-spacing: 1px;
         margin-top: 4px;
@@ -1998,8 +2404,8 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         font-weight: 500;
         letter-spacing: 2.5px;
         text-transform: uppercase;
@@ -2028,7 +2434,7 @@
         padding: 14px 10px;
         background: var(--bg);
         border: 1px solid var(--rule);
-        border-radius: 6px;
+        border-radius: 10px;
         min-height: 90px;
         text-align: center;
         transition:
@@ -2046,7 +2452,7 @@
         width: 42px;
         height: 42px;
         background: var(--bg3);
-        border-radius: 6px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2057,7 +2463,7 @@
         background: rgba(200, 0, 30, 0.06);
       }
       .client-logo .logo-name {
-        font-size: 11px;
+        font-size: 15px;
         font-weight: 600;
         color: var(--ink2);
         background: var(--surface);
@@ -2074,7 +2480,7 @@
         gap: 0;
         background: var(--ink);
         margin-top: 36px;
-        border-radius: 4px;
+        border-radius: 12px;
         overflow: hidden;
       }
       .client-stat {
@@ -2098,8 +2504,8 @@
         color: var(--crimson);
       }
       .client-stat .lbl {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 10px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         color: rgba(255, 255, 255, 0.35);
         letter-spacing: 1px;
         margin-top: 6px;
@@ -2116,7 +2522,7 @@
         border: none;
         width: 46px;
         height: 46px;
-        border-radius: 50%;
+        border-radius: 12px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -2149,8 +2555,8 @@
         stroke-linejoin: round;
       }
       .scroll-top span {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 8px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 14px;
         letter-spacing: 1px;
         color: rgba(255, 255, 255, 0.6);
       }
@@ -2221,11 +2627,15 @@
         .timeline-grid {
           grid-template-columns: repeat(3, 1fr);
         }
+        .timeline-bottom {
+          grid-template-columns: 1fr;
+        }
         .partners-hub {
           grid-template-columns: 1fr;
         }
         .services-grid {
           grid-template-columns: 1fr;
+          border-radius: 12px;
         }
         section {
           padding: 70px 40px;
@@ -2237,6 +2647,72 @@
 
         .hero-counter {
           right: 40px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        section {
+          padding: 48px 20px;
+        }
+        .hero-slide {
+          padding: 100px 20px 60px;
+          gap: 24px;
+        }
+        .about-strip {
+          grid-template-columns: 1fr;
+        }
+        .about-cell {
+          padding: 20px 24px;
+          border-left: none;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .about-cell:first-child {
+          border-top: none;
+        }
+        .about-num {
+          font-size: 40px;
+        }
+        .section-title {
+          font-size: 26px;
+        }
+        .section-num {
+          font-size: 60px;
+        }
+        .timeline-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .clients-logos {
+          grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        }
+        .client-grid {
+          grid-template-columns: 1fr;
+        }
+        .clients-stats {
+          grid-template-columns: 1fr;
+        }
+        .clients-intro {
+          grid-template-columns: 1fr;
+        }
+        .hero-arrow {
+          width: 36px;
+          height: 36px;
+        }
+        .hero-arrow-prev {
+          left: 10px;
+        }
+        .hero-arrow-next {
+          right: 10px;
+        }
+        .hero-counter {
+          right: 20px;
+          font-size: 12px;
+        }
+        .zt-headline {
+          font-size: clamp(24px, 6vw, 36px);
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: flex-start;
         }
       }
 
@@ -2285,21 +2761,8 @@
           aria-label="1 of 3"
         >
           <div class="hero-left">
-            <div class="hero-eyebrow">e-Security Consulting</div>
-            <div class="hero-kbi">
-              <img
-                src="./images/KBI-RepresentativeLogo-without-E-security.jpg"
-                alt="KBI e-Security Consulting"
-              />
-            </div>
-
-            <div class="hero-rule">
-              <div class="hero-rule-line"></div>
-              <span class="hero-rule-text">flagship product</span>
-              <div class="hero-rule-line"></div>
-            </div>
-            <div class="hero-product">
-              <div class="hero-eyebrow">취약점진단 자동화 플랫폼</div>
+            <div class="hero-eyebrow">Zero Trust Vulnerability Platform</div>
+            <div class="hero-product" style="margin-bottom: 10px">
               <div class="hero-prod-name">
                 <img
                   src="./images/bingoCVM-logo-bklong2.png"
@@ -2308,15 +2771,33 @@
                 />
               </div>
             </div>
-            <p class="hero-desc">
-              <strong>독보적인 ATC 자동화 엔진</strong>을 통해 자산 등록부터
-              진단, 분석,<br />조치, 보고서 작성까지 전 과정을 원스톱으로
-              제공합니다.
+            <h1 class="zt-headline">
+              <em>Zero Trust</em> 기반<br />통합 취약점 진단 솔루션
+            </h1>
+            <p class="zt-sub">
+              온프레미스부터 클라우드까지,<strong>CVE</strong> 기반 소프트웨어
+              취약점과 <strong>CVM</strong> 설정 취약점을 하나의 플랫폼에서 통합
+              진단합니다. <strong>STIG</strong> 기반AI 분석을 통해 글로벌 보안
+              표준을 충족합니다.
             </p>
-            <p class="hero-desc2">
-              정보통신기반시설 및 클라우드 시스템 취약점진단 자동화 플랫폼 —<br />온프레미스에서
-              클라우드까지 하나의 플랫폼에서 진단합니다.
-            </p>
+            <div class="zt-pills">
+              <span class="zt-pill"
+                ><span class="pill-dot pill-dot--red"></span>Zero Trust</span
+              >
+              <span class="zt-pill"
+                ><span class="pill-dot pill-dot--blue"></span>CVE 진단</span
+              >
+              <span class="zt-pill"
+                ><span class="pill-dot pill-dot--cyan"></span>CVM 진단</span
+              >
+              <span class="zt-pill"
+                ><span class="pill-dot pill-dot--red"></span>STIG AI</span
+              >
+              <span class="zt-pill"
+                ><span class="pill-dot pill-dot--blue"></span>On-Prem &amp;
+                Cloud</span
+              >
+            </div>
             <div class="hero-actions">
               <a class="btn-primary" href="./sub/product.html"
                 >BingoCVM 알아보기 →</a
@@ -2324,32 +2805,130 @@
               <a class="btn-secondary" href="./sub/about.html">회사 소개</a>
             </div>
           </div>
-          <div class="hero-right">
-            <div class="stat-panel">
-              <div class="stat-cell sc-r">
-                <div class="stat-num">20<span class="unit">+</span></div>
-                <div class="stat-lbl">Years</div>
-              </div>
-              <div class="stat-cell sc-b">
-                <div class="stat-num">50<em>+</em></div>
-                <div class="stat-lbl">Clients</div>
-              </div>
-              <div class="stat-cell sc-c">
-                <div class="stat-num">GS<em>1</em></div>
-                <div class="stat-lbl">등급 인증</div>
-              </div>
-              <div class="stat-cell sc-p">
-                <div class="stat-num">
-                  5<em
-                    style="
-                      font-size: 20px;
-                      color: var(--muted);
-                      font-style: normal;
-                    "
-                    >단계</em
+          <div
+            class="hero-right"
+            style="padding: 0; background: none; border: none; box-shadow: none"
+          >
+            <div class="zt-cards">
+              <!-- CVE -->
+              <div class="zt-card">
+                <div class="zt-card-icon zci-red">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
+                    <path d="M12 9v4" />
+                    <path
+                      d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.871L13.637 3.591a1.914 1.914 0 0 0-3.274 0z"
+                    />
+                    <circle cx="12" cy="16" r=".5" fill="currentColor" />
+                  </svg>
                 </div>
-                <div class="stat-lbl">진단 프로세스</div>
+                <div class="zt-card-title">CVE 취약점 진단</div>
+                <div class="zt-card-desc">
+                  알려진 소프트웨어 취약점을 자동으로 탐지하고, 위험도 기반으로
+                  우선순위를 제공합니다.
+                </div>
+              </div>
+              <!-- CVM -->
+              <div class="zt-card">
+                <div class="zt-card-icon zci-blue">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                  </svg>
+                </div>
+                <div class="zt-card-title">CVM 설정 취약점</div>
+                <div class="zt-card-desc">
+                  시스템 설정 오류 및 보안 구성 미비를 진단하고 조치 가이드를
+                  제공합니다.
+                </div>
+              </div>
+              <!-- On-Prem + Cloud -->
+              <div class="zt-card">
+                <div class="zt-card-icon zci-cyan">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M6.5 19a4.5 4.5 0 0 1-.42-8.98A7 7 0 0 1 19.5 10a4.5 4.5 0 0 1-.08 9z"
+                    />
+                  </svg>
+                </div>
+                <div class="zt-card-title">On-Premise &amp; Cloud</div>
+                <div class="zt-card-desc">
+                  온프레미스 및 AWS, Azure, GCP 등 다양한 클라우드 환경을 통합
+                  관리합니다.
+                </div>
+              </div>
+              <!-- Zero Trust -->
+              <div class="zt-card">
+                <div class="zt-card-icon zci-ink">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div class="zt-card-title">Zero Trust 보안</div>
+                <div class="zt-card-desc">
+                  “Never Trust, Always Verify” 원칙 기반의 제로 트러스트 보안
+                  아키텍처를 지원합니다.
+                </div>
+              </div>
+              <!-- STIG wide card -->
+              <div class="zt-card zt-card--wide">
+                <div class="zt-scan-line"></div>
+                <div class="zt-card-icon zci-red">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 12h4" />
+                    <path d="M18 12h4" />
+                    <path d="M12 2v4" />
+                    <path d="M12 18v4" />
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M4.93 4.93l2.83 2.83" />
+                    <path d="M16.24 16.24l2.83 2.83" />
+                    <path d="M4.93 19.07l2.83-2.83" />
+                    <path d="M16.24 7.76l2.83-2.83" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="zt-card-title">STIG 기반 AI 취약점 진단</div>
+                  <div class="zt-card-desc">
+                    STIG(Security Technical Implementation Guide) 기준을
+                    기반으로 AI가 취약점을 분석하고 조치 가이드를 제공합니다.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2524,7 +3103,7 @@
             <div
               style="
                 font-family: &quot;IBM Plex Sans KR&quot;, sans-serif;
-                font-size: 9px;
+                font-size: 14px;
                 color: var(--crimson);
                 letter-spacing: 2.5px;
                 text-transform: uppercase;
@@ -2587,8 +3166,8 @@
               <span>전체 고객사 보기</span>
               <span
                 style="
-                  font-family: &quot;IBM Plex Mono&quot;, monospace;
-                  font-size: 11px;
+                  font-family: &quot;IBM Plex Sans KR&quot;, sans-serif;
+                  font-size: 15px;
                   color: var(--blue);
                 "
                 >→</span
@@ -2684,8 +3263,8 @@
         <h2 class="section-title">BingoCVM — 취약점진단 자동화 플랫폼</h2>
         <p class="section-desc">
           <strong>정보통신기반시설 및 클라우드 시스템 취약점진단 자동화</strong
-          >를 제공하는 KBi의 대표 보안 솔루션입니다. 진단 / 평가 / 분류 / 조치 /
-          이력 / 보고서까지 원스톱으로 제공합니다.
+          >를 제공하는 (주) 케이비아이의 대표 보안 솔루션입니다.<br />
+          진단 / 평가 / 분류 / 조치 / 이력 / 보고서까지 원스톱으로 제공합니다.
         </p>
       </div>
       <div class="bingo-layout">
@@ -2743,16 +3322,26 @@
         <div class="bingo-side reveal-r">
           <div class="bs-head">
             <div class="bs-brand">
-              <div class="bs-name" style="color: var(--ink)">BingoCVM</div>
+              <img
+                src="./images/BingoCVM-logo-noline-one-whlong.png"
+                alt="BingoCVM"
+              />
             </div>
             <div class="bs-tags">
               <span class="bs-tag-light">온프레미스/클라우드</span>
               <span class="bs-tag-light">CCE/CVE</span>
+              <span class="bs-tag-light">STIG AI</span>
             </div>
             <div class="bs-desc">
-              Unix/Linux·Windows·PC·Web·DBMS·Network·가상화·클라우드 플랫폼의
-              취약점 항목을 자동 스케줄 진단합니다.
+              Unix/Linux · Windows · PC · Web · DBMS · Network · 가상화 ·
+              클라우드 플랫폼의 취약점 항목을 자동 스케줄 진단합니다.
             </div>
+            <a href="./sub/product.html" class="bs-cta">
+              제품 자세히 보기
+              <svg viewBox="0 0 16 16">
+                <polyline points="6 4 10 8 6 12" />
+              </svg>
+            </a>
           </div>
           <div class="bs-solutions">
             <div class="bs-sol-label">관련 솔루션</div>
@@ -2793,9 +3382,13 @@
           const f = document.getElementById("footer");
           if (f) f.innerHTML = footerHtml;
           document.dispatchEvent(new CustomEvent("includesLoaded"));
-          setTimeout(() => {
-            if (window.initNavs) window.initNavs();
-          }, 50);
+          // Load nav-toggle.js (innerHTML doesn't execute <script> tags)
+          const s = document.createElement("script");
+          s.src = "/js/nav-toggle.js";
+          s.onload = () => {
+            if (window.initNavToggle) window.initNavToggle();
+          };
+          document.body.appendChild(s);
         })
         .catch(() => {
           // ignore include loading errors

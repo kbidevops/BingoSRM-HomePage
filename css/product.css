@@ -50,7 +50,7 @@
   text-underline-offset: 3px;
 }
 .prod-hero-sub {
-  font-size: 14px;
+  font-size: 15px;
   color: #555;
   line-height: 1.6;
 }
@@ -86,7 +86,7 @@ h2.section-title {
 .prod-section h2 .sub-tag {
   display: inline-block;
   margin-left: 10px;
-  font-size: 13px;
+  font-size: 15px;
   color: #8a6c9a;
   background: #f7f3fa;
   padding: 5px 10px;
@@ -95,7 +95,7 @@ h2.section-title {
   vertical-align: middle;
 }
 .prod-section .section-desc {
-  font-size: 14.5px;
+  font-size: 15px;
   color: #444;
   line-height: 1.75;
   margin-bottom: 32px;
@@ -152,7 +152,7 @@ h2.section-title {
   margin: 0 0 20px;
 }
 .prod-overview-right ul li {
-  font-size: 13.5px;
+  font-size: 15px;
   color: #444;
   line-height: 1.8;
   padding-left: 14px;
@@ -172,7 +172,7 @@ h2.section-title {
   padding: 12px 16px;
   background: #f5f3fa;
   border-radius: 8px;
-  font-size: 12.5px;
+  font-size: 14px;
   color: #555;
   line-height: 1.6;
 }
@@ -253,7 +253,7 @@ h2.section-title {
 }
 
 .pt-desc {
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
   line-height: 1.6;
 }
@@ -286,14 +286,14 @@ h2.section-title {
 .cce-card .card-head {
   background: linear-gradient(135deg, #1a9cb0, #13808e);
   padding: 14px 20px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
 }
 .cve-card .card-head {
   background: linear-gradient(135deg, #6a50b0, #4a3890);
   padding: 14px 20px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
 }
@@ -302,7 +302,7 @@ h2.section-title {
   background: #fff;
 }
 .card-body h4 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #2a3a8a;
   margin: 14px 0 8px;
@@ -318,7 +318,7 @@ h2.section-title {
   margin: 0;
 }
 .card-body ul li {
-  font-size: 12.5px;
+  font-size: 14px;
   color: #444;
   line-height: 1.7;
   padding: 2px 0 2px 12px;
@@ -417,7 +417,7 @@ h2.section-title {
   line-height: 1;
 }
 .arch-flow-circle .af-text {
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
   color: #333;
   line-height: 1.5;
@@ -457,13 +457,13 @@ h2.section-title {
   border-radius: 8px;
 }
 .arch-side h4 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: #2a3a8a;
   margin-bottom: 6px;
 }
 .arch-side p {
-  font-size: 12px;
+  font-size: 14px;
   color: #555;
   line-height: 1.6;
 }
@@ -471,7 +471,7 @@ h2.section-title {
   display: inline-block;
   padding: 3px 12px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   color: #fff;
 }
@@ -514,7 +514,7 @@ h2.section-title {
   margin: 0;
 }
 .platform-card-body ul li {
-  font-size: 12.5px;
+  font-size: 14px;
   color: #c0bcd8;
   line-height: 1.7;
   padding: 3px 0 3px 14px;
@@ -525,7 +525,7 @@ h2.section-title {
   position: absolute;
   left: 0;
   color: #4caf50;
-  font-size: 10px;
+  font-size: 14px;
 }
 .platform-bg {
   background: #14181f;
@@ -572,7 +572,7 @@ h2.section-title {
   margin-bottom: 14px;
 }
 .features-product-box p {
-  font-size: 12.5px;
+  font-size: 14px;
   color: #c4207a;
   font-weight: 600;
   line-height: 1.6;
@@ -603,7 +603,7 @@ h2.section-title {
   margin: 0;
 }
 .feat-card ul li {
-  font-size: 13px;
+  font-size: 15px;
   color: #444;
   line-height: 1.7;
   padding: 4px 0 4px 16px;
@@ -654,12 +654,12 @@ h2.section-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   flex-shrink: 0;
 }
 .sc-label-name {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: #222;
   background: #f0eef4;
@@ -670,7 +670,7 @@ h2.section-title {
   flex-shrink: 0;
 }
 .sc-label-desc {
-  font-size: 12.5px;
+  font-size: 14px;
   color: #555;
 }
 
@@ -759,7 +759,7 @@ h2.section-title {
   .pt-num {
     width: 46px;
     height: 46px;
-    font-size: 14px;
+    font-size: 15px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -777,7 +777,7 @@ h2.section-title {
     text-align: left;
   }
   .pt-desc {
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
     margin-top: 4px;
   }
@@ -807,10 +807,10 @@ h2.section-title {
   .arch-flow-circle .af-num {
     top: 12px;
     left: 14px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .arch-flow-circle .af-text {
-    font-size: 10.5px;
+    font-size: 14px;
   }
   .arch-flow-arrow {
     width: 22px;

@@ -24,4 +24,62 @@
     "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Malgun Gothic", "Nanum Gothic", "Segoe UI",
     "Roboto", sans-serif;
+  /* Korean-optimized type scale — minimum 12px for Korean glyphs */
+  --font-xs: 14px; /* smallest allowed for Korean text */
+  --font-sm: 15px; /* captions, tags, metadata */
+  --font-base: 17px; /* body text */
+  --font-md: 18px; /* emphasized body */
+  --font-lg: 20px; /* sub-headings */
+  --font-xl: 24px; /* section headings */
+}
+
+/* Global typography baseline */
+html {
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+body {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* ── Responsive font scaling for small screens ── */
+@media (max-width: 768px) {
+  :root {
+    --font-xs: 14px;
+    --font-sm: 15px;
+    --font-base: 17px;
+    --font-md: 18px;
+    --font-lg: 20px;
+    --font-xl: 23px;
+  }
+  html {
+    font-size: 17px;
+  }
+  body {
+    font-size: 17px;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --font-xs: 15px;
+    --font-sm: 16px;
+    --font-base: 18px;
+    --font-md: 19px;
+    --font-lg: 21px;
+    --font-xl: 24px;
+  }
+  html {
+    font-size: 18px;
+  }
+  body {
+    font-size: 18px;
+    line-height: 1.8;
+  }
 }

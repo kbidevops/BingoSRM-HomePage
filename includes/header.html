@@ -8,16 +8,11 @@
     >Skip to content</a
   >
   <div class="nav-brand">
-    <!-- <div class="logo-badge" role="img" aria-label="KBI e-Security Consulting">
-      <img
-        src="/images/KBI-RepresentativeLogo-without-E-security.jpg"
-        alt="KBI e-Security Consulting"
-      />
-    </div>
-    <div class="nav-vr"></div> -->
-    <div class="nav-product">
-      <img src="/images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
-    </div>
+    <a href="/index.html" aria-label="BingoCVM 홈">
+      <div class="nav-product">
+        <img src="/images/bingoCVM-logo-bklong2.png" alt="BingoCVM" />
+      </div>
+    </a>
   </div>
   <nav class="nav-menu" id="siteNav" aria-label="주요 메뉴">
     <a href="/index.html">홈</a>
@@ -25,23 +20,58 @@
     <a href="/sub/about.html">회사 소개</a>
     <a href="/sub/news.html">뉴스</a>
     <a href="/sub/contact.html">영업문의</a>
-    <a
-      href="https://digitalmall.g2b.go.kr/link/GDSF001_01/?ctrtItemMngNo=002461084_1010000003"
-      target="_blank"
-      class="nav-buy"
-    >
-      <img
-        src="/images/digitalMall.png"
-        alt="조달청 디지털서비스몰"
-        style="height: 22px; display: inline-block; vertical-align: middle"
-      />
-      <span style="margin-left: 10px; vertical-align: middle; font-weight: 700"
-        >조달청 디지털서비스몰 바로가기 →</span
+    <div class="nav-separator"></div>
+    <div class="nav-buy-wrap" id="navBuyWrap">
+      <button
+        type="button"
+        class="nav-buy"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="navBuyMenu"
+        id="navBuyBtn"
       >
-    </a>
+        <img src="/images/digitalMall.png" alt="조달청" />
+        <span class="nav-buy-label">조달청 디지털서비스몰 바로가기</span>
+        <span class="nav-buy-arrow">▾</span>
+      </button>
+      <div class="nav-buy-menu" id="navBuyMenu" role="menu">
+        <a
+          href="https://digitalmall.g2b.go.kr/link/GDSF001_01/?ctrtItemMngNo=002461084_1010000003"
+          target="_blank"
+          rel="noopener noreferrer"
+          role="menuitem"
+        >
+          <img src="/images/digitalMall.png" alt="" />
+          <span>Manager Server</span>
+          <span class="nav-buy-arrow">→</span>
+        </a>
+        <a
+          href="https://digitalmall.g2b.go.kr/link/GDSF001_01/?ctrtItemMngNo=002461084_1010000004"
+          target="_blank"
+          rel="noopener noreferrer"
+          role="menuitem"
+        >
+          <img src="/images/digitalMall.png" alt="" />
+          <span>Device / Agent</span>
+          <span class="nav-buy-arrow">→</span>
+        </a>
+      </div>
+    </div>
   </nav>
   <button class="nav-toggle" aria-expanded="false" aria-label="메뉴 열기">
-    ☰
+    <svg
+      class="nav-hamburger"
+      viewBox="0 0 24 24"
+      width="22"
+      height="22"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+    >
+      <line class="hamburger-top" x1="4" y1="6" x2="20" y2="6" />
+      <line class="hamburger-mid" x1="4" y1="12" x2="20" y2="12" />
+      <line class="hamburger-bot" x1="4" y1="18" x2="20" y2="18" />
+    </svg>
   </button>
-  <script src="/js/nav-toggle.js" defer></script>
 </nav>

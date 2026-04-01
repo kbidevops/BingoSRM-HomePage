@@ -87,7 +87,7 @@
 }
 
 .news-card__body p {
-  font-size: 13.5px;
+  font-size: 15px;
   color: #555;
   line-height: 1.7;
   margin-bottom: 4px;
@@ -96,7 +96,7 @@
 /* ─── Tag pills ────────────────────────── */
 .news-tag {
   display: inline-block;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   padding: 3px 10px;
   border-radius: 20px;
@@ -144,14 +144,14 @@
 /* ─── Date ─────────────────────────────── */
 .news-date {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   color: #999;
   margin-bottom: 8px;
 }
 
 /* ─── Source attribution ───────────────── */
 .news-source {
-  font-size: 12px;
+  font-size: 14px;
   color: #999;
   margin-top: 12px;
   line-height: 1.6;
@@ -165,7 +165,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: #8a7cb8;
 }
@@ -174,11 +174,11 @@
   color: #c4207a;
 }
 
-/* ─── Link ─────────────────────────────── */
+/* ─── Link ───────────────────────────────── */
 .news-link {
   display: inline-block;
   margin-top: 14px;
-  font-size: 13px;
+  font-size: 15px;
   color: #2e8bc9;
   text-decoration: none;
   font-weight: 600;
