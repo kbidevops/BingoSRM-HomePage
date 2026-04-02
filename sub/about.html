@@ -1021,7 +1021,12 @@
         );
 
         const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
-        const sections = Array.from(document.querySelectorAll("section[id]"));
+        const tocIds = new Set(
+          tocLinks.map((a) => a.getAttribute("href").replace(/^#/, "")),
+        );
+        const sections = Array.from(
+          document.querySelectorAll("section[id]"),
+        ).filter((s) => tocIds.has(s.id));
 
         function setActive(id) {
           tocLinks.forEach((a) =>

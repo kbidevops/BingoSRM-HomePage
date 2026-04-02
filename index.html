@@ -97,124 +97,279 @@
             class="hero-right"
             style="padding: 0; background: none; border: none; box-shadow: none"
           >
-            <div class="zt-cards">
-              <!-- CVE -->
-              <div class="zt-card">
-                <div class="zt-card-icon zci-red">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 9v4" />
-                    <path
-                      d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.871L13.637 3.591a1.914 1.914 0 0 0-3.274 0z"
+            <div class="arch-diagram">
+              <div class="arch-title">
+                BingoCVM 제로트러스트 통합 진단 아키텍처
+              </div>
+
+              <!-- Control Layer (제어층) -->
+              <div class="arch-layer arch-layer--ctrl">
+                <div class="arch-layer-tag">제어층</div>
+                <div class="arch-layer-body">
+                  <svg class="arch-chip-icon" viewBox="0 0 40 40" fill="none">
+                    <rect
+                      x="6"
+                      y="6"
+                      width="28"
+                      height="28"
+                      rx="5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      fill="rgba(59,162,242,0.12)"
                     />
-                    <circle cx="12" cy="16" r=".5" fill="currentColor" />
+                    <rect
+                      x="11"
+                      y="11"
+                      width="18"
+                      height="18"
+                      rx="2.5"
+                      stroke="currentColor"
+                      stroke-width="1"
+                      fill="rgba(59,162,242,0.06)"
+                      stroke-dasharray="3 2"
+                    />
+                    <text
+                      x="20"
+                      y="25"
+                      text-anchor="middle"
+                      fill="currentColor"
+                      font-size="11"
+                      font-weight="bold"
+                      font-family="sans-serif"
+                    >
+                      AI
+                    </text>
+                    <line
+                      x1="6"
+                      y1="15"
+                      x2="1"
+                      y2="15"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="6"
+                      y1="25"
+                      x2="1"
+                      y2="25"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="34"
+                      y1="15"
+                      x2="39"
+                      y2="15"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="34"
+                      y1="25"
+                      x2="39"
+                      y2="25"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="15"
+                      y1="6"
+                      x2="15"
+                      y2="1"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="25"
+                      y1="6"
+                      x2="25"
+                      y2="1"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="15"
+                      y1="34"
+                      x2="15"
+                      y2="39"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <line
+                      x1="25"
+                      y1="34"
+                      x2="25"
+                      y2="39"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
                   </svg>
-                </div>
-                <div class="zt-card-title">CVE 취약점 진단</div>
-                <div class="zt-card-desc">
-                  알려진 소프트웨어 취약점을 자동으로 탐지하고, 위험도 기반으로
-                  우선순위를 제공합니다.
+                  <div class="arch-ctrl-info">
+                    <div class="arch-ctrl-name">BingoCVM AI 엔진</div>
+                    <div class="arch-ctrl-sub">Zero Trust Policy Engine</div>
+                  </div>
+                  <div class="arch-stig-pill">STIG 가이드<br />학습 AI</div>
                 </div>
               </div>
-              <!-- CVM -->
-              <div class="zt-card">
-                <div class="zt-card-icon zci-blue">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="3" y="3" width="7" height="7" rx="1" />
-                    <rect x="14" y="3" width="7" height="7" rx="1" />
-                    <rect x="3" y="14" width="7" height="7" rx="1" />
-                    <rect x="14" y="14" width="7" height="7" rx="1" />
-                  </svg>
-                </div>
-                <div class="zt-card-title">CVM 설정 취약점</div>
-                <div class="zt-card-desc">
-                  시스템 설정 오류 및 보안 구성 미비를 진단하고 조치 가이드를
-                  제공합니다.
-                </div>
-              </div>
-              <!-- On-Prem + Cloud -->
-              <div class="zt-card">
-                <div class="zt-card-icon zci-cyan">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
+
+              <!-- Connector: ctrl ↔ analysis -->
+              <div class="arch-conn">
+                <div class="arch-conn-arrows">
+                  <svg viewBox="0 0 10 20" fill="none">
                     <path
-                      d="M6.5 19a4.5 4.5 0 0 1-.42-8.98A7 7 0 0 1 19.5 10a4.5 4.5 0 0 1-.08 9z"
+                      d="M5 0v16M2 13l3 4 3-4"
+                      stroke="rgba(255,255,255,0.35)"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span class="arch-conn-text">진단 명령 및 정책 적용</span>
+                  <svg viewBox="0 0 10 20" fill="none">
+                    <path
+                      d="M5 20V4M2 7l3-4 3 4"
+                      stroke="rgba(255,255,255,0.35)"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                   </svg>
                 </div>
-                <div class="zt-card-title">On-Premise &amp; Cloud</div>
-                <div class="zt-card-desc">
-                  온프레미스 및 AWS, Azure, GCP 등 다양한 클라우드 환경을 통합
-                  관리합니다.
+              </div>
+
+              <!-- Analysis Layer (분석층) -->
+              <div class="arch-layer arch-layer--analysis">
+                <div class="arch-layer-tag arch-tag--analysis">
+                  분석층 | CCE + CVE 통합 모듈
+                </div>
+                <div class="arch-dual">
+                  <div class="arch-module arch-module--cce">
+                    <div class="arch-module-name">CCE (설정 취약점)</div>
+                    <div class="arch-module-desc">
+                      시스템 설정 오류, 컴플라이언스 미준수 진단
+                    </div>
+                  </div>
+                  <div class="arch-dual-sep">&#8644;</div>
+                  <div class="arch-module arch-module--cve">
+                    <div class="arch-module-name">CVE (알려진 취약점)</div>
+                    <div class="arch-module-desc">
+                      글로벌 보안 약점, OS/SW 취약점 실시간 매핑
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- Zero Trust -->
-              <div class="zt-card">
-                <div class="zt-card-icon zci-ink">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+
+              <!-- Connector: infra → analysis -->
+              <div class="arch-conn arch-conn--up">
+                <div class="arch-conn-arrows">
+                  <svg viewBox="0 0 10 20" fill="none">
+                    <path
+                      d="M5 20V4M2 7l3-4 3 4"
+                      stroke="rgba(255,255,255,0.35)"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
                   </svg>
-                </div>
-                <div class="zt-card-title">Zero Trust 보안</div>
-                <div class="zt-card-desc">
-                  “Never Trust, Always Verify” 원칙 기반의 제로 트러스트 보안
-                  아키텍처를 지원합니다.
+                  <svg viewBox="0 0 10 20" fill="none">
+                    <path
+                      d="M5 20V4M2 7l3-4 3 4"
+                      stroke="rgba(255,255,255,0.35)"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
               </div>
-              <!-- STIG wide card -->
-              <div class="zt-card zt-card--wide">
-                <div class="zt-scan-line"></div>
-                <div class="zt-card-icon zci-red">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M2 12h4" />
-                    <path d="M18 12h4" />
-                    <path d="M12 2v4" />
-                    <path d="M12 18v4" />
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="M4.93 4.93l2.83 2.83" />
-                    <path d="M16.24 16.24l2.83 2.83" />
-                    <path d="M4.93 19.07l2.83-2.83" />
-                    <path d="M16.24 7.76l2.83-2.83" />
-                  </svg>
+
+              <!-- Target Layer (대상층) -->
+              <div class="arch-layer arch-layer--infra">
+                <div class="arch-layer-tag arch-tag--infra">
+                  대상층 | 하이브리드 인프라
                 </div>
-                <div>
-                  <div class="zt-card-title">STIG 기반 AI 취약점 진단</div>
-                  <div class="zt-card-desc">
-                    STIG(Security Technical Implementation Guide) 기준을
-                    기반으로 AI가 취약점을 분석하고 조치 가이드를 제공합니다.
+                <div class="arch-infra-row">
+                  <div class="arch-infra-col">
+                    <div class="arch-infra-icons">
+                      <svg viewBox="0 0 20 20" fill="none">
+                        <rect
+                          x="1"
+                          y="2"
+                          width="18"
+                          height="10"
+                          rx="1.5"
+                          stroke="#7a90b0"
+                          stroke-width="1.2"
+                        />
+                        <rect
+                          x="1"
+                          y="14"
+                          width="18"
+                          height="5"
+                          rx="1.5"
+                          stroke="#7a90b0"
+                          stroke-width="1.2"
+                        />
+                        <circle cx="15" cy="16.5" r="1" fill="#7a90b0" />
+                      </svg>
+                      <svg viewBox="0 0 20 20" fill="none">
+                        <rect
+                          x="2"
+                          y="3"
+                          width="16"
+                          height="14"
+                          rx="1.5"
+                          stroke="#7a90b0"
+                          stroke-width="1.2"
+                        />
+                        <line
+                          x1="6"
+                          y1="9"
+                          x2="14"
+                          y2="9"
+                          stroke="#7a90b0"
+                          stroke-width="1"
+                        />
+                        <line
+                          x1="6"
+                          y1="12"
+                          x2="14"
+                          y2="12"
+                          stroke="#7a90b0"
+                          stroke-width="1"
+                        />
+                      </svg>
+                    </div>
+                    <div class="arch-infra-name">온프레미스</div>
+                    <div class="arch-infra-desc">
+                      Legacy 서버 · 네트워크 · 데이터센터
+                    </div>
+                  </div>
+                  <div class="arch-infra-divider"></div>
+                  <div class="arch-infra-col">
+                    <div class="arch-cloud-tags">
+                      <span>AWS</span><span>Azure</span><span>GCP</span>
+                    </div>
+                    <div class="arch-infra-name">클라우드</div>
+                    <div class="arch-infra-desc">
+                      AWS, Azure, GCP 등 가상화 환경
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Key Effects -->
+              <div class="arch-effects">
+                <div class="arch-effects-title">주요 효과</div>
+                <div class="arch-effect-items">
+                  <div class="arch-effect">
+                    <span class="arch-effect-dot"></span>보안 강화
+                  </div>
+                  <div class="arch-effect">
+                    <span class="arch-effect-dot"></span>비용 절감
+                  </div>
+                  <div class="arch-effect">
+                    <span class="arch-effect-dot"></span>컴플라이언스 달성
                   </div>
                 </div>
               </div>

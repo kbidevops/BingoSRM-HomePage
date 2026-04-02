@@ -713,7 +713,8 @@
         // TOC links: activate when header bottom meets section top using sentinels
         (function () {
           const tocLinks = document.querySelectorAll(".page-toc .toc-link");
-          const sections = Array.from(document.querySelectorAll("section[id]"));
+          const tocIds = new Set(Array.from(tocLinks).map(a => a.getAttribute("href").replace(/^#/, "")));
+          const sections = Array.from(document.querySelectorAll("section[id]")).filter(s => tocIds.has(s.id));
           const header = document.getElementById("mainNav");
 
           function setActive(id) {

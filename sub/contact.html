@@ -464,12 +464,19 @@
         const header = document.getElementById("mainNav");
         const headerHeight = header ? header.offsetHeight : 60;
         const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
-        const sections = Array.from(document.querySelectorAll("section[id]"));
+        const tocIds = new Set(
+          tocLinks.map((a) => a.getAttribute("href").replace(/^#/, "")),
+        );
+        const sections = Array.from(
+          document.querySelectorAll("section[id]"),
+        ).filter((s) => tocIds.has(s.id));
         function setActive(id) {
           tocLinks.forEach((a) =>
             a.classList.toggle("active", a.getAttribute("href") === "#" + id),
           );
         }
+        // set initial active state
+        if (sections.length) setActive(sections[0].id);
         let ticking = false;
         window.addEventListener(
           "scroll",
