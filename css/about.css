@@ -13,7 +13,7 @@
   --bg3: #e2dfd8;
   --ink: #1a1d26;
   --ink2: #3a3d4a;
-  --muted: #8a8880;
+  --muted: rgba(26, 29, 38, 0.72);
   --rule: rgba(26, 29, 38, 0.1);
   --rule2: rgba(26, 29, 38, 0.06);
   --crimson: #c8001e;
@@ -43,7 +43,7 @@ body {
     "Malgun Gothic",
     "Nanum Gothic",
     sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -165,7 +165,7 @@ body::before {
   gap: 10px;
   margin-bottom: 28px;
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
+  font-size: 28px;
   color: var(--muted);
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -180,8 +180,8 @@ body::before {
 
 .hero-title {
   font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(72px, 9vw, 120px);
-  line-height: 0.88;
+  font-size: clamp(80px, 9.5vw, 140px);
+  line-height: 0.92;
   letter-spacing: 4px;
   color: var(--ink);
   margin-bottom: 12px;
@@ -266,8 +266,8 @@ body::before {
 }
 
 .hero-desc {
-  font-size: 16px;
-  line-height: 1.85;
+  font-size: 18px;
+  line-height: 1.9;
   color: var(--ink);
   margin-bottom: 12px;
 }
@@ -276,8 +276,8 @@ body::before {
   font-weight: 700;
 }
 .hero-desc2 {
-  font-size: 15px;
-  line-height: 1.9;
+  font-size: 17px;
+  line-height: 1.95;
   color: var(--muted);
   margin-bottom: 40px;
 }
@@ -558,7 +558,7 @@ section {
   background: var(--crimson);
 }
 .section-title {
-  font-size: 32px;
+  font-size: clamp(28px, 7vw, 50px);
   font-weight: 800;
   color: var(--ink);
   position: relative;
@@ -574,10 +574,10 @@ section {
   margin-top: 10px;
 }
 .section-desc {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--muted);
-  line-height: 1.85;
-  max-width: 660px;
+  line-height: 1.95;
+  max-width: 760px;
 }
 .section-desc strong {
   color: var(--ink);
@@ -750,9 +750,9 @@ section {
   gap: 7px;
 }
 .timeline-card ul li {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.75;
   padding-left: 13px;
   position: relative;
 }
@@ -927,7 +927,7 @@ section {
   transform: scaleX(1);
 }
 .partner-name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ink);
   margin-bottom: 10px;
@@ -967,9 +967,9 @@ section {
   gap: 6px;
 }
 .partner-card ul li {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.8;
   padding-left: 13px;
   position: relative;
 }
@@ -1146,7 +1146,7 @@ section {
   transform: scale(1.08);
 }
 .service-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--white);
   margin-bottom: 22px;
@@ -1159,9 +1159,9 @@ section {
   gap: 11px;
 }
 .service-card ul li {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.52);
-  line-height: 1.75;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.8;
   padding-left: 15px;
   position: relative;
   transition: color 0.2s;

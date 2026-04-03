@@ -13,7 +13,7 @@
   --bg3: #e2dfd8;
   --ink: #1a1d26;
   --ink2: #3a3d4a;
-  --muted: #8a8880;
+  --muted: rgba(26, 29, 38, 0.72);
   --rule: rgba(26, 29, 38, 0.1);
   --rule2: rgba(26, 29, 38, 0.06);
   --crimson: #c8001e;
@@ -47,7 +47,7 @@ body {
     "Malgun Gothic",
     "Nanum Gothic",
     sans-serif;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -158,7 +158,7 @@ section,
   grid-template-columns: 1fr 420px;
   align-items: center;
   gap: 48px;
-  padding: 130px 80px 56px;
+  padding: 100px 80px 40px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -197,13 +197,18 @@ section,
   right: -30px;
   bottom: -40px;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 380px;
+  font-size: 260px;
   line-height: 1;
   color: rgba(26, 29, 38, 0.03);
   pointer-events: none;
   user-select: none;
   letter-spacing: -8px;
   z-index: 0;
+}
+
+/* tighten the gap between hero and the following section */
+.hero + section {
+  padding-top: 48px;
 }
 
 .hero-content {
@@ -230,8 +235,8 @@ section,
   gap: 10px;
   margin-bottom: 28px;
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
-  color: var(--muted);
+  font-size: 25px;
+  color: var(--ink2);
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -246,8 +251,8 @@ section,
 
 .hero-title {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 104px;
-  line-height: 0.88;
+  font-size: clamp(48px, 7.2vw, 120px);
+  line-height: 0.96;
   letter-spacing: 4px;
   color: var(--ink);
   margin-bottom: 12px;
@@ -301,7 +306,7 @@ section,
 }
 
 .hero-desc {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.85;
   color: var(--ink);
   margin-bottom: 12px;
@@ -314,7 +319,7 @@ section,
 }
 
 .hero-desc2 {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.9;
   color: var(--muted);
   margin-bottom: 40px;
@@ -384,7 +389,7 @@ section {
   background: var(--crimson);
 }
 .section-title {
-  font-size: 32px;
+  font-size: clamp(28px, 7vw, 50px);
   font-weight: 800;
   color: var(--ink);
   position: relative;
@@ -400,7 +405,7 @@ section {
   margin-top: 10px;
 }
 .section-desc {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.85;
   max-width: 660px;
@@ -509,7 +514,7 @@ section {
   box-shadow: -4px 0 24px rgba(200, 0, 30, 0.08);
 }
 .feature-card-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--navy);
   margin-bottom: 14px;
@@ -539,7 +544,7 @@ section {
   z-index: 1;
 }
 .feature-card ul li {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray);
   line-height: 1.65;
   padding-left: 14px;
@@ -614,15 +619,15 @@ section {
   margin-bottom: 14px;
 }
 .step-icon {
-  width: 76px;
-  height: 76px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Barlow", sans-serif;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 28px;
   position: relative;
   z-index: 3;
   background: var(--white);
@@ -642,15 +647,15 @@ section {
 }
 .step-num {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 30px;
-  height: 30px;
+  top: -10px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 900;
   color: var(--white);
   box-shadow: 0 4px 12px rgba(26, 29, 38, 0.12);
@@ -672,7 +677,7 @@ section {
   background: var(--pink);
 }
 .step-name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--navy);
   text-align: center;
@@ -692,7 +697,7 @@ section {
   margin-top: 6px;
 }
 .process-step .panel-list li {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.65;
   padding-left: 14px;
@@ -994,8 +999,8 @@ section {
   background: var(--pink);
 }
 .panel-body {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.85;
   margin-bottom: 24px;
   padding-bottom: 24px;
@@ -1021,8 +1026,8 @@ section {
   gap: 8px;
 }
 .panel-list li {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.7;
   padding-left: 16px;
   position: relative;
@@ -1141,7 +1146,7 @@ section {
 .arch-col-title {
   font-family: "Barlow", sans-serif;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--navy);
   letter-spacing: 1px;
   text-align: center;
@@ -1181,14 +1186,14 @@ section {
   background: var(--pink);
 }
 .arch-box-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--navy);
   margin-bottom: 8px;
   margin-top: 8px;
 }
 .arch-box-desc {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray);
   line-height: 1.7;
 }
@@ -1466,7 +1471,7 @@ section {
 .platform-name {
   font-family: "Barlow", sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--white);
   margin-bottom: 20px;
   letter-spacing: 0.5px;
@@ -1568,7 +1573,7 @@ section {
   gap: 0;
 }
 .feature-col-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   color: var(--navy);
   padding-bottom: 12px;
@@ -1591,7 +1596,7 @@ section {
 .feature-col-item {
   padding: 14px 0;
   border-bottom: 1px solid var(--light);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--navy);
   line-height: 1.8;
   padding-left: 18px;
@@ -1663,7 +1668,7 @@ section {
   display: block;
   margin-top: 2px;
   padding: 2px 6px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--darktext);
   background: #ffffff;
@@ -1756,7 +1761,7 @@ section {
     margin-bottom: -14px;
   }
   .section-title {
-    font-size: 26px;
+    font-size: 34px;
   }
   .process-steps {
     grid-template-columns: 1fr 1fr;
@@ -1766,7 +1771,7 @@ section {
     gap: 24px;
   }
   .hero-title {
-    font-size: 72px;
+    font-size: 96px;
   }
   .intro-grid {
     gap: 36px;

@@ -13,7 +13,7 @@
   --bg3: #e2dfd8;
   --ink: #1a1d26;
   --ink2: #3a3d4a;
-  --muted: #8a8880;
+  --muted: rgba(26, 29, 38, 0.72);
   --rule: rgba(26, 29, 38, 0.1);
   --rule2: rgba(26, 29, 38, 0.06);
   --crimson: #c8001e;
@@ -38,7 +38,7 @@ body {
     "Malgun Gothic",
     "Nanum Gothic",
     sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -164,7 +164,7 @@ body::before {
   gap: 10px;
   margin-bottom: 22px;
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
+  font-size: 25px;
   color: var(--muted);
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -179,8 +179,8 @@ body::before {
 
 .page-title {
   font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(56px, 8vw, 96px);
-  line-height: 0.9;
+  font-size: clamp(64px, 8.5vw, 110px);
+  line-height: 0.94;
   letter-spacing: 3px;
   color: var(--ink);
   margin-bottom: 10px;
@@ -229,10 +229,10 @@ body::before {
 }
 
 .page-desc {
-  font-size: 15px;
-  line-height: 1.85;
+  font-size: 17px;
+  line-height: 1.9;
   color: var(--muted);
-  max-width: 560px;
+  max-width: 680px;
 }
 
 /* ── LAYOUT ── */
@@ -258,8 +258,8 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 16px;
-  font-size: 15px;
+  padding: 8px 18px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink2);
   background: var(--surface);
@@ -374,16 +374,16 @@ body::before {
   margin-left: auto;
 }
 .card-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 12px;
   line-height: 1.3;
 }
 .card-excerpt {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.9;
   margin-bottom: 20px;
 }
 .card-actions {
@@ -415,8 +415,8 @@ body::before {
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 3px 9px;
-  font-size: 14px;
+  padding: 4px 10px;
+  font-size: 15px;
   font-weight: 700;
   border-radius: 3px;
   letter-spacing: 0.8px;
@@ -527,16 +527,16 @@ body::before {
   flex-wrap: wrap;
 }
 .nc-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 8px;
   line-height: 1.45;
 }
 .nc-excerpt {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.8;
   margin-bottom: 0;
 }
 
@@ -556,9 +556,9 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--ink2);
-  line-height: 1.8;
+  line-height: 1.85;
 }
 .nc-source {
   font-family: "IBM Plex Sans KR", sans-serif;
@@ -651,8 +651,8 @@ body::before {
 }
 .sb-head-title {
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--ink2);
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -693,7 +693,7 @@ body::before {
 }
 .sb-stat-n {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 32px;
+  font-size: 36px;
   color: var(--ink);
   line-height: 1;
 }
@@ -780,14 +780,14 @@ body::before {
 }
 .sb-post-n {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   color: rgba(200, 0, 30, 0.25);
   line-height: 1;
-  min-width: 24px;
+  min-width: 28px;
   padding-top: 2px;
 }
 .sb-post-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink);
   line-height: 1.4;

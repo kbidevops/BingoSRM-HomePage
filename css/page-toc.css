@@ -11,7 +11,7 @@
 .toc-title {
   font-size: 14px;
   font-weight: 700;
-  color: var(--muted);
+  color: var(--ink2);
   margin-bottom: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -21,10 +21,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   padding: 8px 10px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   color: var(--ink2);
   border-radius: 4px;
   text-decoration: none;
@@ -43,8 +43,8 @@
 }
 .toc-link:hover,
 .toc-link.active {
-  background: rgba(200, 0, 30, 0.06);
-  color: var(--crimson);
+  background: rgba(200, 0, 30, 0.1);
+  color: var(--crimson2);
 }
 .toc-link.active::before,
 .toc-link:hover::before {

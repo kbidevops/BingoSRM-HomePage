@@ -13,7 +13,8 @@
   --bg3: #e2dfd8;
   --ink: #1a1d26;
   --ink2: #3a3d4a;
-  --muted: #8a8880;
+  /* Muted text: use a darker, high-contrast ink with slight opacity for flexibility */
+  --muted: rgba(26, 29, 38, 0.72);
   --rule: rgba(26, 29, 38, 0.1);
   --rule2: rgba(26, 29, 38, 0.06);
   --crimson: #c8001e;
@@ -111,7 +112,7 @@ body::before {
 
 /* ── SLIDE-1 ZERO TRUST FEATURE CARDS ── */
 .zt-headline {
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(40px, 6.5vw, 72px);
   font-weight: 800;
   color: var(--ink);
   line-height: 1.15;
@@ -125,6 +126,7 @@ body::before {
 .zt-sub {
   font-size: 16px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   line-height: 1.7;
   margin-bottom: 28px;
   max-width: 560px;
@@ -287,6 +289,7 @@ body::before {
 .zt-card-desc {
   font-size: 13px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   line-height: 1.55;
 }
 /* wide card spanning full width */
@@ -398,12 +401,13 @@ body::before {
 }
 .arch-title {
   text-align: center;
-  font-size: 25px;
-  font-weight: 700;
-  color: #f5f0f1;
-  margin-bottom: 4px;
-  letter-spacing: -0.2px;
-  line-height: 1.4;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 /* Layers */
 .arch-layer {
@@ -425,7 +429,7 @@ body::before {
   border-color: rgba(59, 162, 242, 0.28);
 }
 .arch-layer-tag {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -456,8 +460,8 @@ body::before {
   gap: 10px;
 }
 .arch-chip-icon {
-  width: 40px;
-  height: 40px;
+  width: 52px;
+  height: 52px;
   flex-shrink: 0;
   color: #7ac4f5;
 }
@@ -466,27 +470,28 @@ body::before {
   min-width: 0;
 }
 .arch-ctrl-name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.3;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 .arch-ctrl-sub {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.82);
   font-family: "IBM Plex Mono", monospace;
   margin-top: 3px;
 }
 .arch-stig-pill {
   flex-shrink: 0;
-  padding: 6px 12px;
+  padding: 8px 14px;
   background: rgba(200, 0, 30, 0.12);
   border: 1px solid rgba(200, 0, 30, 0.35);
-  border-radius: 7px;
-  font-size: 11.5px;
-  font-weight: 700;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
   color: #ff6680;
-  line-height: 1.35;
+  line-height: 1.25;
   text-align: center;
 }
 /* Connectors */
@@ -506,12 +511,12 @@ body::before {
   flex-shrink: 0;
 }
 .arch-conn-text {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   line-height: 1.35;
   font-style: normal;
-  max-width: 240px;
+  max-width: 320px;
   letter-spacing: 0.2px;
 }
 .arch-conn--up .arch-conn-arrows {
@@ -543,7 +548,7 @@ body::before {
   border: 1px solid rgba(59, 162, 242, 0.28);
 }
 .arch-module-name {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.25;
   margin-bottom: 4px;
@@ -555,8 +560,8 @@ body::before {
   color: #7ac4f5;
 }
 .arch-module-desc {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
 }
 /* Infra layer */
@@ -582,18 +587,18 @@ body::before {
   margin-bottom: 5px;
 }
 .arch-infra-icons svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 .arch-infra-name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 3px;
 }
 .arch-infra-desc {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
 }
 .arch-cloud-tags {
@@ -603,9 +608,9 @@ body::before {
   margin-bottom: 6px;
 }
 .arch-cloud-tags span {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 7px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 8px;
   border-radius: 4px;
   background: rgba(59, 162, 242, 0.15);
   color: var(--brand-cyan);
@@ -613,8 +618,8 @@ body::before {
 }
 /* Effects bar */
 .arch-effects {
-  margin-top: 2px;
-  padding: 10px 14px;
+  margin-top: 6px;
+  padding: 12px 16px;
   background: rgba(200, 0, 30, 0.06);
   border: 1px solid rgba(200, 0, 30, 0.2);
   border-radius: 8px;
@@ -624,8 +629,8 @@ body::before {
   flex-wrap: wrap;
 }
 .arch-effects-title {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   color: #ff6680;
   letter-spacing: 0.4px;
   white-space: nowrap;
@@ -639,9 +644,9 @@ body::before {
 .arch-effect {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
 }
 .arch-effect-dot {
@@ -742,9 +747,11 @@ body::before {
   gap: 10px;
   margin-bottom: 24px;
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
+  font-size: 22px;
   color: var(--muted);
-  letter-spacing: 3px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  letter-spacing: 1.6px;
+  font-weight: 700;
   text-transform: uppercase;
 }
 .hero-eyebrow::before {
@@ -867,6 +874,7 @@ body::before {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 15px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   letter-spacing: 2px;
   margin-bottom: 16px;
   text-transform: uppercase;
@@ -887,6 +895,7 @@ body::before {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 14px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -1055,11 +1064,12 @@ body::before {
 .hero-prod-sub {
   font-size: 15px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   margin-top: 6px;
 }
 
 .hero-desc {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.85;
   color: var(--ink);
   margin-bottom: 8px;
@@ -1072,6 +1082,7 @@ body::before {
   font-size: 15px;
   line-height: 1.9;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   margin-bottom: 28px;
 }
 
@@ -1086,13 +1097,13 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 13px 28px;
+  padding: 16px 34px;
   background: var(--crimson);
   color: var(--white);
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
   border-radius: 8px;
   transition: all 0.22s;
 }
@@ -1106,13 +1117,13 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
+  padding: 14px 26px;
   border: 1px solid var(--rule);
   background: transparent;
   color: var(--ink2);
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   border-radius: 8px;
   transition: all 0.22s;
 }
@@ -1227,6 +1238,7 @@ body::before {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 14px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   margin-top: 4px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -1243,6 +1255,7 @@ body::before {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 14px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 9px;
@@ -1345,24 +1358,24 @@ body::before {
 }
 .step-num {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 22px;
+  font-size: 28px;
   color: var(--crimson);
-  min-width: 32px;
+  min-width: 40px;
   line-height: 1;
 }
 .step-title {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   color: var(--ink);
   flex: 1;
 }
 .step-badge {
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  padding: 3px 8px;
-  background: var(--bg);
+  font-size: 15px;
+  color: var(--ink2);
+  letter-spacing: 0.6px;
+  padding: 6px 10px;
+  background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 20px;
 }
@@ -1613,6 +1626,7 @@ body::before {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 14px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   letter-spacing: 1.5px;
   margin-top: 3px;
   text-transform: uppercase;
@@ -1705,6 +1719,7 @@ body::before {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 15px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   letter-spacing: 2px;
 }
 .hero-counter em {
@@ -1817,7 +1832,7 @@ section {
 }
 .section-eyebrow {
   font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--crimson);
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -1833,12 +1848,13 @@ section {
   background: var(--crimson);
 }
 .section-title {
-  font-size: 34px;
+  font-size: clamp(28px, 7vw, 50px);
   font-weight: 900;
   color: var(--ink);
   position: relative;
   display: inline-block;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  line-height: 1.05;
 }
 /* (bingo title override removed — styles consolidated below) */
 .section-title::after {
@@ -1850,10 +1866,11 @@ section {
   margin-top: 10px;
 }
 .section-desc {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--muted);
-  line-height: 1.85;
-  max-width: 660px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  line-height: 1.9;
+  max-width: 720px;
 }
 .section-desc strong {
   color: var(--ink);
@@ -1871,7 +1888,7 @@ section {
 
 .bingo-layout {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 380px;
   gap: 36px;
   align-items: start;
 }
@@ -1919,11 +1936,11 @@ section {
 }
 .feat-n {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--crimson);
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -1947,7 +1964,7 @@ section {
   font-weight: 700;
   color: var(--ink);
   margin-bottom: 6px;
-  font-size: 17px;
+  font-size: 18px;
   letter-spacing: -0.2px;
   transition: color 0.2s;
 }
@@ -1955,9 +1972,10 @@ section {
   color: var(--crimson);
 }
 .feat-desc {
-  color: #6b6960;
-  font-size: 14.5px;
-  line-height: 1.7;
+  color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 /* Bingo side card */
@@ -2033,7 +2051,7 @@ section {
 .bs-tag-light {
   display: inline-block;
   padding: 5px 13px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.65);
   background: rgba(255, 255, 255, 0.07);
@@ -2050,9 +2068,9 @@ section {
   background: rgba(200, 0, 30, 0.12);
 }
 .bs-desc {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.75;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.8;
   overflow-wrap: anywhere;
   word-break: break-word;
   white-space: normal;
@@ -2062,8 +2080,8 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 11px 24px;
-  font-size: 15px;
+  padding: 12px 26px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--white);
   background: var(--crimson);
@@ -2103,6 +2121,7 @@ section {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 12px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 14px;
@@ -2172,6 +2191,7 @@ section {
 .bs-sol-desc {
   font-size: 14px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   line-height: 1.55;
   padding-left: 13px;
 }
@@ -2299,6 +2319,7 @@ section {
 .timeline-card ul li {
   font-size: 15px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   line-height: 1.65;
   padding-left: 13px;
   position: relative;
@@ -2470,6 +2491,7 @@ section {
 .partner-card ul li {
   font-size: 15px;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   line-height: 1.7;
   padding-left: 13px;
   position: relative;
@@ -2678,6 +2700,7 @@ section {
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--muted);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   margin-bottom: 14px;
 }
 .clients-cat-label::before {
@@ -2891,7 +2914,7 @@ section {
     font-size: 40px;
   }
   .section-title {
-    font-size: 26px;
+    font-size: 32px;
   }
   .section-num {
     font-size: 60px;
@@ -2926,11 +2949,47 @@ section {
     font-size: 12px;
   }
   .zt-headline {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(28px, 6vw, 42px);
   }
   .hero-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .hero-eyebrow {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .process-step {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  /* Bingo section mobile adjustments */
+  .bingo-feat {
+    padding: 14px 14px 14px 18px;
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+  }
+  .feat-n {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .feat-title {
+    font-size: 16px;
+  }
+  .feat-desc {
+    font-size: 15px;
+  }
+  .step-num {
+    font-size: 22px;
+    min-width: 36px;
+  }
+  .step-title {
+    font-size: 16px;
+  }
+  .step-badge {
+    font-size: 13px;
+    padding: 5px 8px;
   }
 }
 
@@ -2938,4 +2997,28 @@ section {
   .hero-slides {
     transition: none !important;
   }
+}
+
+/* Remove text-shadow for small/muted text to avoid blurry appearance */
+.zt-sub,
+.zt-card-desc,
+.hero-kbi-sub,
+.hero-rule-text,
+.hero-prod-sub,
+.hero-desc2,
+.stat-lbl,
+.cert-label,
+.section-desc,
+.feat-desc,
+.client-mini .cm-lbl,
+.timeline-card ul li,
+.partner-card ul li,
+.bs-sol-label,
+.bs-sol-desc,
+.hero-counter,
+.clients-cat-label,
+.client-logo .logo-name,
+.ref-org,
+.timeline-period {
+  text-shadow: none !important;
 }
