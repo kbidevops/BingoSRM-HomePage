@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BingoCVM</title>
-    <link rel="icon" href="/images/fabi.ico" type="image/x-icon" />
+    <link rel="icon" href="images/fabi.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap"
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/index.css" />
     <script src="js/nav-active.js" defer></script>
   </head>
-  <body>
+  <body class="home">
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
@@ -54,7 +54,7 @@
             <div class="hero-product" style="margin-bottom: 10px">
               <div class="hero-prod-name">
                 <img
-                  src="./images/bingoCVM-logo-bklong2.png"
+                  src="images/bingoCVM-logo-bklong2.png"
                   alt="BingoCVM"
                   loading="lazy"
                 />
@@ -82,10 +82,10 @@
               >
             </div>
             <div class="hero-actions">
-              <a class="btn-primary" href="./sub/product.html"
+              <a class="btn-primary" href="sub/product.html"
                 >BingoCVM 알아보기 →</a
               >
-              <a class="btn-secondary" href="./sub/about.html">회사 소개</a>
+              <a class="btn-secondary" href="sub/about.html">회사 소개</a>
             </div>
           </div>
           <div
@@ -384,7 +384,7 @@
             <div class="hero-eyebrow">자사 대표 솔루션</div>
             <div class="hero-kbi hero-kbi--wordmark">
               <img
-                src="./images/bingoCVM-logo-bklong2.png"
+                src="images/bingoCVM-logo-bklong2.png"
                 alt="BingoCVM"
                 loading="lazy"
               />
@@ -429,9 +429,7 @@
               </div>
             </div>
             <div class="hero-actions" style="margin-top: 20px">
-              <a class="btn-primary" href="./sub/product.html"
-                >제품 상세보기 →</a
-              >
+              <a class="btn-primary" href="sub/product.html">제품 상세보기 →</a>
             </div>
           </div>
           <div
@@ -600,7 +598,7 @@
                 ><span class="ref-tag">취약점 진단</span>
               </div>
             </div>
-            <a href="./sub/about.html#clients" class="ref-all">
+            <a href="sub/about.html#clients" class="ref-all">
               <span>전체 고객사 보기</span>
               <span
                 style="
@@ -761,7 +759,7 @@
           <div class="bs-head">
             <div class="bs-brand">
               <img
-                src="./images/BingoCVM-logo-noline-one-whlong.png"
+                src="images/BingoCVM-logo-noline-one-whlong.png"
                 alt="BingoCVM"
               />
             </div>
@@ -774,7 +772,7 @@
               Unix/Linux · Windows · PC · Web · DBMS · Network · 가상화 ·
               클라우드 플랫폼의 취약점 항목을 자동 스케줄 진단합니다.
             </div>
-            <a href="./sub/product.html" class="bs-cta">
+            <a href="sub/product.html" class="bs-cta">
               제품 자세히 보기
               <svg viewBox="0 0 16 16">
                 <polyline points="6 4 10 8 6 12" />
@@ -811,9 +809,9 @@
 
     <script>
       Promise.all([
-        fetch("/includes/header.html").then((r) => r.text()),
-        fetch("/includes/footer.html").then((r) => r.text()),
-        fetch("/includes/scrollTop.html").then((r) => r.text()),
+        fetch("includes/header.html").then((r) => r.text()),
+        fetch("includes/footer.html").then((r) => r.text()),
+        fetch("includes/scrollTop.html").then((r) => r.text()),
       ])
         .then(([headerHtml, footerHtml, scrollTopHtml]) => {
           const h = document.getElementById("header");
@@ -825,7 +823,7 @@
           document.dispatchEvent(new CustomEvent("includesLoaded"));
           // Load nav-toggle.js (innerHTML doesn't execute <script> tags)
           const s = document.createElement("script");
-          s.src = "/js/nav-toggle.js";
+          s.src = "./js/nav-toggle.js";
           s.onload = () => {
             if (window.initNavToggle) window.initNavToggle();
           };
@@ -1001,11 +999,13 @@
 
       // ── NAV SCROLL ──
       const nav = document.getElementById("mainNav");
-      window.addEventListener(
-        "scroll",
-        () => nav.classList.toggle("scrolled", scrollY > 30),
-        { passive: true },
-      );
+      if (nav) {
+        window.addEventListener(
+          "scroll",
+          () => nav.classList.toggle("scrolled", scrollY > 30),
+          { passive: true },
+        );
+      }
 
       // ── SCROLL TO TOP ──
       document.addEventListener("includesLoaded", () => {

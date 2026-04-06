@@ -382,14 +382,16 @@
 
       // ── NAV SCROLL ──
       const nav = document.getElementById("mainNav");
-      window.addEventListener(
-        "scroll",
-        () => nav.classList.toggle("scrolled", scrollY > 30),
-        { passive: true },
-      );
+      if (nav) {
+        window.addEventListener(
+          "scroll",
+          () => nav.classList.toggle("scrolled", scrollY > 30),
+          { passive: true },
+        );
+      }
 
       // ── SCROLL TO TOP ──
-      fetch("/includes/scrollTop.html")
+      fetch("../includes/scrollTop.html")
         .then((r) => r.text())
         .then((html) => {
           const el = document.getElementById("scrollTop");
