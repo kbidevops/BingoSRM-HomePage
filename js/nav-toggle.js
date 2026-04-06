@@ -3,7 +3,6 @@ function initNavToggle() {
   const navMenu = document.querySelector(".nav-menu");
   if (!toggle || !navMenu) return;
   try {
-    console.debug("initNavToggle: found toggle and menu");
   } catch (e) {}
 
   function openNav() {

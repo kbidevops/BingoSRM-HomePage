@@ -1001,11 +1001,13 @@
 
       // ── NAV SCROLL ──
       const nav = document.getElementById("mainNav");
-      window.addEventListener(
-        "scroll",
-        () => nav.classList.toggle("scrolled", scrollY > 30),
-        { passive: true },
-      );
+      if (nav) {
+        window.addEventListener(
+          "scroll",
+          () => nav.classList.toggle("scrolled", scrollY > 30),
+          { passive: true },
+        );
+      }
 
       // ── SCROLL TO TOP ──
       document.addEventListener("includesLoaded", () => {
