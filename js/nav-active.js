@@ -1,5 +1,6 @@
 function initNavs() {
-  const rawPath = window.location.pathname.split("/").pop();
+  // Use pathname without trailing slash, then take last segment.
+  const rawPath = window.location.pathname.replace(/\/$/, "").split("/").pop();
   const normalizedPath =
     rawPath === "" || rawPath === null ? "index.html" : rawPath;
 
@@ -40,7 +41,12 @@ function initNavs() {
           link.getAttribute("href"),
           window.location.href,
         );
-        const linkPath = normalizePath(linkUrl.pathname.split("/").pop());
+        // remove trailing slash so split/pop returns the actual segment
+        const linkSegment = linkUrl.pathname
+          .replace(/\/$/, "")
+          .split("/")
+          .pop();
+        const linkPath = normalizePath(linkSegment);
         const current = normalizePath(normalizedPath);
         if (linkPath === current) {
           link.classList.add("nav-active");
