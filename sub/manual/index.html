@@ -1,0 +1,599 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BingoCVM — 매뉴얼</title>
+    <link rel="icon" href="../../images/fabi.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/scrollTop.css" />
+    <link rel="stylesheet" href="../../css/manual.css" />
+    <script src="../../js/nav-active.js" defer></script>
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div id="scrollTop"></div>
+    <div id="header"></div>
+
+    <!-- 3-COLUMN DOCS LAYOUT -->
+    <div class="docs-wrap">
+      <!-- ── LEFT NAV ── -->
+      <aside class="docs-nav" id="docsNav" aria-label="매뉴얼 탐색">
+        <!-- Manual selector -->
+        <div class="nav-top">
+          <div class="nav-manual-label">매뉴얼 선택</div>
+          <select
+            class="nav-manual-select"
+            id="manualSelect"
+            aria-label="매뉴얼 선택"
+          ></select>
+        </div>
+
+        <!-- Filter -->
+        <div class="nav-filter-wrap">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            class="nav-filter"
+            id="navFilter"
+            type="search"
+            placeholder="필터"
+            aria-label="섹션 필터"
+          />
+        </div>
+
+        <!-- Tree -->
+        <ul class="nav-tree" id="navTree" role="tree"></ul>
+      </aside>
+
+      <!-- ── CENTER CONTENT ── -->
+      <main class="docs-content" id="docsContent" role="main">
+        <!-- Breadcrumb -->
+        <nav
+          class="doc-breadcrumb"
+          id="docBreadcrumb"
+          aria-label="현재 위치"
+        ></nav>
+
+        <!-- Article body -->
+        <article class="doc-article" id="docArticle">
+          <div class="doc-spinner-wrap"><div class="doc-spinner"></div></div>
+        </article>
+      </main>
+
+      <!-- ── RIGHT PANEL ── -->
+      <aside class="docs-pgtoc" id="docsPageToc" aria-label="하위 항목">
+        <div class="pgtoc-header">
+          <span class="pgtoc-title" id="pgtocTitle">하위 항목</span>
+        </div>
+        <div class="pgtoc-page-info" id="pgtocPageInfo"></div>
+        <div class="pgtoc-parent" id="pgtocParent"></div>
+        <ul class="pgtoc-list" id="pgTocList" role="list"></ul>
+      </aside>
+    </div>
+    <!-- /.docs-wrap -->
+
+    <div id="footer"></div>
+
+    <!-- PDF.js UMD build -->
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+
+    <script type="module">
+      // ── Includes ─────────────────────────────────────────────────────────
+      async function inc(id, url) {
+        const el = document.getElementById(id);
+        if (el) {
+          const r = await fetch(url);
+          el.innerHTML = await r.text();
+        }
+      }
+      await Promise.all([
+        inc("header", "../../includes/header.html"),
+        inc("footer", "../../includes/footer.html"),
+        inc("scrollTop", "../../includes/scrollTop.html"),
+      ]);
+
+      // ── PDF.js setup ──────────────────────────────────────────────────────
+      const pdfjsLib = window["pdfjs-dist/build/pdf"];
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
+      // ── Load data ─────────────────────────────────────────────────────────
+      const MANUALS = await fetch("../../public/manual-data.json").then((r) =>
+        r.json(),
+      );
+
+      // ── State ─────────────────────────────────────────────────────────────
+      let activeManual = MANUALS[0];
+      let activeSection = null;
+      let activeChapter = null; // currently rendered top-level chapter
+      let flatToc = [];
+      const pdfCache = new Map(); // manual.id → PDFDocumentProxy
+      let renderAbortCtrl = null;
+
+      // ── DOM refs ──────────────────────────────────────────────────────────
+      const manualSelect = document.getElementById("manualSelect");
+      const navFilter = document.getElementById("navFilter");
+      const navTree = document.getElementById("navTree");
+      const docBreadcrumb = document.getElementById("docBreadcrumb");
+      const docArticle = document.getElementById("docArticle");
+      const pgTocList = document.getElementById("pgTocList");
+      const pgtocPageInfo = document.getElementById("pgtocPageInfo");
+      const pgtocTitle = document.getElementById("pgtocTitle");
+      const pgtocParent = document.getElementById("pgtocParent");
+      // ── Manual selector ───────────────────────────────────────────────────
+      MANUALS.forEach((m, i) => {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = m.label;
+        manualSelect.appendChild(opt);
+      });
+      manualSelect.addEventListener("change", (e) =>
+        switchManual(MANUALS[+e.target.value]),
+      );
+
+      // ── Helpers ───────────────────────────────────────────────────────────
+      function flattenToc(nodes) {
+        const flat = [];
+        function walk(ns) {
+          for (const n of ns) {
+            flat.push(n);
+            if (n.children?.length) walk(n.children);
+          }
+        }
+        walk(nodes);
+        return flat;
+      }
+
+      function pageRange(node) {
+        const start = node.page;
+        let end;
+        let effectiveNode = node;
+        if (node.children?.length) {
+          function lastDescendant(n) {
+            if (!n.children?.length) return n;
+            return lastDescendant(n.children[n.children.length - 1]);
+          }
+          effectiveNode = lastDescendant(node);
+        }
+        const effIdx = flatToc.indexOf(effectiveNode);
+        const nextNode =
+          effIdx >= 0 && effIdx + 1 < flatToc.length
+            ? flatToc[effIdx + 1]
+            : null;
+        end = nextNode ? nextNode.page : activeManual.total_pages;
+        return {
+          start,
+          end: Math.max(start, Math.min(end, activeManual.total_pages)),
+        };
+      }
+
+      // Find the top-level chapter containing a node
+      function getChapter(node) {
+        for (const ch of activeManual.toc) {
+          if (ch === node) return ch;
+          function contains(n, target) {
+            if (n === target) return true;
+            return n.children?.some((c) => contains(c, target)) || false;
+          }
+          if (contains(ch, node)) return ch;
+        }
+        return node;
+      }
+
+      async function loadPdf(manual) {
+        if (pdfCache.has(manual.id)) return pdfCache.get(manual.id);
+        const url = encodeURI(manual.file);
+        const doc = await pdfjsLib.getDocument({
+          url,
+          cMapUrl: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/",
+          cMapPacked: true,
+        }).promise;
+        pdfCache.set(manual.id, doc);
+        return doc;
+      }
+
+      // ── Find section heading rect in PDF text content ──────────────────
+      function findTitleRect(textContent, vp, title) {
+        const items = textContent.items;
+        if (!items.length) return null;
+
+        // Clean title for comparison (strip all whitespace)
+        const cleanTitle = title.replace(/\s+/g, "");
+
+        // Build visual lines by grouping items with similar Y coordinates
+        const lines = [];
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          if (!item.str) continue;
+          const y = item.transform[5];
+          const h = item.height || Math.abs(item.transform[3]) || 10;
+          let placed = false;
+          for (const line of lines) {
+            if (Math.abs(line.y - y) <= h * 0.6) {
+              line.items.push(item);
+              placed = true;
+              break;
+            }
+          }
+          if (!placed) lines.push({ y, items: [item] });
+        }
+
+        // Sort items within each line by X, build joined text
+        for (const line of lines) {
+          line.items.sort((a, b) => a.transform[4] - b.transform[4]);
+          line.text = line.items.map((it) => it.str).join("");
+        }
+
+        // Search for the line that contains the full title (number + text)
+        for (const line of lines) {
+          const cleanLine = line.text.replace(/\s+/g, "");
+          if (!cleanLine.includes(cleanTitle)) continue;
+
+          // Verify it starts near the beginning (heading, not body text)
+          const idx = cleanLine.indexOf(cleanTitle);
+          if (idx > 5) continue;
+
+          // Compute bounding rect from first item in line
+          const first = line.items[0];
+          const t = first.transform;
+          const [vx, vy] = vp.convertToViewportPoint(t[4], t[5]);
+          const rawH = first.height || Math.abs(t[3]) || 14;
+          const fh = rawH * vp.scale;
+          let lineW = 0;
+          for (const it of line.items) {
+            lineW += Math.abs(it.width) || 5;
+          }
+          return {
+            x: vx,
+            y: vy - fh,
+            w: Math.min(lineW * vp.scale + 20, vp.width * 0.9),
+            h: fh,
+          };
+        }
+        return null;
+      }
+
+      // ── Render one PDF page as canvas ─────────────────────────────────────
+      async function renderPage(pdfDoc, pNum, containerWidth) {
+        const page = await pdfDoc.getPage(pNum);
+        const baseVP = page.getViewport({ scale: 1 });
+        const scale = Math.min(containerWidth / baseVP.width, 2.5);
+        const vp = page.getViewport({ scale });
+
+        const wrap = document.createElement("div");
+        wrap.className = "pdf-page-wrap";
+
+        const canvas = document.createElement("canvas");
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(vp.width * dpr);
+        canvas.height = Math.floor(vp.height * dpr);
+        canvas.style.width = Math.floor(vp.width) + "px";
+        canvas.style.height = Math.floor(vp.height) + "px";
+
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        await page.render({ canvasContext: ctx, viewport: vp }).promise;
+
+        wrap.appendChild(canvas);
+        return { wrap };
+      }
+
+      // ── Show section ──────────────────────────────────────────────────────
+      async function showSection(node, btn) {
+        navTree
+          .querySelectorAll(".nav-btn.active")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        btn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        activeSection = node;
+
+        buildBreadcrumb(node);
+        buildPageToc(node);
+
+        const chapter = getChapter(node);
+        const { start, end } = pageRange(chapter);
+        pgtocPageInfo.textContent = `p. ${node.page}`;
+
+        // If this chapter is already rendered, just scroll to the heading
+        if (activeChapter === chapter) {
+          await highlightAndScroll(node);
+          return;
+        }
+
+        activeChapter = chapter;
+
+        if (renderAbortCtrl) renderAbortCtrl.abort();
+        const ctrl = new AbortController();
+        renderAbortCtrl = ctrl;
+
+        docArticle.innerHTML =
+          '<div class="doc-spinner-wrap"><div class="doc-spinner"></div></div>';
+
+        try {
+          const pdfDoc = await loadPdf(activeManual);
+          if (ctrl.signal.aborted) return;
+
+          docArticle.innerHTML = "";
+          const containerWidth = docArticle.clientWidth;
+
+          for (let pNum = start; pNum <= end; pNum++) {
+            if (ctrl.signal.aborted) return;
+            const { wrap } = await renderPage(pdfDoc, pNum, containerWidth);
+            if (ctrl.signal.aborted) return;
+            wrap.dataset.page = pNum;
+            docArticle.appendChild(wrap);
+          }
+
+          // Now highlight and scroll to the target section
+          await highlightAndScroll(node);
+        } catch (err) {
+          if (!ctrl.signal.aborted) {
+            console.error(err);
+            docArticle.innerHTML = `<div class="doc-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+              </svg>
+              <span>PDF를 불러올 수 없습니다.</span>
+              <small>${err.message}</small></div>`;
+          }
+        }
+      }
+
+      // ── Highlight a heading and scroll to it ───────────────────────────
+      async function highlightAndScroll(node) {
+        // Remove previous highlights
+        docArticle
+          .querySelectorAll(".pdf-highlight-overlay")
+          .forEach((el) => el.remove());
+
+        // Find the page wrapper for this section's page
+        const targetPage = node.page;
+        const wrap = docArticle.querySelector(
+          `.pdf-page-wrap[data-page="${targetPage}"]`,
+        );
+        if (!wrap) return;
+
+        const canvas = wrap.querySelector("canvas");
+        if (!canvas) return;
+
+        const pdfDoc = await loadPdf(activeManual);
+        const page = await pdfDoc.getPage(targetPage);
+        const baseVP = page.getViewport({ scale: 1 });
+        const renderedW = canvas.width / (window.devicePixelRatio || 1);
+        const scale = renderedW / baseVP.width;
+        const vp = page.getViewport({ scale });
+        const textContent = await page.getTextContent();
+        const rect = findTitleRect(textContent, vp, node.title);
+
+        if (rect) {
+          // Add a highlight overlay (DOM, so it can be removed later)
+          const overlay = document.createElement("div");
+          overlay.className = "pdf-highlight-overlay";
+          overlay.style.top = rect.y - 4 + "px";
+          overlay.style.height = rect.h + 8 + "px";
+          wrap.style.position = "relative";
+          wrap.appendChild(overlay);
+
+          // Scroll to the heading
+          const wrapTop = wrap.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: wrapTop + rect.y - 100,
+            behavior: "smooth",
+          });
+        } else {
+          // Fallback: scroll to the page wrapper
+          wrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      // ── Breadcrumb ────────────────────────────────────────────────────────
+      function buildBreadcrumb(targetNode) {
+        const path = [];
+        function find(nodes) {
+          for (const n of nodes) {
+            if (n === targetNode) {
+              path.push(n.title);
+              return true;
+            }
+            if (n.children?.length && find(n.children)) {
+              path.unshift(n.title);
+              return true;
+            }
+          }
+          return false;
+        }
+        find(activeManual.toc);
+
+        docBreadcrumb.innerHTML = "";
+        [activeManual.label, ...path].forEach((label, i, arr) => {
+          const sp = document.createElement("span");
+          sp.textContent = label;
+          docBreadcrumb.appendChild(sp);
+          if (i < arr.length - 1) {
+            const sep = document.createElement("span");
+            sep.textContent = "›";
+            sep.style.color = "var(--muted)";
+            docBreadcrumb.appendChild(sep);
+          }
+        });
+      }
+
+      // ── Right panel: context-aware navigation ─────────────────────────────
+      function findParent(nodes, target, parent = null) {
+        for (const n of nodes) {
+          if (n === target) return parent;
+          if (n.children?.length) {
+            const found = findParent(n.children, target, n);
+            if (found !== undefined) return found;
+          }
+        }
+        return undefined;
+      }
+
+      function buildPageToc(node) {
+        pgTocList.innerHTML = "";
+        pgtocParent.innerHTML = "";
+
+        const hasChildren = node.children?.length > 0;
+        const parent = findParent(activeManual.toc, node);
+        const siblings = parent ? parent.children : activeManual.toc;
+
+        // Choose items: children if available, otherwise siblings
+        const items = hasChildren ? node.children : siblings;
+        pgtocTitle.textContent = hasChildren ? "하위 항목" : "관련 항목";
+
+        // Show parent as a header link when displaying siblings
+        if (!hasChildren && parent) {
+          const a = document.createElement("a");
+          a.className = "pgtoc-parent-link";
+          a.href = "#";
+          a.textContent = "◀ " + parent.title;
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            navTree.querySelectorAll(".nav-btn").forEach((b) => {
+              if (b._node === parent) b.click();
+            });
+          });
+          pgtocParent.appendChild(a);
+        }
+
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          li.className = "pgtoc-item";
+          const a = document.createElement("a");
+          a.className = "pgtoc-link";
+          if (item === node) a.classList.add("active");
+          a.href = "#";
+          a.textContent = item.title;
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            navTree.querySelectorAll(".nav-btn").forEach((b) => {
+              if (b._node === item) b.click();
+            });
+          });
+          li.appendChild(a);
+          pgTocList.appendChild(li);
+        });
+      }
+
+      // ── Nav tree builder ──────────────────────────────────────────────────
+      function buildNavTree(nodes, parentEl, level = 1) {
+        nodes.forEach((node) => {
+          const li = document.createElement("li");
+          li.className = "nav-node";
+          li.dataset.level = level;
+          li.dataset.title = node.title.toLowerCase();
+          li.setAttribute("role", "treeitem");
+
+          const row = document.createElement("div");
+          row.className = "nav-row";
+
+          const chev = document.createElement("button");
+          chev.className =
+            "nav-chevron" + (node.children?.length ? "" : " invisible");
+          chev.setAttribute("aria-label", "펼치기/접기");
+          chev.innerHTML = "&#8250;";
+
+          const btn = document.createElement("button");
+          btn.className = "nav-btn";
+          btn.textContent = node.title;
+          btn._node = node;
+          btn.addEventListener("click", () => showSection(node, btn));
+
+          row.appendChild(chev);
+          row.appendChild(btn);
+          li.appendChild(row);
+
+          if (node.children?.length) {
+            const ul = document.createElement("ul");
+            ul.className = "nav-children" + (level === 1 ? " open" : "");
+            ul.setAttribute("role", "group");
+            buildNavTree(node.children, ul, level + 1);
+            li.appendChild(ul);
+
+            if (level === 1) chev.classList.add("open");
+            chev.addEventListener("click", () => {
+              const open = ul.classList.toggle("open");
+              chev.classList.toggle("open", open);
+            });
+          }
+
+          parentEl.appendChild(li);
+        });
+      }
+
+      // ── Filter ────────────────────────────────────────────────────────────
+      navFilter.addEventListener("input", (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        navTree.querySelectorAll(".nav-node").forEach((li) => {
+          if (!q) {
+            li.classList.remove("hidden");
+            return;
+          }
+          const match = li.dataset.title.includes(q);
+          li.classList.toggle("hidden", !match);
+          if (match) {
+            let p = li.parentElement?.closest(".nav-node");
+            while (p) {
+              p.classList.remove("hidden");
+              const ul = p.querySelector(".nav-children");
+              if (ul) ul.classList.add("open");
+              p = p.parentElement?.closest(".nav-node");
+            }
+          }
+        });
+      });
+
+      // ── Switch manual ─────────────────────────────────────────────────────
+      function switchManual(manual) {
+        activeManual = manual;
+        activeChapter = null;
+        flatToc = flattenToc(manual.toc);
+        navTree.innerHTML = "";
+        buildNavTree(manual.toc, navTree, 1);
+        navFilter.value = "";
+
+        const first = manual.toc[0];
+        if (first) {
+          const firstBtn = navTree.querySelector(".nav-btn");
+          if (firstBtn) showSection(first, firstBtn);
+        }
+      }
+
+      // ── Cursor ────────────────────────────────────────────────────────────
+      const dot = document.getElementById("cursorDot");
+      const ring = document.getElementById("cursorRing");
+      if (dot && ring) {
+        document.addEventListener("mousemove", (e) => {
+          dot.style.left = ring.style.left = e.clientX + "px";
+          dot.style.top = ring.style.top = e.clientY + "px";
+        });
+      }
+
+      // ── Init ──────────────────────────────────────────────────────────────
+      switchManual(MANUALS[0]);
+    </script>
+  </body>
+</html>
