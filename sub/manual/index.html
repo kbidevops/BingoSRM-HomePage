@@ -114,6 +114,20 @@
         inc("scrollTop", "../../includes/scrollTop.html"),
       ]);
 
+      const navToggleScript = document.createElement("script");
+      navToggleScript.src = "/js/nav-toggle.js";
+      navToggleScript.defer = true;
+      navToggleScript.onload = () => {
+        if (window.initNavToggle) {
+          window.initNavToggle();
+        }
+        if (window.initNavBuyDropdown) {
+          window.initNavBuyDropdown();
+        }
+      };
+      document.body.appendChild(navToggleScript);
+      document.dispatchEvent(new CustomEvent("includesLoaded"));
+
       // ── PDF.js setup ──────────────────────────────────────────────────────
       const pdfjsLib = window["pdfjs-dist/build/pdf"];
       pdfjsLib.GlobalWorkerOptions.workerSrc =
